@@ -1,0 +1,3 @@
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.*$ index.php [NC,L]
+SetEnv APPLICATION_ENV production
