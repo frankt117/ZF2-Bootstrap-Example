@@ -1,6 +1,6 @@
 <?php
 $env = getenv('APP_ENV') ?: 'production';
-$env = "development";
+
 return array(
     //View manager configuration can be specified via the 'view_manager' key
     'view_manager' => array(
