@@ -1,0 +1,13 @@
+{
+    "name": "trueaxiom/skeleton-application",
+    "description": "Skeleton Application for ZF2",
+    "license": "MIT",
+    "keywords": [
+        "zf2"
+    ],
+    "homepage": "http://trueaxiom.github.io",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": ">=2.2.0"
+    }
+}
