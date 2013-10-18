@@ -127,14 +127,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="span6" id="email-form-form">
-                    <p><input type="text" class="input-xlarge" id="email-form-input" placeholder="Email Address"/></p>
-                    <p><input type="button" class="btn btn-warning btn-large" id="email-form-button" value="LOCK IN MY PRICE"/>
-                </div>
-                <div class="span4" id="email-form-summary">
-                    We are currently working hard to get this amazing product to you. 
-                    Give us your email to stay updated on the launch date.
-                </div>
+                <form method="post" action="/thanks">
+                    <div class="span6" id="email-form-form">
+                        <p><input type="text" class="input-xlarge" id="email-form-input" placeholder="Email Address"/></p>
+                        <p><input type="submit" class="btn btn-warning btn-large" id="email-form-button" value="LOCK IN MY PRICE"/>
+                    </div>
+                    <div class="span4" id="email-form-summary">
+                        We are currently working hard to get this amazing product to you.
+                        Give us your email to stay updated on the launch date.
+                    </div>
+                </form>
             </div>
         </div>
     </div>
