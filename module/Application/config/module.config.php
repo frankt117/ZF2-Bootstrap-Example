@@ -1,12 +1,10 @@
 <?php
-$env = getenv('APP_ENV') ?: 'production';
+namespace Application;
 
 return array(
-    //View manager configuration can be specified via the 'view_manager' key
     'view_manager' => array(
-        //the template path stack is a record of all the places to look for templates
-        'display_not_found_reason' => ($env != 'production'),
-        'display_exceptions'       => ($env != 'production'),
+        'display_not_found_reason' => true,
+        'display_exceptions'       => true,
         'doctype'                  => 'HTML5',
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
@@ -18,6 +16,19 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+    ),
+    'module_layouts' => array(
+        'Application' => 'app/layout',
+    ),
+    'translator' => array(
+        'locale' => 'en_US',
+        'translation_file_patterns' => array(
+            array(
+                'type'     => 'gettext',
+                'base_dir' => __DIR__ . '/../language',
+                'pattern'  => '%s.mo',
+            ),
         ),
     ),
 );

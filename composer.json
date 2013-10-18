@@ -1,13 +1,16 @@
 {
-    "name": "trueaxiom/skeleton-application",
-    "description": "Skeleton Application for ZF2",
-    "license": "MIT",
+    "name": "ptgdallas/portablecontractor",
+    "description": "Portable Contractor Website.",
     "keywords": [
-        "zf2"
+        "portable contractor"
     ],
-    "homepage": "http://trueaxiom.github.io",
+    "homepage": "http://ptgdallas.com/",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": ">=2.2.0"
+        "zendframework/zendframework": "2.*",
+        "zendframework/zftool": "dev-master",
+        "evandotpro/edp-module-layouts": "dev-master",
+        "kriswallsmith/assetic": "1.1.*",
+        "rwoverdijk/assetmanager": "dev-master"
     }
 }

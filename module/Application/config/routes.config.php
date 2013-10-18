@@ -2,18 +2,17 @@
 return array(
     'router' => array(
         'routes' => array(
-            'app_test_type' => array(
-                'type' => 'Literal',
+            'home' => array(
+                'type' => 'literal',
 		'options' => array(
 		    'route' => '/',
 		    'defaults' => array(
 			'__NAMESPACE__' => 'Application\Controller',
-			'controller'    => 'Application\Controller\Index',
-			'action'        => 'Index',
+			'controller'    => 'Index',
+			'action'        => 'index',
 		    ),
 		),
-                'may_terminate' => true
-            ), 
+            ),
         ),
     ),
 );
