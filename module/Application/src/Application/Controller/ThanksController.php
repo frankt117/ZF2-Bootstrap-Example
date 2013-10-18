@@ -8,7 +8,6 @@ class ThanksController extends AbstractActionController
 {
     public function indexAction()
     {
-        echo "hsa";
         return new ViewModel();
     }
 }
