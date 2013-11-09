@@ -57,6 +57,17 @@ return array(
                     ),
                 ),
             ),
+            'buildings' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/buildings',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Buildings',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
 );
