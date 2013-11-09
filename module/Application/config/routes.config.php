@@ -35,6 +35,17 @@ return array(
                     ),
                 ),
             ),
+            'carports' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/carports',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Carports',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
 );
