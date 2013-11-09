@@ -24,6 +24,17 @@ return array(
                     ),
                 ),
             ),
+            'affiliate' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/affiliate',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Affiliate',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
 );
