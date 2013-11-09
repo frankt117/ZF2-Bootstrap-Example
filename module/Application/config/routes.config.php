@@ -68,6 +68,17 @@ return array(
                     ),
                 ),
             ),
+            'contact' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/contact',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Contact',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
 );
