@@ -31,16 +31,15 @@
 <body>
 
 <div class="container">
-
     <div class="masthead">
         <h3 class="text-muted">TurtleBuilt Structures</h3>
         <ul class="nav nav-justified">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/carports">Carports</a></li>
-            <li><a href="/garages">Garages</a></li>
-            <li><a href="/buildings">Buildings</a></li>
-            <li><a href="/affiliate">Affiliate</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li id="nav_home_tab"><a href="/">Home</a></li>
+            <li id="nav_carports_tab"><a href="/carports">Carports</a></li>
+            <li id="nav_garages_tab"><a href="/garages">Garages</a></li>
+            <li id="nav_buildings_tab"><a href="/buildings">Buildings</a></li>
+            <li id="nav_affiliate_tab"><a href="/affiliate">Affiliate</a></li>
+            <li id="nav_contact_tab"><a href="/contact">Contact</a></li>
         </ul>
     </div>
 <?php echo $this->content; ?>
@@ -51,5 +50,11 @@
     </div>
 
 </div> <!-- /container -->
+
+<script>
+    var currentPath = window.location.pathname.replace(/^\/([^\/]*).*$/, '$1');
+    currentPath = currentPath == '' ? 'home' : currentPath;
+    document.getElementById('nav_' + currentPath + '_tab').className = 'active';
+</script>
 </body>
 </html>
