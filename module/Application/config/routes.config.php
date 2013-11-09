@@ -46,6 +46,17 @@ return array(
                     ),
                 ),
             ),
+            'garages' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/garages',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Garages',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
 );
