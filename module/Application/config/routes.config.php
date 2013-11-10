@@ -90,6 +90,17 @@ return array(
                     ),
                 ),
             ),
+            'estimate' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/get-started/estimate',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'GetStarted',
+                        'action'        => 'estimate',
+                    ),
+                ),
+            ),
         ),
     ),
 );

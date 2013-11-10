@@ -10,4 +10,9 @@ class GetStartedController extends AbstractActionController
     {
         return new ViewModel();
     }
+
+    public function estimateAction()
+    {
+        return new ViewModel();
+    }
 }
