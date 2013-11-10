@@ -79,6 +79,17 @@ return array(
                     ),
                 ),
             ),
+            'get-started' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/get-started',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'GetStarted',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
 );
