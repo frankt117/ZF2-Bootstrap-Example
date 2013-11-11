@@ -216,6 +216,12 @@ pip-log.txt
 .mr.developer.cfg
 /nbproject/private/
 
+#################
+## PHPStorm
+#################
+
+.idea/
+
 #Jessie --------------------------------------------------------------------------------------
 LICENSE.txt
 README.txt
