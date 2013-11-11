@@ -12,6 +12,6 @@
         "evandotpro/edp-module-layouts": "dev-master",
         "kriswallsmith/assetic": "1.1.*",
         "rwoverdijk/assetmanager": "dev-master",
-	"doctrine/orm": "*"
+        "doctrine/doctrine-orm-module": "*"
     }
 }
