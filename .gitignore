@@ -231,4 +231,5 @@ extras/documentation
 .~lock.*
 *.config.local.php
 /vendor/
+/data/DoctrineORMModule/Proxy/
 composer.lock
