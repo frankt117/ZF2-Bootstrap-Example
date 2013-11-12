@@ -232,4 +232,3 @@ extras/documentation
 *.config.local.php
 /vendor/
 /data/DoctrineORMModule/Proxy/
-composer.lock
