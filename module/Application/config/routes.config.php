@@ -101,6 +101,20 @@ return array(
                     ),
                 ),
             ),
+            'pr' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/pr[/:product_slug]',
+                    'constraints' => array(
+                        'product_slug' => '[a-zA-Z0-9_-]*'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Product',
+                        'action'        => 'index'
+                    )
+                )
+            )
         ),
     ),
 );

@@ -8,6 +8,7 @@ return array(
         'Application\Controller\Garages' => 'Application\Controller\GaragesController',
         'Application\Controller\Buildings' => 'Application\Controller\BuildingsController',
         'Application\Controller\Contact' => 'Application\Controller\ContactController',
-        'Application\Controller\GetStarted' => 'Application\Controller\GetStartedController'
+        'Application\Controller\GetStarted' => 'Application\Controller\GetStartedController',
+        'Application\Controller\Product' => 'Application\Controller\ProductController'
     ),
 );
