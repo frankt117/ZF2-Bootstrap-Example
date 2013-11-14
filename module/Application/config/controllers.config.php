@@ -9,6 +9,7 @@ return array(
         'Application\Controller\Buildings' => 'Application\Controller\BuildingsController',
         'Application\Controller\Contact' => 'Application\Controller\ContactController',
         'Application\Controller\GetStarted' => 'Application\Controller\GetStartedController',
-        'Application\Controller\Product' => 'Application\Controller\ProductController'
+        'Application\Controller\Product' => 'Application\Controller\ProductController',
+        'Application\Controller\Category' => 'Application\Controller\CategoryController'
     ),
 );

@@ -114,6 +114,20 @@ return array(
                         'action'        => 'index'
                     )
                 )
+            ),
+            'ct' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/ct[/:category_slug]',
+                    'constraints' => array(
+                        'category_slug' => '[a-zA-Z0-9_-]*'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'index'
+                    )
+                )
             )
         ),
     ),
