@@ -1,6 +1,9 @@
 <?php
 return array(
     'modules' => array(
+        'PtgBase',
+        'PtgContact',
+        'PtgLead',
 	'Application',
 	'DoctrineModule',
 	'DoctrineORMModule'

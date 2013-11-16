@@ -8,6 +8,7 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.*",
+        "zendframework/zend-developer-tools": "dev-master",
         "zendframework/zftool": "dev-master",
         "evandotpro/edp-module-layouts": "dev-master",
         "kriswallsmith/assetic": "1.1.*",
