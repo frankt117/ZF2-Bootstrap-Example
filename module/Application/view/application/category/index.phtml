@@ -1,14 +1,191 @@
+    .item img {
+        width:100%;
+    }
+
+    .text {
+        color:#ffffff;
+        display:none;
+        position:absolute;
+        left:0;
+        bottom:0;
+        width:100%;
+        background: #999;
+        background: rgba(0,0,0,0.3);
+        text-align: center;
+    }
+
+    ul {
+        font-size: 20px;
+    }
+
+    .list_carousel {
+        width: 100%;
+    }
+    .list_carousel ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: block;
+    }
+    .list_carousel li {
+        font-size: 40px;
+        color: #999;
+        text-align: center;
+        width: 280px;
+        height: 210px;
+        padding: 0;
+        margin: 3px;
+        display: block;
+        float: left;
+    }
+
+    .list_carousel li img {
+        width: 280px;
+        height: 210px;
+    }
+    .list_carousel.responsive {
+        width: auto;
+        margin-left: 0;
+    }
+    .clearfix {
+        float: none;
+        clear: both;
+    }
+    .prev {
+        color:#000;
+        float: left;
+        margin-left: 10px;
+        font-size: 3em;
+    }
+    .next {
+        color:#000;
+        font-size: 3em;
+        float: right;
+        margin-right: 10px;
+    }
+
+    .prev:hover{
+        color:#999;
+    }
+    .next:hover{
+        color:#999;
+    }
+    .pager {
+        float: left;
+        width: 300px;
+        text-align: center;
+
+    }
+    .pager a {
+
+        margin: 0 5px;
+        text-decoration: none;
+    }
+    .pager a.selected {
+        text-decoration: underline;
+    }
+
+
+
+</style>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<script type="text/javascript" language="javascript">
+    $(function() {
+
+        //	Scrolled by user interaction
+        $('#foo2').carouFredSel({
+            auto: false,
+            prev: '#prev2',
+            next: '#next2',
+            pagination: "#pager2",
+            mousewheel: true,
+            swipe: {
+                onMouse: true,
+                onTouch: true
+            }
+        });
+    });
+</script>
+<script type="text/javascript" language="javascript" src="/js/carouFredSel-6.2.1/jquery.carouFredSel-6.2.1-packed.js"></script>
 
 <!-- Jumbotron -->
 <div class="jumbotron">
-    <h1>Category Page</h1>
-    <p class="lead">For the carport, garage, or building you need.</p>
+    <h1><?php echo ucfirst($this->category_slug); ?></h1>
+    <p class="lead">Subdescription for <?php echo $this->category_slug; ?> page goes here.</p>
     <p><a class="btn btn-lg btn-success" href="/get-started" role="button">Get started today</a></p>
 </div>
-
+<hr>
 
 <div class="row">
     <div class="col-lg-12">
-        Slug: <?php echo $this->category_slug; ?>
+        <div class="list_carousel">
+            <ul id="foo2">
+            <?php
+
+            //Refactor for IMG/SLUG when ready -
+            /** @var \DirectoryIterator $pic */
+            foreach(new DirectoryIterator( APPLICATION_ROOT. '/img/barns') as $pic)
+            {
+
+                if($pic->isDot()
+                    OR $pic->isDir()
+                    OR $pic->getFilename() === 'index.php') continue;
+
+                //Need to use /img/slug below.
+
+                echo '<li><div class="carou_tile" id="item"><img src="/img/barns/' . $pic->getFilename() .'" />
+                <div class="text"><h4>Horse Barn</h4><p>Starting at $11,000</p></div>
+                </div></li>';
+            }
+            ?>
+            </ul>
+            <div class="clearfix"></div>
+            <a id="prev2" class="prev" href="#"><i class="fa fa-arrow-circle-o-left" id="arrow_left"></i></a>
+            <a id="next2" class="next" href="#"><i class="fa fa-arrow-circle-o-right" id="arrow_right"></i></a>
+
+        </div>
+
+
     </div>
 </div>
+
+<hr>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>Description</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat porttitor felis, et pulvinar quam convallis eget. Integer pulvinar imperdiet erat. Donec porttitor sagittis erat eu vestibulum. Fusce vehicula mollis leo. Nulla at placerat tellus, eu euismod arcu. Donec porttitor, felis quis malesuada tempor, mi justo feugiat orci, vitae accumsan enim elit sed purus. Curabitur rutrum, lectus at fermentum auctor, sem massa placerat ligula, id dignissim nisl augue eu sapien. Suspendisse euismod massa nec commodo hendrerit. Etiam vehicula viverra sapien, rhoncus auctor ante cursus nec. Quisque nisl turpis, lobortis at nisl in, pharetra auctor diam. Phasellus et vulputate purus. Morbi ut risus in nisi rhoncus posuere.
+
+        <h3>Reasons why it's great</h3>
+        <ul>
+            <li>Strong as fuuuuck</li>
+            <li>Strong as fuuuuck</li>
+            <li>Strong as fuuuuck</li>
+            <li>Strong as fuuuuck</li>
+        </ul>
+    </div>
+    <div class="col-lg-6">
+        <img src="/img/barns/building.jpg" style="-webkit-border-radius: 6px;-moz-border-radius:6px;border-radius:6px;" />
+    </div>
+</div>
+
+<script src="/js/jquery.masonry.js"></script>
+<script>
+    var $container = $('#photos');
+    $container.imagesLoaded(function(){
+        $container.masonry({
+            itemSelector : '.item'
+        });
+    });
+    $(document).ready(function(){
+    $(".list_carousel li").hover(function(){
+        $(this).find("div.text").slideDown("slow");
+    },function(){
+        $(this).find("div.text").slideUp("slow");
+    });
+    });
+</script>
