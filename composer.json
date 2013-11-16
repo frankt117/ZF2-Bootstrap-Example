@@ -1,10 +1,10 @@
 {
-    "name": "ptgdallas/portablecontractor",
-    "description": "Portable Contractor Website.",
+    "name": "ptgdallas/turtlebuilt",
+    "description": "Turtle Built",
     "keywords": [
         "portable contractor"
     ],
-    "homepage": "http://ptgdallas.com/",
+    "homepage": "http://turtlebuilt.com/",
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.*",
