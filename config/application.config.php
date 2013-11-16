@@ -5,9 +5,11 @@ return array(
         'PtgContact',
         'PtgLead',
 	'Application',
+        'TbAdmin',
 	'DoctrineModule',
 	'DoctrineORMModule',
-        'ZendDeveloperTools'
+        'ZendDeveloperTools',
+	'EdpModuleLayouts',
     ),
     'module_listener_options' => array(
         'module_paths' => array(
