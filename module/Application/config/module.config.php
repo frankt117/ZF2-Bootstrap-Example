@@ -19,7 +19,7 @@ return array(
         ),
     ),
     'module_layouts' => array(
-        'Application' => 'app/layout',
+        'Application' => 'layout/layout',
     ),
     'translator' => array(
         'locale' => 'en_US',
