@@ -1,4 +1,15 @@
 <style>
+    .item {
+        width:280px;
+        margin: 3px;
+        position: relative;
+    }
+    .carou_tile {
+        width:280px;
+        margin: 3px;
+        position: relative;
+    }
+
     .item img {
         width:100%;
     }
@@ -121,24 +132,24 @@
     <div class="col-lg-12">
         <div class="list_carousel">
             <ul id="foo2">
-            <?php
+                <?php
 
-            //Refactor for IMG/SLUG when ready -
-            /** @var \DirectoryIterator $pic */
-            foreach(new DirectoryIterator( APPLICATION_ROOT. '/img/barns') as $pic)
-            {
+                //Refactor for IMG/SLUG when ready -
+                /** @var \DirectoryIterator $pic */
+                foreach(new DirectoryIterator( APPLICATION_ROOT. '/img/barns') as $pic)
+                {
 
-                if($pic->isDot()
-                    OR $pic->isDir()
-                    OR $pic->getFilename() === 'index.php') continue;
+                    if($pic->isDot()
+                        OR $pic->isDir()
+                        OR $pic->getFilename() === 'index.php') continue;
 
-                //Need to use /img/slug below.
+                    //Need to use /img/slug below.
 
-                echo '<li><div class="carou_tile" id="item"><img src="/img/barns/' . $pic->getFilename() .'" />
+                    echo '<li><div class="carou_tile" id="item"><img src="/img/barns/' . $pic->getFilename() .'" />
                 <div class="text"><h4>Horse Barn</h4><p>Starting at $11,000</p></div>
                 </div></li>';
-            }
-            ?>
+                }
+                ?>
             </ul>
             <div class="clearfix"></div>
             <a id="prev2" class="prev" href="#"><i class="fa fa-arrow-circle-o-left" id="arrow_left"></i></a>
@@ -183,10 +194,10 @@
         });
     });
     $(document).ready(function(){
-    $(".list_carousel li").hover(function(){
-        $(this).find("div.text").slideDown("slow");
-    },function(){
-        $(this).find("div.text").slideUp("slow");
-    });
+        $(".list_carousel li").hover(function(){
+            $(this).find("div.text").slideDown("slow");
+        },function(){
+            $(this).find("div.text").slideUp("slow");
+        });
     });
 </script>
