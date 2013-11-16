@@ -1,9 +1,15 @@
 <?php
 return array(
     'modules' => array(
+        'PtgBase',
+        'PtgContact',
+        'PtgLead',
 	'Application',
+        'TbAdmin',
 	'DoctrineModule',
-	'DoctrineORMModule'
+	'DoctrineORMModule',
+        'ZendDeveloperTools',
+	'EdpModuleLayouts',
     ),
     'module_listener_options' => array(
         'module_paths' => array(
