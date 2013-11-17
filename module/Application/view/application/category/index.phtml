@@ -26,7 +26,12 @@
                         <li>
                             <div class="carou_tile" id="item">
                                 <img src="/img/<?php echo $this->category_slug ?>/<?php echo $pic->getFilename() ?>" />
-                                <div class="text">
+                                <div class="text_top" id="top_text">
+                                    <a><i class="fa fa-phone"></i></a>
+                                    <a><i class="fa fa-envelope"></i></a>
+                                    <a><i class="fa fa-search-plus"></i></a>
+                                </div>
+                                <div class="text_bottom">
                                     <h4>Horse Barn</h4>
                                     <h5>Starting at $11,000</h5>
                                 </div>
@@ -88,9 +93,11 @@
         });
 
         $(".list_carousel li").hover(function(){
-            $(this).find("div.text").slideDown("slow");
+            $(this).find("div.text_bottom").slideDown("slow");
+            $(this).find("div.text_top").slideDown("slow");
         },function(){
-            $(this).find("div.text").slideUp("slow");
+            $(this).find("div.text_bottom").slideUp("slow");
+            $(this).find("div.text_top").slideUp("slow");
         });
 
     });
