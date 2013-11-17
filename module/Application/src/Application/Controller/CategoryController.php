@@ -21,6 +21,20 @@ class CategoryController extends AbstractActionController
     }
 
     /**
+     * Do a doctrine query for these
+     * @return array
+     */
+    protected function getCategoryFeatureBulletPoints(){
+        return array(
+            '10 Year Warranty',
+            'American Made',
+            'Built to Last',
+            'Made to fit your needs',
+            'Guaranteed Lowest Price'
+        );
+    }
+
+    /**
      * @TODO make a real data call bro
      * @return string
      */

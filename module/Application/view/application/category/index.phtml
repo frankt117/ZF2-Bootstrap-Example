@@ -50,12 +50,13 @@
     <div class="col-lg-6">
         <?php echo $this->description ;?>
 
-        <h3>Reasons why it's great</h3>
+        <h3>Features</h3>
         <ul>
-            <li>Built to suit</li>
-            <li>10 Year warranty</li>
-            <li>American made</li>
-            <li>Built to last</li>
+            <?php
+                foreach ($this->category_feature_bullet_points as $bullet_point_text){
+                    echo '<li>' . $bullet_point_text . '</li>';
+                }
+            ?>
         </ul>
     </div>
     <div class="col-lg-6">
