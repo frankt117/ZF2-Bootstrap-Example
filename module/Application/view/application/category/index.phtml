@@ -1,28 +1,10 @@
 <link href="/css/category.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<script type="text/javascript" language="javascript">
-    $(function() {
-
-        //	Scrolled by user interaction
-        $('#foo2').carouFredSel({
-            auto: false,
-            prev: '#prev2',
-            next: '#next2',
-            pagination: "#pager2",
-            mousewheel: true,
-            swipe: {
-                onMouse: true,
-                onTouch: true
-            }
-        });
-    });
-</script>
-<script type="text/javascript" language="javascript" src="/js/carouFredSel-6.2.1/jquery.carouFredSel-6.2.1-packed.js"></script>
 
 <!-- Jumbotron -->
 <div class="jumbotron">
-    <h1><?php echo ucfirst($this->category_slug); ?></h1>
-    <p class="lead">Subdescription for <?php echo $this->category_slug; ?> page goes here.</p>
+    <h1><?php echo $this->category_title; ?></h1>
+    <p class="lead"><?php echo $this->category_subdescription; ?></p>
     <p><a class="btn btn-lg btn-success" href="/get-started" role="button">Get started today</a></p>
 </div>
 <hr>
@@ -35,7 +17,7 @@
 
                 //Refactor for IMG/SLUG when ready -
                 /** @var \DirectoryIterator $pic */
-                foreach(new DirectoryIterator( APPLICATION_ROOT. '/img/barns') as $pic)
+                foreach(new DirectoryIterator( $this->category_image_directory ) as $pic)
                 {
 
                     if($pic->isDot()
@@ -44,7 +26,7 @@
 
                     //Need to use /img/slug below.
 
-                    echo '<li><div class="carou_tile" id="item"><img src="/img/barns/' . $pic->getFilename() .'" />
+                    echo '<li><div class="carou_tile" id="item"><img src="/img/'.$this->category_slug.'/' . $pic->getFilename() .'" />
                 <div class="text"><h4>Horse Barn</h4><p>Starting at $11,000</p></div>
                 </div></li>';
                 }
@@ -69,7 +51,7 @@
 </div>
 <div class="row">
     <div class="col-lg-6">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat porttitor felis, et pulvinar quam convallis eget. Integer pulvinar imperdiet erat. Donec porttitor sagittis erat eu vestibulum. Fusce vehicula mollis leo. Nulla at placerat tellus, eu euismod arcu. Donec porttitor, felis quis malesuada tempor, mi justo feugiat orci, vitae accumsan enim elit sed purus. Curabitur rutrum, lectus at fermentum auctor, sem massa placerat ligula, id dignissim nisl augue eu sapien. Suspendisse euismod massa nec commodo hendrerit. Etiam vehicula viverra sapien, rhoncus auctor ante cursus nec. Quisque nisl turpis, lobortis at nisl in, pharetra auctor diam. Phasellus et vulputate purus. Morbi ut risus in nisi rhoncus posuere.
+        <?php echo $this->description ;?>
 
         <h3>Reasons why it's great</h3>
         <ul>
@@ -84,7 +66,26 @@
     </div>
 </div>
 
-<script>
+<!--- JS Area Below ---->
+<script type="text/javascript" language="javascript" src="/js/carouFredSel-6.2.1/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script type="text/javascript" language="javascript">
+
+    $(function() {
+
+        //	Scrolled by user interaction
+        $('#foo2').carouFredSel({
+            auto: false,
+            prev: '#prev2',
+            next: '#next2',
+            pagination: "#pager2",
+            mousewheel: true,
+            swipe: {
+                onMouse: true,
+                onTouch: true
+            }
+        });
+    });
+
     var $container = $('#photos');
     $container.imagesLoaded(function(){
         $container.masonry({
@@ -98,4 +99,5 @@
             $(this).find("div.text").slideUp("slow");
         });
     });
+
 </script>
