@@ -16,9 +16,31 @@ class CategoryController extends AbstractActionController
                 'category_slug'             => $this->getCategorySlug(),
                 'category_main_pic_src'     => $this->getCategoryMainPicSrc(),
                 'category_subdescription'   => $this->getCategorySubdescription(),
-                'category_feature_bullet_points' => $this->getCategoryFeatureBulletPoints()
+                'category_feature_bullet_points' => $this->getCategoryFeatureBulletPoints(),
+                'gallery_tiles'             => $this->getGalleryTiles()
             )
         );
+    }
+
+    public function getGalleryTiles(){
+
+        $tiles = array();
+        $i = 0;
+        foreach(new \DirectoryIterator($this->getCategoryImageDirectory()) as $gallery_image){
+            if ($gallery_image->isDot()
+                || $gallery_image->isDir()
+                || $gallery_image->getFilename() === 'index.php') continue;
+
+            $tiles[$i]['filename'] = $gallery_image->getFilename();
+            $tiles[$i]['image_directory'] = $this->getCategorySlug();
+            $tiles[$i]['product_page_slug'] = 'the-product-you-clicked-on'; //Make Doctrine Call for the product slug.
+            $tiles[$i]['product_name'] = 'Horse Barn'; //Make the call for this data too
+            $tiles[$i]['product_price'] = number_format(11000,2,",",".");
+
+            $i++;
+        }
+
+        return $tiles;
     }
 
     /**

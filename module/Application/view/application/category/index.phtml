@@ -16,24 +16,20 @@
                 <?php
 
                 /** @var \DirectoryIterator $pic */
-                foreach(new DirectoryIterator( $this->category_image_directory ) as $pic)
+                foreach($this->gallery_tiles as $tile)
                 {
-
-                    if($pic->isDot()
-                        || $pic->isDir()
-                        || $pic->getFilename() === 'index.php') continue;
                     ?>
                         <li>
                             <div class="carou_tile" id="item">
-                                <img src="/img/<?php echo $this->category_slug ?>/<?php echo $pic->getFilename() ?>" />
+                                <img src="/img/<?php echo $tile['image_directory'] ?>/<?php echo $tile['filename'] ?>" />
                                 <div class="text_top" id="top_text">
                                     <a href="/get-started"><i class="fa fa-phone"></i></a>
                                     <a href="/get-started"><i class="fa fa-envelope"></i></a>
-                                    <a href="/pr/the-product-you-clicked-on"><i class="fa fa-search-plus"></i></a>
+                                    <a href="/pr/<?php echo $tile['product_page_slug'] ?>"><i class="fa fa-search-plus"></i></a>
                                 </div>
                                 <div class="text_bottom">
-                                    <h4>Horse Barn</h4>
-                                    <h5>Starting at $11,000</h5>
+                                    <h4><?php echo $tile['product_name'] ?></h4>
+                                    <h5>Starting at $<?php echo $tile['product_price'] ?></h5>
                                 </div>
                             </div>
                         </li>
