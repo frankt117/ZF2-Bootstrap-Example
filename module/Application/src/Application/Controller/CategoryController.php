@@ -13,9 +13,18 @@ class CategoryController extends AbstractActionController
                 'category_title'            => $this->getCategoryTitle(),            // for now its the slug
                 'description'               => $this->getCategoryDescription(),
                 'category_image_directory'  => $this->getCategoryImageDirectory(),
-                'category_slug'             => $this->getCategorySlug()
+                'category_slug'             => $this->getCategorySlug(),
+                'category_main_pic_src'     => $this->getCategoryMainPicSrc()
             )
         );
+    }
+
+    /**
+     * @TODO Replace building.jpg with doctrine call for data.
+     * @return string
+     */
+    protected function getCategoryMainPicSrc(){
+        return '/img/'. $this->getCategorySlug() .'/building.jpg';
     }
 
     protected function getCategoryImageDirectory(){
