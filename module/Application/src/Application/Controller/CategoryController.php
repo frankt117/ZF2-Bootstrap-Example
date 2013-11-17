@@ -14,9 +14,18 @@ class CategoryController extends AbstractActionController
                 'description'               => $this->getCategoryDescription(),
                 'category_image_directory'  => $this->getCategoryImageDirectory(),
                 'category_slug'             => $this->getCategorySlug(),
-                'category_main_pic_src'     => $this->getCategoryMainPicSrc()
+                'category_main_pic_src'     => $this->getCategoryMainPicSrc(),
+                'category_subdescription'   => $this->getCategorySubdescription()
             )
         );
+    }
+
+    /**
+     * @TODO make a real data call bro
+     * @return string
+     */
+    protected function getCategorySubdescription(){
+        return 'Subdescription for ' . $this->getCategorySlug() . ' page goes here.';
     }
 
     /**
