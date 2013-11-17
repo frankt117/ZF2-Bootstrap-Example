@@ -11,13 +11,12 @@
         <form role="form" method="post" action="/get-started/estimate">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your email address">
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Your email address">
             </div>
-
             <div class="form-group">
                 <label for="exampleInputFile">Description</label>
-                <textarea class="form-control" rows="3"></textarea>
-                <p class="help-block">Tell us what you want.</p>
+                <textarea class="form-control" rows="3" name="description" id="description"></textarea>
+                <p class="help-block">Tell us about the style and size of the building you want.</p>
             </div>
 
             <button type="submit" class="btn btn-primary">Get your estimate!</button>
