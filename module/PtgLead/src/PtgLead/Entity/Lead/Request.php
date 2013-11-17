@@ -35,4 +35,12 @@ class Request
      * @ORM\JoinColumn(name="ptglead_lead_id", referencedColumnName="id")
      */
     protected $Lead;
+
+    public function __set($property, $value){
+        $this->$property = $value;
+    }
+
+    public function __get($property){
+        return $this->$property;
+    }
 }
