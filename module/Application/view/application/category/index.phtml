@@ -22,10 +22,17 @@
                     if($pic->isDot()
                         || $pic->isDir()
                         || $pic->getFilename() === 'index.php') continue;
-
-                    echo '<li><div class="carou_tile" id="item"><img src="/img/'.$this->category_slug.'/' . $pic->getFilename() .'" />
-                <div class="text"><h4>Horse Barn</h4><p>Starting at $11,000</p></div>
-                </div></li>';
+                    ?>
+                        <li>
+                            <div class="carou_tile" id="item">
+                                <img src="/img/<?php echo $this->category_slug ?>/<?php echo $pic->getFilename() ?>" />
+                                <div class="text">
+                                    <h4>Horse Barn</h4>
+                                    <h5>Starting at $11,000</h5>
+                                </div>
+                            </div>
+                        </li>
+                    <?php
                 }
                 ?>
             </ul>
