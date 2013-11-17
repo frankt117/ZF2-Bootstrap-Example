@@ -15,16 +15,13 @@
             <ul id="foo2">
                 <?php
 
-                //Refactor for IMG/SLUG when ready -
                 /** @var \DirectoryIterator $pic */
                 foreach(new DirectoryIterator( $this->category_image_directory ) as $pic)
                 {
 
                     if($pic->isDot()
-                        OR $pic->isDir()
-                        OR $pic->getFilename() === 'index.php') continue;
-
-                    //Need to use /img/slug below.
+                        || $pic->isDir()
+                        || $pic->getFilename() === 'index.php') continue;
 
                     echo '<li><div class="carou_tile" id="item"><img src="/img/'.$this->category_slug.'/' . $pic->getFilename() .'" />
                 <div class="text"><h4>Horse Barn</h4><p>Starting at $11,000</p></div>
