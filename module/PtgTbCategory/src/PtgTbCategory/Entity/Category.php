@@ -5,12 +5,17 @@ use Doctrine\ORM\Mapping as ORM,
     \Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Request table entity.
+ * Category table entity.
  * @ORM\Entity
  * @ORM\Table(name="ptgtbcategory_categories")
- * @property string $email
+ * @property string $image_directory
  * @property string $description
- * $property int $id
+ * @property string $main_pic_src
+ * @property string $slug
+ * @property string $title
+ * @property string $subdescription
+ * @property \PtgTbCategory\Entity\Category\BulletPoint $BulletPoints
+ * @property int $id
  */
 class Category extends \PtgBase\Doctrine\Entity
 {
