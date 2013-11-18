@@ -23,16 +23,7 @@ class CategoryController extends AbstractActionController
     {
         $slug = $this->getEvent()->getRouteMatch()->getParam('category_slug');
 
-        //TODO: Pick up here early tomorrow. Rise And Grind baby.
-//        $em = $this->getEntityManager();
-//
-//        $PtgTbCategory = new \PtgTbCategory\Entity\Category();
-//
-//        $PtgTbCategory->description = 'Barns are awesome and this is their unique description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat porttitor felis, et pulvinar quam
-//        convallis eget. Integer pulvinar imperdiet erat. Donec porttitor sagittis erat eu vestibulum. Fusce vehicula mollis';
-//
-//        $PtgTbCategory->title = "Barns";
-//        $PtgTbCategory->image_directory = '';
+        $em = $this->getEntityManager();
 
         return new ViewModel(
             array(
