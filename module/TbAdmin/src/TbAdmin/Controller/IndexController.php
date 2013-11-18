@@ -27,15 +27,14 @@ class IndexController extends AbstractActionController
     public function updateAction(){
 
         $em = $this->getEntityManager();
-//        $PtgTbCategory = new \PtgTbCategory\Entity\Category();
-        $PtgTbCategory   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('slug' => 'Cottages'));
-        $PtgTbCategory->description = "Whether it’s for your bed and breakfast, or you are needing the extra room for the in-laws, our high-quality cottages are built with the style you want at a very affordable price. From being 100% American made, to offering a 10 year warranty, we are positive we can design the perfect cottage for your needs. Contact us today for pricing and details.";
+        $PtgTbCategory = new \PtgTbCategory\Entity\Category();
+        $PtgTbCategory->description = "Looking for extra space for your tools and equipment, or the perfect spot for your ultimate man-cave? Our highly-customizable shops give you the space you need at an affordable price. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect shop for your needs. Contact us today for pricing and details.";
 
-        $PtgTbCategory->title = "Cottages";
-        $PtgTbCategory->image_directory = 'cottages';
-        $PtgTbCategory->main_pic_src = 'cottage6.jpg';
-        $PtgTbCategory->slug = "cottages";
-        $PtgTbCategory->subdescription = "Styled for you at an affordable price.";
+        $PtgTbCategory->title = "Shops";
+        $PtgTbCategory->image_directory = 'shops';
+        $PtgTbCategory->main_pic_src = 'shop.jpg';
+        $PtgTbCategory->slug = "shops";
+        $PtgTbCategory->subdescription = "The perfect choice for storing your tools and equipment, or building your ultimate man-cave.";
 
 
         $em->persist($PtgTbCategory);
