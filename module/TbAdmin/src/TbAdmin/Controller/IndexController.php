@@ -38,13 +38,7 @@ class IndexController extends AbstractActionController
         $PtgTbCategory->main_pic_src = 'building.jpg';
         $PtgTbCategory->slug = "barns";
         $PtgTbCategory->subdescription = "Affordable and built durable for your horses, livestock, and RV.  ";
-        $PtgTbCategory->BulletPoints = array(
-            '10 Year Warranty',
-            'American Made',
-            'Built to Last',
-            'Made to fit your needs',
-            'Guaranteed Lowest Price'
-        );
+
 
         $em->persist($PtgTbCategory);
         $em->flush();
