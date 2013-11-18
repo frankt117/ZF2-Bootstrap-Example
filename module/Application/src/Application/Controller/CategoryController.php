@@ -6,6 +6,18 @@ use Zend\View\Model\ViewModel;
 
 class CategoryController extends AbstractActionController
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    protected $em;
+
+    protected function getEntityManager(){
+        if( null === $this->em) {
+            $this->em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        }
+        return $this->em;
+    }
+
     public function indexAction()
     {
         return new ViewModel(
@@ -22,6 +34,10 @@ class CategoryController extends AbstractActionController
         );
     }
 
+    /**
+     * This will pull from product entities too.
+     * @return array
+     */
     public function getGalleryTiles(){
 
         $tiles = array();
