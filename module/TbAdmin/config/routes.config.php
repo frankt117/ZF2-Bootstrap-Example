@@ -28,17 +28,6 @@ return array(
 //                    )
                 )
             ),
-            'update' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/tb-admin/update',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'TbAdmin\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'update',
-                    ),
-                ),
-            ),
         ),
     ),
 );
