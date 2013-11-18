@@ -32,7 +32,7 @@ class Category extends \PtgBase\Doctrine\Entity
     protected $image_directory;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      */
     protected $description;
 
