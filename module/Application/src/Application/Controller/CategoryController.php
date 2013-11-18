@@ -65,7 +65,7 @@ class CategoryController extends AbstractActionController
                 || $gallery_image->getFilename() === 'index.php') continue;
 
             $tiles[$i]['filename'] = $gallery_image->getFilename();
-            $tiles[$i]['image_directory'] = $this->getCategorySlug();
+            $tiles[$i]['image_directory'] = $this->PtgTbCategory->image_directory;
             $tiles[$i]['product_page_slug'] = 'the-product-you-clicked-on'; //Make Doctrine Call for the product slug.
             $tiles[$i]['product_name'] = 'Horse Barn'; //Make the call for this data too
             $tiles[$i]['product_price'] = number_format(11000,2,",",".");
