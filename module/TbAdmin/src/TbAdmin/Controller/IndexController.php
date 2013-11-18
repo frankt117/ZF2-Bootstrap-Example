@@ -44,7 +44,7 @@ class IndexController extends AbstractActionController
 //        $em->flush();
 
 
-        $allrecs = $em->getRepository('\PtgTbCategory\Entity\Category')->findAll();
+        $allrecs = $em->find('\PtgTbCategory\Entity\Category',1);
 
         return new ViewModel(array('allrecs' => $allrecs));
     }
