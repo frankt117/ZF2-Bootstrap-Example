@@ -12,6 +12,11 @@ class CategoryController extends AbstractActionController
      */
     protected $em;
 
+    /**
+     * @var \PtgTbCategory\Entity\Category
+     */
+    protected $PtgTbCategory;
+
     protected function getEntityManager(){
         if( null === $this->em) {
             $this->em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
@@ -21,9 +26,16 @@ class CategoryController extends AbstractActionController
 
     public function indexAction()
     {
-        $slug = $this->getEvent()->getRouteMatch()->getParam('category_slug');
+        $em         = $this->getEntityManager();
+        $slug       = $this->getEvent()->getRouteMatch()->getParam('category_slug');
+        $Category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('slug' => $slug));
 
-        $em = $this->getEntityManager();
+        if ($Category instanceof \PtgTbCategory\Entity\Category){
+            $this->PtgTbCategory = $Category;
+        }
+        // else redirect to 404 ?
+
+
 
         return new ViewModel(
             array(
@@ -83,33 +95,27 @@ class CategoryController extends AbstractActionController
      * @return string
      */
     protected function getCategorySubdescription(){
-        return 'Subdescription for ' . $this->getCategorySlug() . ' page goes here.';
+        return $this->PtgTbCategory->subdescription;
     }
 
     /**
-     * @TODO Replace building.jpg with doctrine call for data.
+     * Builds Category Main Pic src for img tag in Category view.
      * @return string
      */
     protected function getCategoryMainPicSrc(){
-        return '/img/'. $this->getCategorySlug() .'/building.jpg';
+        return '/img/'. $this->PtgTbCategory->image_directory .'/' . $this->PtgTbCategory->main_pic_src;
     }
 
     protected function getCategoryImageDirectory(){
-        return APPLICATION_ROOT. '/img/' . $this->getCategorySlug();
+        return APPLICATION_ROOT . '/img/' . $this->PtgTbCategory->image_directory;
     }
 
     /**
-     * @TODO Replace this with a doctrine entity call to get description.
+     * Gets Category description.
      * @return string
      */
     protected function getCategoryDescription(){
-        return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat porttitor felis, et pulvinar quam
-        convallis eget. Integer pulvinar imperdiet erat. Donec porttitor sagittis erat eu vestibulum. Fusce vehicula mollis
-        leo. Nulla at placerat tellus, eu euismod arcu. Donec porttitor, felis quis malesuada tempor, mi justo feugiat orci,
-        vitae accumsan enim elit sed purus. Curabitur rutrum, lectus at fermentum auctor, sem massa placerat ligula,
-        id dignissim nisl augue eu sapien. Suspendisse euismod massa nec commodo hendrerit. Etiam vehicula viverra sapien,
-        rhoncus auctor ante cursus nec. Quisque nisl turpis, lobortis at nisl in, pharetra auctor diam. Phasellus et vulputate
-        purus. Morbi ut risus in nisi rhoncus posuere.';
+        return $this->PtgTbCategory->description;
     }
 
     /**
@@ -117,10 +123,10 @@ class CategoryController extends AbstractActionController
      * @return string
      */
     protected function getCategoryTitle(){
-        return ucwords(str_replace("-", " ", $this->getCategorySlug()));
+        return ucwords(str_replace("-", " ", $this->PtgTbCategory->title));
     }
 
     protected function getCategorySlug(){
-        return $this->getEvent()->getRouteMatch()->getParam('category_slug');
+        return $this->PtgTbCategory->slug;
     }
 }
