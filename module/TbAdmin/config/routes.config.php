@@ -4,14 +4,14 @@ return array(
         'routes' => array(
             'tb-admin' => array(
                 'type' => 'Literal',
-		'options' => array(
-		    'route' => '/tb-admin',
-		    'defaults' => array(
-			'__NAMESPACE__' => 'TbAdmin\Controller',
-			'controller'    => 'Index',
-			'action'        => 'index',
-		    ),
-		),
+                    'options' => array(
+                        'route' => '/tb-admin',
+                        'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                        ),
+                    ),
                 'may_terminate' => true,
                 'child_routes' => array(
 //		    'zfcuser' => array(
@@ -27,7 +27,18 @@ return array(
 //			),
 //                    )
                 )
-            )
+            ),
+            'update' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/tb-admin/update',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'update',
+                    ),
+                ),
+            ),
         ),
     ),
 );
