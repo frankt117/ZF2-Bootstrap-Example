@@ -46,6 +46,11 @@ class IndexController extends AbstractActionController
 
         $allrecs = $em->find('\PtgTbCategory\Entity\Category',1);
 
+        $allrecs->description = "Preparing to do update Easily being our most popular items, our barns accommodate everything from horses, to livestock, to even RV's. With our wide variety and multiple sizes, we can build the ultimate barn to your specifications. With our 10 year warranty and our barns being 100% American made, we are the perfect choice for you.";
+
+        $em->persist($allrecs);
+        $em->flush();
+
         return new ViewModel(array('allrecs' => $allrecs));
     }
 }
