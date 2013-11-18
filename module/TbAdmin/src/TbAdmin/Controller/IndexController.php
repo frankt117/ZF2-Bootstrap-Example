@@ -29,13 +29,13 @@ class IndexController extends AbstractActionController
         $em = $this->getEntityManager();
         $PtgTbCategory = new \PtgTbCategory\Entity\Category();
 
-        $PtgTbCategory->description = 'Having new toys for work or the farm is fun, but storing them can be a hassle. Our sheds provide you with the best storage solution for your tractors, ATV’s, or bulldozers at an affordable price. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect shed for your needs. Contact us today for pricing and details.';
+        $PtgTbCategory->description = "Whether it's for your beloved car or motorcycle, or you just need the extra storage space, protect your property by securely storing it in one of our high-quality garages. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect garage for your needs. Contact us today for pricing and details.";
 
-        $PtgTbCategory->title = "Sheds";
-        $PtgTbCategory->image_directory = 'sheds';
-        $PtgTbCategory->main_pic_src = 'shed2.jpg';
-        $PtgTbCategory->slug = "sheds";
-        $PtgTbCategory->subdescription = "The best storage solution for your tractors, ATV's, and bulldozers.";
+        $PtgTbCategory->title = "Garages";
+        $PtgTbCategory->image_directory = 'garages';
+        $PtgTbCategory->main_pic_src = 'garage1.jpg';
+        $PtgTbCategory->slug = "garages";
+        $PtgTbCategory->subdescription = "Best solution for securely storing your car, motorcycle, or access property.";
 
 
         $em->persist($PtgTbCategory);
