@@ -44,7 +44,7 @@ class Category extends \PtgBase\Doctrine\Entity
 
 
     /**
-     * @ORM\Column(type="string", unique="true")
+     * @ORM\Column(type="string", unique=true)
      */
     protected $slug;
 
