@@ -26,19 +26,19 @@ class IndexController extends AbstractActionController
 
     public function updateAction(){
 
-//        $em = $this->getEntityManager();
-//        $PtgTbCategory = new \PtgTbCategory\Entity\Category();
-//        $PtgTbCategory->description = "Looking for extra space for your tools and equipment, or the perfect spot for your ultimate man-cave? Our highly-customizable shops give you the space you need at an affordable price. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect shop for your needs. Contact us today for pricing and details.";
-//
-//        $PtgTbCategory->title = "Shops";
-//        $PtgTbCategory->image_directory = 'shops';
-//        $PtgTbCategory->main_pic_src = 'shop.jpg';
-//        $PtgTbCategory->slug = "shops";
-//        $PtgTbCategory->subdescription = "The perfect choice for storing your tools and equipment, or building your ultimate man-cave.";
-//
-//
-//        $em->persist($PtgTbCategory);
-//        $em->flush();
+        $em = $this->getEntityManager();
+        $PtgTbCategory = new \PtgTbCategory\Entity\Category();
+        $PtgTbCategory->description = "Humans are not the only species we build for. Whether it’s for the beloved family dog, or for your chickens out back, we build high-quality dog houses and chicken coops at an affordable price. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect housing for your animals. Contact us today for pricing and details.";
+
+        $PtgTbCategory->title = "Pet &amp; Animal Housing";
+        $PtgTbCategory->image_directory = 'pet';
+        $PtgTbCategory->main_pic_src = 'chickencoop.png';
+        $PtgTbCategory->slug = "pet-animal-housing";
+        $PtgTbCategory->subdescription = "Custom housing for your dogs and chickens.";
+
+
+        $em->persist($PtgTbCategory);
+        $em->flush();
 
     }
 }
