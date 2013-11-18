@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity (repositoryClass="\PtgTbCategory\Repository\Category\BulletPoint")
- * @ORM\Table(name="ptglead_lead_phonenumbers")
+ * @ORM\Table(name="ptgtbcategory_category_bulletpoints")
  * @PtgBase\Doctrine\DiscriminatorEntry(value="PtgTbCategory\Entity\Category\BulletPoint")
  */
 class BulletPoint
