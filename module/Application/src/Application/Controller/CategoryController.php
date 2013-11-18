@@ -3,6 +3,7 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Doctrine\ORM\EntityManager;
 
 class CategoryController extends AbstractActionController
 {
@@ -20,6 +21,19 @@ class CategoryController extends AbstractActionController
 
     public function indexAction()
     {
+        $slug = $this->getEvent()->getRouteMatch()->getParam('category_slug');
+
+        //TODO: Pick up here early tomorrow. Rise And Grind baby.
+//        $em = $this->getEntityManager();
+//
+//        $PtgTbCategory = new \PtgTbCategory\Entity\Category();
+//
+//        $PtgTbCategory->description = 'Barns are awesome and this is their unique description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat porttitor felis, et pulvinar quam
+//        convallis eget. Integer pulvinar imperdiet erat. Donec porttitor sagittis erat eu vestibulum. Fusce vehicula mollis';
+//
+//        $PtgTbCategory->title = "Barns";
+//        $PtgTbCategory->image_directory = '';
+
         return new ViewModel(
             array(
                 'category_title'            => $this->getCategoryTitle(),            // for now its the slug
