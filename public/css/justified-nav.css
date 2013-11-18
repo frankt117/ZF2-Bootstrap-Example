@@ -243,5 +243,21 @@ h3
     padding-bottom: 30px;
 
 }
+.realtree_light_background
+{
+    background: url("../img/realtree/light_background.PNG");
+}
+.spacer
+{
+    margin-top: 2%;
+}
 
+.text_shaddow
+{
+    text-shadow: 3px 3px darkgray;
+}
 
+.bold
+{
+    font-weight: bold;
+}
