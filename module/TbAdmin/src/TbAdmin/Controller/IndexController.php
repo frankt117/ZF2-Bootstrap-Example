@@ -27,21 +27,19 @@ class IndexController extends AbstractActionController
     public function updateAction(){
 
         $em = $this->getEntityManager();
-//        $PtgTbCategory = new \PtgTbCategory\Entity\Category();
-//
-//        $PtgTbCategory->description = 'Easily being our most popular items, our barns accommodate everything from horses, to livestock, to
-//       even RV’s. With our wide variety and multiple sizes, we can build the ultimate barn to your specifications.
-//       With our 10 year warranty and our barns being 100% American made, we are the perfect choice for you.';
-//
-//        $PtgTbCategory->title = "Barns";
-//        $PtgTbCategory->image_directory = 'barns';
-//        $PtgTbCategory->main_pic_src = 'building.jpg';
-//        $PtgTbCategory->slug = "barns";
-//        $PtgTbCategory->subdescription = "Affordable and built durable for your horses, livestock, and RV.  ";
-//
-//
-//        $em->persist($PtgTbCategory);
-//        $em->flush();
+        $PtgTbCategory = new \PtgTbCategory\Entity\Category();
+
+        $PtgTbCategory->description = 'Mother Nature can take her toll on your vehicle. Rest assured knowing your car is safe under our extremely durable carports. Coming in such a wide variety, at an affordable price, there is no reason to not take advantage of these products, today. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect carport for your needs. Contact us today for pricing and details.';
+
+        $PtgTbCategory->title = "Carports";
+        $PtgTbCategory->image_directory = 'carports';
+        $PtgTbCategory->main_pic_src = 'aframe.jpg';
+        $PtgTbCategory->slug = "carports";
+        $PtgTbCategory->subdescription = "The affordable way to protect your vehicle from the elements.";
+
+
+        $em->persist($PtgTbCategory);
+        $em->flush();
 
     }
 }
