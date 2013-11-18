@@ -43,9 +43,5 @@ class IndexController extends AbstractActionController
 //        $em->persist($PtgTbCategory);
 //        $em->flush();
 
-
-        $findby = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('slug' => 'barns'));
-        $allrecs = $em->find('\PtgTbCategory\Entity\Category',1);
-        return new ViewModel(array('allrecs' => $allrecs, 'findby' => $findby));
     }
 }
