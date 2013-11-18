@@ -29,13 +29,13 @@ class IndexController extends AbstractActionController
         $em = $this->getEntityManager();
         $PtgTbCategory = new \PtgTbCategory\Entity\Category();
 
-        $PtgTbCategory->description = "Whether it's for your beloved car or motorcycle, or you just need the extra storage space, protect your property by securely storing it in one of our high-quality garages. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect garage for your needs. Contact us today for pricing and details.";
+        $PtgTbCategory->description = "Whether it’s for your bed and breakfast, or you are needing the extra room for the in-laws, our high-quality cottages are built with the style you want at a very affordable price. From being 100% American made, to offering a 10 year warranty, we are positive we can design the perfect cottage for your needs. Contact us today for pricing and details.";
 
-        $PtgTbCategory->title = "Garages";
-        $PtgTbCategory->image_directory = 'garages';
+        $PtgTbCategory->title = "Cottages";
+        $PtgTbCategory->image_directory = 'cottages';
         $PtgTbCategory->main_pic_src = 'garage1.jpg';
-        $PtgTbCategory->slug = "garages";
-        $PtgTbCategory->subdescription = "Best solution for securely storing your car, motorcycle, or access property.";
+        $PtgTbCategory->slug = "Cottages";
+        $PtgTbCategory->subdescription = "Styled for you at an affordable price.";
 
 
         $em->persist($PtgTbCategory);
