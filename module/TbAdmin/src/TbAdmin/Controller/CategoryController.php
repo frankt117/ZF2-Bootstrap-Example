@@ -207,7 +207,7 @@ class CategoryController extends AbstractActionController
         $this->inputs[] = '<div class="form-group">
                 <label for="description" class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" id="description" name="description">
+                    <textarea class="form-control" rows="6" id="description" name="description">
                     '. $v .'
                     </textarea>
                 </div>
