@@ -80,8 +80,29 @@ class CategoryController extends AbstractActionController
 
     }
 
-    protected function addCategory(){
-        return "No Addition has taken place";
+    protected function addCategory($post_data){
+
+        $em = $this->getEntityManager();
+        $result = 'Add Category Failed.';
+
+        if($post_data['add_edit_password'] == 'M@dMoney'){
+            /**@var \PtgTbCategory\Entity\Category $PtgTbCategory */
+            $PtgTbCategory = new \PtgTbCategory\Entity\Category();
+
+            $PtgTbCategory->title = $post_data['title'];
+            $PtgTbCategory->slug = $post_data['slug'];
+            $PtgTbCategory->image_directory = $post_data['image_directory'];
+            $PtgTbCategory->main_pic_src = $post_data['main_pic_name'];
+            $PtgTbCategory->subdescription = $post_data['subdescription'];
+            $PtgTbCategory->description = $post_data['description'];
+
+            $em->persist($PtgTbCategory);
+            $em->flush();
+
+            $result = "Category (#" . $PtgTbCategory->id . ") " . $PtgTbCategory->title . " Added Successfully.";
+        }
+
+        return $result;
     }
 
     public function addAction(){
