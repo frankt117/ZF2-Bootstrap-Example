@@ -24,4 +24,12 @@ class CategoryController extends AbstractActionController
         return $this->em;
     }
 
+    public function addAction(){
+        return new ViewModel();
+    }
+
+    public function editAction(){
+        return new ViewModel();
+    }
+
 }

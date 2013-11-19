@@ -38,6 +38,28 @@ return array(
                         'action'        => 'index',
                     ),
                 ),
+            ),
+            'tb-admin-category-add' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/tb-admin/category/add',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'add',
+                    ),
+                ),
+            ),
+            'tb-admin-category-edit' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/tb-admin/category/edit',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'edit',
+                    ),
+                ),
             )
         ),
     ),
