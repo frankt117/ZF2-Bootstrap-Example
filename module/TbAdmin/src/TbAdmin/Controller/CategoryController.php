@@ -110,6 +110,7 @@ class CategoryController extends AbstractActionController
             $c   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('id' => $post_data['select_category']));
             if($c instanceof \PtgTbCategory\Entity\Category){
 
+                $this->getHiddenCategoryIdInput($c->id);
                 $this->getTitleInput($c->title);
                 $this->getSlugInput($c->slug);
                 $this->getImgDirInput($c->image_directory);
@@ -124,6 +125,10 @@ class CategoryController extends AbstractActionController
         }
 
         return new ViewModel(array('inputs' => $this->inputs));
+    }
+
+    protected function getHiddenCategoryIdInput($cat_id) {
+        return "<input type='hidden' name='select_category' id='select_category' value='$cat_id' />";
     }
 
     public function getSelectCategoryInput(){
