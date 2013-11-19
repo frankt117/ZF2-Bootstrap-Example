@@ -45,7 +45,6 @@ class CategoryController extends AbstractActionController
     }
 
     protected function saveData($post_data){
-
         if ($post_data['select_category']){ //edit mode
             $result = $this->editCategory($post_data);
         }
@@ -83,7 +82,7 @@ class CategoryController extends AbstractActionController
     }
 
     protected function addCategory(){
-
+        return "No Addition has taken place";
     }
 
     public function addAction(){
