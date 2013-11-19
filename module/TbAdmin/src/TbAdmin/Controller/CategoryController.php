@@ -3,29 +3,10 @@ namespace TbAdmin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Doctrine\ORM\EntityManager;
 
 class CategoryController extends AbstractActionController
 {
-    protected $inputs = array();
-
-    public function indexAction()
-    {
-        $viewModel = new ViewModel();
-        return $viewModel;
-    }
-
-    public function completeAction(){
-        $request = $this->getRequest();
-
-        if($request->isPost()){
-
-            $post_data = $request->getPost();
-
-        }
-
-        return new ViewModel(array('a' => $post_data));
-    }
-
     /**
      * @var \Doctrine\ORM\EntityManager
      */
@@ -36,6 +17,26 @@ class CategoryController extends AbstractActionController
             $this->em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         }
         return $this->em;
+    }
+
+    protected $inputs = array();
+
+    public function indexAction()
+    {
+        $viewModel = new ViewModel();
+        return $viewModel;
+    }
+
+    public function completeAction(){
+        $request = $this->getRequest();
+        $em = $this->getEntityManager();
+        if($request->isPost()){
+
+            $post_data = $request->getPost();
+            $post_data = $em->getRepository('\PtgTbCategory\Entity\Category')->findAll();
+        }
+
+        return new ViewModel(array('a' => $post_data));
     }
 
     public function addAction(){
@@ -54,6 +55,7 @@ class CategoryController extends AbstractActionController
 
     public function editAction(){
 
+        //$this->getSelectCategoryInput();
         $this->getTitleInput();
         $this->getSlugInput();
         $this->getImgDirInput();
@@ -64,6 +66,22 @@ class CategoryController extends AbstractActionController
         $this->getSaveButton();
 
         return new ViewModel(array('inputs' => $this->inputs));
+    }
+
+    public function getSelectCategoryInput(){
+        $em = $this->getEntityManager();
+
+        $select = '<div class="form-group">
+                <label for="select_category" class="col-sm-2 control-label">Select Category</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="title" name="title">
+                    ';
+
+
+
+        $select .=    '</select>
+                </div>
+            </div>';
     }
 
     public function getTitleInput(){
