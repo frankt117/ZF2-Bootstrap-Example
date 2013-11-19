@@ -74,7 +74,7 @@ class CategoryController extends AbstractActionController
         $select = '<div class="form-group">
                 <label for="select_category" class="col-sm-2 control-label">Select Category</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="title" name="title">
+                    <select class="form-control" id="select_category" name="select_category">
                     ';
 
             foreach($em->getRepository('\PtgTbCategory\Entity\Category')->findAll() as $category){
