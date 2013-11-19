@@ -73,8 +73,7 @@ class CategoryController extends AbstractActionController
             $em->persist($PtgTbCategory);
             $em->flush();
 
-            $result = "Category (#" . $PtgTbCategory->id . ") " . $PtgTbCategory->title;
-            $result .= " Updated Successfully. <br> <pre>" . print_r($PtgTbCategory,1) . "</pre>";
+            $result = "Category (#" . $PtgTbCategory->id . ") " . $PtgTbCategory->title . " Updated Successfully.";
         }
 
         return $result;
