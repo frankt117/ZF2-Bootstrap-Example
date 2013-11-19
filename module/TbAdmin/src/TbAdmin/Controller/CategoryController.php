@@ -234,7 +234,7 @@ class CategoryController extends AbstractActionController
     public function getNextButton(){
         $this->inputs[] = '<div class="form-group">
             <div class="col-sm-offset-2 col-sm-10" style="text-align: center;">
-              <button type="submit" class="btn btn-default">Next</button>
+              <button type="submit" class="btn btn-default">Next &raquo;</button>
             </div>
           </div>';
     }
