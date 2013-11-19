@@ -60,6 +60,17 @@ return array(
                         'action'        => 'edit',
                     ),
                 ),
+            ),
+            'tb-admin-category-complete' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/tb-admin/category/complete',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'complete',
+                    ),
+                ),
             )
         ),
     ),

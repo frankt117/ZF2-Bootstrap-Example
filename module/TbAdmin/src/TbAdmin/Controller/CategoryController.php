@@ -14,6 +14,10 @@ class CategoryController extends AbstractActionController
         return $viewModel;
     }
 
+    public function completeAction(){
+        return new ViewModel();
+    }
+
     /**
      * @var \Doctrine\ORM\EntityManager
      */
