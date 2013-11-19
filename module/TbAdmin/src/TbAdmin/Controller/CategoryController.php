@@ -35,6 +35,7 @@ class CategoryController extends AbstractActionController
         $this->getSubDescriptionInput();
         $this->getDescriptionInput();
         $this->getAddEditPasswordInput();
+        $this->getSaveButton();
 
         return new ViewModel(array('inputs' => $this->inputs));
     }
@@ -48,6 +49,7 @@ class CategoryController extends AbstractActionController
         $this->getSubDescriptionInput();
         $this->getDescriptionInput();
         $this->getAddEditPasswordInput();
+        $this->getSaveButton();
 
         return new ViewModel(array('inputs' => $this->inputs));
     }
@@ -115,6 +117,14 @@ class CategoryController extends AbstractActionController
                     <input type="password" class="form-control" id="add_edit_password" name="add_edit_password">
                 </div>
             </div>';
+    }
+
+    public function getSaveButton(){
+        $this->inputs[] = '<div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10" style="text-align: center;">
+              <button type="submit" class="btn btn-default">Save</button>
+            </div>
+          </div>';
     }
 
 
