@@ -15,7 +15,15 @@ class CategoryController extends AbstractActionController
     }
 
     public function completeAction(){
-        return new ViewModel();
+        $request = $this->getRequest();
+
+        if($request->isPost()){
+
+            $post_data = $request->getPost();
+
+        }
+
+        return new ViewModel(array('a' => $post_data));
     }
 
     /**
