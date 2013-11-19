@@ -44,12 +44,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+<!--    <link href="/css/bootstrap-responsive.css" rel="stylesheet">-->
     <!-- jQuery Library -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-    <!-- Custom styles for this template -->
-    <link href="/css/justified-nav.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -64,27 +61,39 @@
 <body>
 
 <div class="container">
-    <div class="masthead">
-        <img src="/img/turtle_logo.png" style="width:50px;float:left;padding-right:1px"/>
-        <h2 style="padding-top:15px;">turtle built</h2>
-        <ul class="nav nav-justified">
-            <li id="nav_home_tab"><a href="/">Home</a></li>
-            <li id="nav_carports_tab"><a href="/carports">Carports</a></li>
-            <li id="nav_garages_tab"><a href="/garages">Garages</a></li>
-            <li id="nav_buildings_tab"><a href="/buildings">Buildings</a></li>
-            <li id="nav_affiliate_tab"><a href="/affiliate">Affiliate</a></li>
-            <li id="nav_contact_tab"><a href="/contact">Contact</a></li>
-        </ul>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header" >
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="/img/turtle_logo.png" style="height:32px;padding-right:5px;"/> turtle built</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="nav_home_tab"><a href="/">Home</a></li>
+                    <li id="nav_carports_tab"><a href="/carports">Carports</a></li>
+                    <li id="nav_garages_tab"><a href="/garages">Garages</a></li>
+                    <li id="nav_buildings_tab"><a href="/buildings">Buildings</a></li>
+                    <li id="nav_affiliate_tab"><a href="/affiliate">Affiliate</a></li>
+                    <li id="nav_contact_tab"><a href="/contact">Contact</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
     </div>
 <?php echo $this->content; ?>
 
     <!-- Site footer -->
     <div class="footer realtree_light_background">
-        <p class="bold">&copy; Polytechnic Group of Dallas &hearts; <?php echo date("Y"); ?></p>
+        <span class="footer_text">&copy; Polytechnic Group of Dallas &hearts; <?php echo date("Y"); ?></span>
     </div>
 
 </div> <!-- /container -->
-
+<script src="/js/bootstrap.min.js"></script>
 <script>
 
     //Nav Bar Junk ----------
