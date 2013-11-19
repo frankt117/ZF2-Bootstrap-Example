@@ -28,6 +28,17 @@ return array(
 //                    )
                 )
             ),
+            'tb-admin-category' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/tb-admin/category',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'index',
+                    ),
+                ),
+            )
         ),
     ),
 );
