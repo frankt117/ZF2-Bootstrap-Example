@@ -100,7 +100,7 @@ class CategoryController extends AbstractActionController
                 <label for="description" class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" rows="3" id="description" name="description">
-                    Easily being our most popular items, our barns accommodate everything from horses, to livestock, to even RV’s. With our wide variety and multiple sizes, we can build the ultimate barn to your specifications. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect barn for your needs. Contact us today for pricing and details.
+                    Easily being our most popular items, our barns accommodate everything from horses, to livestock, to even RVs. With our wide variety and multiple sizes, we can build the ultimate barn to your specifications. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect barn for your needs. Contact us today for pricing and details.
                     </textarea>
                 </div>
             </div>';
