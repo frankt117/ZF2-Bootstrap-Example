@@ -33,7 +33,7 @@ class CategoryController extends AbstractActionController
         if($request->isPost()){
 
             $post_data = $request->getPost();
-            $post_data = $em->getRepository('\PtgTbCategory\Entity\Category')->findAll();
+
         }
 
         return new ViewModel(array('a' => $post_data));
@@ -55,7 +55,7 @@ class CategoryController extends AbstractActionController
 
     public function editAction(){
 
-        //$this->getSelectCategoryInput();
+        $this->getSelectCategoryInput();
         $this->getTitleInput();
         $this->getSlugInput();
         $this->getImgDirInput();
@@ -77,11 +77,15 @@ class CategoryController extends AbstractActionController
                     <select class="form-control" id="title" name="title">
                     ';
 
-
+            foreach($em->getRepository('\PtgTbCategory\Entity\Category')->findAll() as $category){
+                $select .= '<option value="' . $category->id . '">' . $category->title .'</option>';
+            }
 
         $select .=    '</select>
                 </div>
             </div>';
+
+        $this->inputs[] = $select;
     }
 
     public function getTitleInput(){
