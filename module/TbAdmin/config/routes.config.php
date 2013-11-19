@@ -61,6 +61,17 @@ return array(
                     ),
                 ),
             ),
+            'tb-admin-category-find' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/tb-admin/category/find',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'find',
+                    ),
+                ),
+            ),
             'tb-admin-category-complete' => array(
                 'type' => 'Literal',
                 'options' => array(

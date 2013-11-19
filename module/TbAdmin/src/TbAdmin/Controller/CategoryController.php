@@ -27,16 +27,48 @@ class CategoryController extends AbstractActionController
         return $viewModel;
     }
 
+    public function findAction(){
+        $this->getSelectCategoryInput();
+        $this->getNextButton();
+
+        return new ViewModel(array('inputs' => $this->inputs));
+    }
+
     public function completeAction(){
         $request = $this->getRequest();
-        $em = $this->getEntityManager();
+        $authorized = false;
         if($request->isPost()){
 
             $post_data = $request->getPost();
 
+            if($post_data['add_edit_password'] == 'M@dM0ney'){
+                $authorized = true;
+                $this->saveData($post_data);
+            }
+
         }
 
-        return new ViewModel(array('a' => $post_data));
+        return new ViewModel(array('authorized' => $authorized));
+    }
+
+    protected function saveData($post_data){
+        if ($post_data['select_category']){ //edit mode
+            $this->editCategory($post_data);
+        }
+        else {                              // new addition
+            $this->addCategory($post_data);
+        }
+    }
+
+    protected function editCategory($post_data){
+        $em = $this->getEntityManager();
+
+        $PtgTbCategory = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('id' => $post_data['select_category']));
+
+    }
+
+    protected function addCategory(){
+
     }
 
     public function addAction(){
@@ -55,15 +87,27 @@ class CategoryController extends AbstractActionController
 
     public function editAction(){
 
-        $this->getSelectCategoryInput();
-        $this->getTitleInput();
-        $this->getSlugInput();
-        $this->getImgDirInput();
-        $this->getMainPicNameInput();
-        $this->getSubDescriptionInput();
-        $this->getDescriptionInput();
-        $this->getAddEditPasswordInput();
-        $this->getSaveButton();
+        $em = $this->getEntityManager();
+        $request = $this->getRequest();
+
+        if($request->isPost()){
+
+            $post_data = $request->getPost();
+            $c   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('id' => $post_data['select_category']));
+            if($c instanceof \PtgTbCategory\Entity\Category){
+
+                $this->getTitleInput($c->title);
+                $this->getSlugInput($c->slug);
+                $this->getImgDirInput($c->image_directory);
+                $this->getMainPicNameInput($c->main_pic_src);
+                $this->getSubDescriptionInput($c->subdescription);
+                $this->getDescriptionInput($c->description);
+                $this->getAddEditPasswordInput();
+                $this->getSaveButton();
+
+            }
+
+        }
 
         return new ViewModel(array('inputs' => $this->inputs));
     }
@@ -88,57 +132,83 @@ class CategoryController extends AbstractActionController
         $this->inputs[] = $select;
     }
 
-    public function getTitleInput(){
-        $this->inputs[] = '<div class="form-group">
+    public function getTitleInput($v = ''){
+        $title = '<div class="form-group">
                 <label for="title" class="col-sm-2 control-label">Title</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Barns">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Barns" ';
+
+        if($v) $title .= 'value ="' . $v .'" ';
+
+        $title .= ' >
                 </div>
             </div>';
+
+        $this->inputs[] = $title;
     }
 
-    public function getSlugInput(){
-        $this->inputs[] = '<div class="form-group">
+    public function getSlugInput($v = ''){
+        $slug = '<div class="form-group">
                 <label for="slug" class="col-sm-2 control-label">Slug</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="slug" name="slug" placeholder="barns">
+                    <input type="text" class="form-control" id="slug" name="slug" placeholder="barns"';
+        if($v) $slug .= 'value ="' . $v .'" ';
+
+        $slug .= ' >
                 </div>
             </div>';
+
+        $this->inputs[] = $slug;
     }
 
-    public function getImgDirInput(){
-        $this->inputs[] = '<div class="form-group">
+    public function getImgDirInput($v = ''){
+        $img_dir = '<div class="form-group">
                 <label for="image_directory" class="col-sm-2 control-label">Image Directory</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="image_directory" name="image_directory" placeholder="barns">
+                    <input type="text" class="form-control" id="image_directory" name="image_directory" placeholder="barns"';
+        if($v) $img_dir .= 'value ="' . $v .'" ';
+
+        $img_dir .= ' >
                 </div>
             </div>';
+
+        $this->inputs[] = $img_dir;
     }
 
-    public function getMainPicNameInput(){
-        $this->inputs[] = '<div class="form-group">
+    public function getMainPicNameInput($v = ''){
+        $main_pic = '<div class="form-group">
                 <label for="main_pic_name" class="col-sm-2 control-label">Main Image Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="main_pic_name" name="main_pic_name" placeholder="barn1.jpg">
+                    <input type="text" class="form-control" id="main_pic_name" name="main_pic_name" placeholder="barn1.jpg"';
+        if($v) $main_pic .= 'value ="' . $v .'" ';
+
+        $main_pic .= ' >
                 </div>
             </div>';
+
+        $this->inputs[] = $main_pic;
     }
 
-    public function getSubDescriptionInput(){
-        $this->inputs[] = '<div class="form-group">
+    public function getSubDescriptionInput($v = ''){
+        $subdesc = '<div class="form-group">
                 <label for="subdescription" class="col-sm-2 control-label">Sub Description</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="subdescription" name="subdescription" placeholder="Affordable and built durable for your horses, livestock, and RV.">
+                    <input type="text" class="form-control" id="subdescription" name="subdescription" placeholder="Affordable and built durable for your horses, livestock, and RV."';
+        if($v) $subdesc .= 'value ="' . $v .'" ';
+
+        $subdesc .= ' >
                 </div>
             </div>';
+
+        $this->inputs[] = $subdesc;
     }
 
-    public function getDescriptionInput(){
+    public function getDescriptionInput($v = ''){
         $this->inputs[] = '<div class="form-group">
                 <label for="description" class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" rows="3" id="description" name="description">
-                    Easily being our most popular items, our barns accommodate everything from horses, to livestock, to even RVs. With our wide variety and multiple sizes, we can build the ultimate barn to your specifications. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect barn for your needs. Contact us today for pricing and details.
+                    '. $v .'
                     </textarea>
                 </div>
             </div>';
@@ -157,6 +227,14 @@ class CategoryController extends AbstractActionController
         $this->inputs[] = '<div class="form-group">
             <div class="col-sm-offset-2 col-sm-10" style="text-align: center;">
               <button type="submit" class="btn btn-default">Save</button>
+            </div>
+          </div>';
+    }
+
+    public function getNextButton(){
+        $this->inputs[] = '<div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10" style="text-align: center;">
+              <button type="submit" class="btn btn-default">Next</button>
             </div>
           </div>';
     }
