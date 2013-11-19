@@ -128,7 +128,7 @@ class CategoryController extends AbstractActionController
     }
 
     protected function getHiddenCategoryIdInput($cat_id) {
-        return "<input type='hidden' name='select_category' id='select_category' value='$cat_id' />";
+        $this->inputs[] = "<input type='hidden' name='select_category' id='select_category' value='$cat_id' />";
     }
 
     public function getSelectCategoryInput(){
