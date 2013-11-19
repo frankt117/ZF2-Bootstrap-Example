@@ -36,34 +36,49 @@ class CategoryController extends AbstractActionController
 
     public function completeAction(){
         $request = $this->getRequest();
-        $authorized = false;
+
         if($request->isPost()){
-
-            $post_data = $request->getPost();
-
-            if($post_data['add_edit_password'] == 'M@dM0ney'){
-                $authorized = true;
-                $this->saveData($post_data);
-            }
-
+            $result = $this->saveData($request->getPost());
         }
 
-        return new ViewModel(array('authorized' => $authorized));
+        return new ViewModel(array('result' => $result));
     }
 
     protected function saveData($post_data){
+
         if ($post_data['select_category']){ //edit mode
-            $this->editCategory($post_data);
+            $result = $this->editCategory($post_data);
         }
         else {                              // new addition
-            $this->addCategory($post_data);
+            $result = $this->addCategory($post_data);
         }
+        return $result;
     }
 
     protected function editCategory($post_data){
         $em = $this->getEntityManager();
+        $result = 'Edit Category Failed.';
+        if($post_data['add_edit_password'] == 'M@dMoney'){
+            /**@var \PtgTbCategory\Entity\Category $PtgTbCategory */
+            $PtgTbCategory = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
+                array('id' => $post_data['select_category'])
+            );
 
-        $PtgTbCategory = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('id' => $post_data['select_category']));
+            $PtgTbCategory->title = $post_data['title'];
+            $PtgTbCategory->slug = $post_data['slug'];
+            $PtgTbCategory->image_directory = $post_data['image_directory'];
+            $PtgTbCategory->main_pic_src = $post_data['main_pic_name'];
+            $PtgTbCategory->subdescription = $post_data['subdescription'];
+            $PtgTbCategory->description = $post_data['description'];
+
+            $em->persist($PtgTbCategory);
+            $em->flush();
+
+            $result = "Category (#" . $PtgTbCategory->id . ") " . $PtgTbCategory->title;
+            $result .= " Updated Successfully. <br> <pre>" . print_r($PtgTbCategory,1) . "</pre>";
+        }
+
+        return $result;
 
     }
 
