@@ -4,6 +4,7 @@ return array(
         'PtgBase',
         'PtgContact',
         'PtgLead',
+        'PtgTbProduct',
         'PtgTbCategory',
 	'Application',
         'TbAdmin',
