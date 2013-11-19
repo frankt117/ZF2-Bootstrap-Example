@@ -35,7 +35,7 @@ class CategoryController extends AbstractActionController
         $this->getSubDescriptionInput();
         $this->getDescriptionInput();
 
-        return new ViewModel($this->inputs);
+        return new ViewModel(array('inputs' => $this->inputs));
     }
 
     public function editAction(){
@@ -47,7 +47,7 @@ class CategoryController extends AbstractActionController
         $this->getSubDescriptionInput();
         $this->getDescriptionInput();
 
-        return new ViewModel($this->inputs);
+        return new ViewModel(array('inputs' => $this->inputs));
     }
 
     public function getTitleInput(){
