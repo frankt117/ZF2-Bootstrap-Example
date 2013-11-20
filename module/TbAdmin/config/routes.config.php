@@ -28,6 +28,61 @@ return array(
 //                    )
                 )
             ),
+            'tb-admin-category' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/tb-admin/category',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'index',
+                    ),
+                ),
+            ),
+            'tb-admin-category-add' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/tb-admin/category/add',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'add',
+                    ),
+                ),
+            ),
+            'tb-admin-category-edit' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/tb-admin/category/edit',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'edit',
+                    ),
+                ),
+            ),
+            'tb-admin-category-find' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/tb-admin/category/find',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'find',
+                    ),
+                ),
+            ),
+            'tb-admin-category-complete' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/tb-admin/category/complete',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                        'controller'    => 'Category',
+                        'action'        => 'complete',
+                    ),
+                ),
+            )
         ),
     ),
 );

@@ -13,6 +13,9 @@
         "evandotpro/edp-module-layouts": "dev-master",
         "kriswallsmith/assetic": "1.1.*",
         "rwoverdijk/assetmanager": "dev-master",
-        "doctrine/doctrine-orm-module": "*"
+        "doctrine/doctrine-orm-module": "*",
+        "zf-commons/zfc-user": ">=0.1",
+        "zf-commons/zfc-user-doctrine-orm": ">=0.1",
+        "bjyoungblood/bjy-authorize": ">=1.2"
     }
 }

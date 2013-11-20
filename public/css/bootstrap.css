@@ -4492,7 +4492,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
     float: left;
     padding: 15px 15px;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 20px;
 }
 
@@ -5233,7 +5233,8 @@ a.list-group-item.active > .badge,
     font-size: 21px;
     font-weight: 200;
     line-height: 2.1428571435;
-    color: inherit;
+    color: #ffffff;
+    text-align:center;
     background-color: #eeeeee;
 }
 
@@ -7098,4 +7099,196 @@ td.visible-print {
     td.hidden-print {
         display: none !important;
     }
+}
+
+
+#logo-graphic
+{
+    background-image: url('/img/turtle_logo.png');
+    background-size:114px 141px;
+    height:141px;
+    width:114px;
+    margin-bottom:50px;
+    margin-left: 70px;
+}
+
+
+#logo-font
+{
+    color:#003245;
+    font-size: 72px;
+    font-family: Helvetica;
+    font-style: oblique;
+    font-weight: bold;
+    text-align:left;
+    padding-top:10px;
+    font-size:400%;
+
+}
+
+#logo-font-small
+{
+    color:#003245;
+    font-size: 24px;
+    font-family: Helvetica;
+    font-style: oblique;
+    font-weight: normal;
+    height:24px;
+    width:1200px;
+    padding-left: 35px;
+    margin-top: -25px;
+    font-size:50%;
+
+}
+
+@media only screen and (max-width: 1182px) {
+    #logo-font-small
+    {
+        padding-left:25px;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    #logo-font
+    {
+        font-size:350%;
+        margin-left:200px;
+        margin-top:-180px;
+        padding-bottom: 100px;
+    }
+    #logo-font-small
+    {
+        width:500px;
+        padding-left:25px;
+    }
+}
+
+/* fix small font left padding */
+@media only screen and (max-width: 767px) {
+    #logo-font-small
+    {
+        padding-left:0px;
+    }
+}
+
+/* tablets */
+@media only screen and (max-width: 730px) {
+    #logo-font
+    {
+        font-size:300%;
+        padding-bottom:100px;
+    }
+    #logo-font-small
+    {
+        width:500px;
+    }
+}
+
+/* small window*/
+@media only screen and (max-width: 450px) {
+    #logo-font
+    {
+        font-size:300%;
+        padding-bottom:50px;
+        margin-left:-25px;
+        margin-top:0px;
+        text-align:center;
+    }
+    #logo-font-small
+    {
+        text-align:center;
+        padding-bottom:50px;
+        padding-left:0px;
+        margin-left:-67px;
+        font-size:20px;
+    }
+    #logo-graphic
+    {
+        margin-left:100px;
+    }
+}
+
+/* note 3 */
+@media only screen and (max-width: 395px) {
+    #logo-font
+    {
+        font-size:300%;
+        padding-bottom:50px;
+        margin-left:-20px;
+        margin-top:0px;
+        text-align:center;
+    }
+    #logo-font-small
+    {
+        text-align:center;
+        padding-bottom:50px;
+        padding-left:0px;
+        margin-left:-85px;
+        font-size:15px;
+    }
+    #logo-graphic
+    {
+        margin-left:90px;
+    }
+}
+
+/* iphone */
+@media only screen and (max-width: 320px) {
+    #logo-font
+    {
+        margin-left:-20px;
+    }
+    #logo-font-small
+    {
+        margin-left:-110px;
+    }
+    #logo-graphic
+    {
+        margin-left:70px;
+    }
+}
+
+h3
+{
+    color:rgb(51,51,51);
+    font-size: 24px;
+    font-family: Helvetica;
+    font-style: oblique;
+    font-weight: bold;
+    padding-bottom: 30px;
+
+}
+
+.realtree_light_background
+{
+
+    background: url("../img/realtree/realtree-blackstripe.png");
+}
+.spacer
+{
+    margin-top: 8%;
+}
+
+.white {
+    color:#ffffff;
+}
+
+.footer_text {
+
+    color: #ffffff;
+    background: rgb(51,51,51);
+    padding-right:10px;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.footer {
+    border-top: 10px solid rgb(51,51,51);
+    margin-top: 40px;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-bottom: 40px;
 }
