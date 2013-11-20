@@ -1,16 +1,21 @@
 <?php
 return array(
     'modules' => array(
-        'PtgBase',
-        'PtgContact',
-        'PtgLead',
-        'PtgTbCategory',
-	'Application',
-        'TbAdmin',
 	'DoctrineModule',
 	'DoctrineORMModule',
         'ZendDeveloperTools',
 	'EdpModuleLayouts',
+        'ZfcBase',
+        'ZfcUser',
+        'ZfcUserDoctrineORM',
+        'BjyAuthorize',
+        'PtgBase',
+        'PtgContact',
+        'PtgLead',
+        'PtgUser',
+        'PtgTbCategory',
+	'Application',
+        'TbAdmin',
     ),
     'module_listener_options' => array(
         'module_paths' => array(
