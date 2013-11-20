@@ -36,10 +36,22 @@
         </div>
         <div class="col-md-10">
             <ul class="nav nav-tabs">
+            <?php if($this->zfcUserIdentity() !== false)
+            {
+                ?>
                 <li class="active"><a href="/tb-admin">Home</a></li>
                 <li><a href="#">Leads</a></li>
                 <li><a href="#">Users</a></li>
                 <li><a href="/tb-admin/category">Categories</a></li>
+                    <li>
+                        <a href="<?php echo $this->url("zfcuser/logout");?>">
+                            Logout 
+                            <?php echo "(".$this->zfcUserIdentity()->getDisplayName().")";?>
+                        </a>
+                    </li>
+                <?php
+            }
+            ?>
             </ul>
         </div>
     </div>

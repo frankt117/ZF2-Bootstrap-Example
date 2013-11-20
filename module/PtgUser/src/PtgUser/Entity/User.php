@@ -73,6 +73,8 @@ class User extends \PtgBase\Doctrine\Entity implements UserInterface, ProviderIn
      */
     public function __construct()
     {
+        parent::__construct();
+        
         $this->roles = new ArrayCollection();
     }
 

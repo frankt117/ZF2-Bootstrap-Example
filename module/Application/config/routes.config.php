@@ -3,7 +3,7 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
-                        'type' => 'literal',
+                'type' => 'literal',
                 'options' => array(
                     'route' => '/',
                     'defaults' => array(
