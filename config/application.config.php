@@ -12,7 +12,7 @@ return array(
         'PtgBase',
         'PtgContact',
         'PtgLead',
-        'PtgUser',
+        //'PtgUser',
         'PtgTbCategory',
 	'Application',
         'TbAdmin',
