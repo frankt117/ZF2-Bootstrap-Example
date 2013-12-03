@@ -5,7 +5,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Doctrine\ORM\EntityManager;
 
-class CategoryController extends AbstractActionController
+class ProductController extends AbstractActionController
 {
     /**
      * @var \Doctrine\ORM\EntityManager
