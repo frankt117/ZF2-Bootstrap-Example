@@ -8,7 +8,7 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
-        'BjyAuthorize',
+        //'BjyAuthorize',
         'PtgBase',
         'PtgContact',
         'PtgLead',
