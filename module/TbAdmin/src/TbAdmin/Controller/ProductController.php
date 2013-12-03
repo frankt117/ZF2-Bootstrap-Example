@@ -115,6 +115,7 @@ class ProductController extends AbstractActionController
 
         $this->getNameInput();
         $this->getSlugInput();
+        $this->getPriceInput();
         $this->getImgDirInput();
         $this->getMainPicNameInput();
         $this->getSubDescriptionInput();
@@ -140,6 +141,7 @@ class ProductController extends AbstractActionController
 
                 $this->getHiddenProductIdInput($c->id);
                 $this->getNameInput($c->name);
+                $this->getPriceInput($c->price);
                 $this->getSlugInput($c->slug);
                 $this->getImgDirInput($c->image_directory);
                 $this->getMainPicNameInput($c->main_pic_src);
@@ -242,6 +244,21 @@ class ProductController extends AbstractActionController
             </div>';
 
         $this->inputs[] = $name;
+    }
+
+    public function getPriceInput($v = ''){
+        $price = '<div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Price</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="price" name="price" placeholder="11000" ';
+
+        if($v) $price .= 'value ="' . $v .'" ';
+
+        $price .= ' >
+                </div>
+            </div>';
+
+        $this->inputs[] = $price;
     }
 
     public function getSlugInput($v = ''){
