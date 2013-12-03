@@ -146,6 +146,64 @@ return array(
                                 ),
                             )
                         )
+                    ),
+                    'product' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/product',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'TbAdmin\Controller',
+                                'controller'    => 'Product',
+                                'action'        => 'index',
+                            ),
+                        ),
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'add' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/add',
+                                    'defaults' => array(
+                                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                                        'controller'    => 'Product',
+                                        'action'        => 'add',
+                                    ),
+                                ),
+                            ),
+                            'edit' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/edit',
+                                    'defaults' => array(
+                                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                                        'controller'    => 'Product',
+                                        'action'        => 'edit',
+                                    ),
+                                ),
+                            ),
+                            'find' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/find',
+                                    'defaults' => array(
+                                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                                        'controller'    => 'Product',
+                                        'action'        => 'find',
+                                    ),
+                                ),
+                            ),
+                            'complete' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/complete',
+                                    'defaults' => array(
+                                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                                        'controller'    => 'Product',
+                                        'action'        => 'complete',
+                                    ),
+                                ),
+                            )
+                        )
                     )
                 )
             )
