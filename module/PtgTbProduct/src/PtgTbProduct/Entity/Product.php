@@ -32,11 +32,6 @@ class Product extends \PtgBase\Doctrine\Entity
     protected $image_directory;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    protected $image_name;
-
-    /**
      * @ORM\Column(type="text")
      */
     protected $description;
