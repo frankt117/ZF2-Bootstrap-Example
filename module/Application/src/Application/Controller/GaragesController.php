@@ -1,10 +1,10 @@
 <?php
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Application\Controller\AbstractController,
+    Zend\View\Model\ViewModel;
 
-class GaragesController extends AbstractActionController
+class GaragesController extends AbstractController
 {
     public function indexAction()
     {

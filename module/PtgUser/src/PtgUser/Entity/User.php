@@ -55,6 +55,7 @@ class User extends \PtgBase\Doctrine\Entity implements UserInterface, ProviderIn
 
     /**
      * @var int
+     * @ORM\Column(type="integer", length=1)
      */
     protected $state;
 

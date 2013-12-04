@@ -1,24 +1,11 @@
 <?php
 namespace TbAdmin\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Doctrine\ORM\EntityManager;
+use TbAdmin\Controller\AbstractController,
+    Zend\View\Model\ViewModel;
 
-class ProductController extends AbstractActionController
+class ProductController extends AbstractController
 {
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    protected $em;
-
-    protected function getEntityManager(){
-        if( null === $this->em) {
-            $this->em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        }
-        return $this->em;
-    }
-
     protected $inputs = array();
 
     public function indexAction()

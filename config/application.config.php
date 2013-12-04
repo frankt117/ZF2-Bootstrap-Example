@@ -8,11 +8,11 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
-        //'BjyAuthorize', // Need to figure out why this invalidates user on non /tb-admin side.
+        'BjyAuthorize', // Need to figure out why this invalidates user on non /tb-admin side.
         'PtgBase',
         'PtgContact',
         'PtgLead',
-        //'PtgUser',
+        'PtgUser',
         'PtgTbCategory',
 	'Application',
         'TbAdmin',

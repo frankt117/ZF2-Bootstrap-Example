@@ -1,24 +1,11 @@
 <?php
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Doctrine\ORM\EntityManager;
+use Application\Controller\AbstractController,
+    Zend\View\Model\ViewModel;
 
-class GetStartedController extends AbstractActionController
+class GetStartedController extends AbstractController
 {
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    protected $em;
-    
-    protected function getEntityManager(){
-        if( null === $this->em) {
-            $this->em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        }
-        return $this->em;
-    }
-
     public function indexAction()
     {
         return new ViewModel();
