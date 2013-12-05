@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM,
 /**
  * Product table entity.
  * @ORM\Entity
- * @ORM\Table(name="ptgtbproduct_categories")
+ * @ORM\Table(name="ptgtbproduct_products")
  * @property string $image_directory
  * @property string $description
  * @property string $main_pic_src
