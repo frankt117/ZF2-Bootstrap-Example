@@ -74,7 +74,7 @@ class ProductController extends AbstractController
 
         $em = $this->getEntityManager();
         $result = 'Add Product Failed.';
-
+die($post_data);
         if($post_data['add_edit_password'] == 'M@dMoney'){
             /**@var \PtgTbProduct\Entity\Product $PtgTbProduct */
             $PtgTbProduct = new \PtgTbProduct\Entity\Product();
@@ -150,7 +150,7 @@ class ProductController extends AbstractController
         $this->inputs[] = "<input type='hidden' name='select_product' id='select_product' value='$cat_id' />";
     }
 
-    public function getSelectMainCategoryInput($v = ''){
+    public function getSelectMainCategoryInput($v = 2){
         $em = $this->getEntityManager();
 
         $select = '<div class="form-group">
@@ -174,7 +174,7 @@ class ProductController extends AbstractController
         $this->inputs[] = $select;
     }
 
-    public function getSelectSubCategoryInput($v =''){
+    public function getSelectSubCategoryInput($v = 2){
         $em = $this->getEntityManager();
 
         $select = '<div class="form-group">
@@ -222,7 +222,7 @@ class ProductController extends AbstractController
         $name = '<div class="form-group">
                 <label for="name" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Horse Barn" ';
+                    <input type="text" class="form-control" id="name" name="name" placeholder="A-Frame Carport" ';
 
         if($v) $name .= 'value ="' . $v .'" ';
 
@@ -252,7 +252,7 @@ class ProductController extends AbstractController
         $slug = '<div class="form-group">
                 <label for="slug" class="col-sm-2 control-label">Slug</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="slug" name="slug" placeholder="horse-barn"';
+                    <input type="text" class="form-control" id="slug" name="slug" placeholder="a-frame-carport"';
         if($v) $slug .= 'value ="' . $v .'" ';
 
         $slug .= ' >
@@ -266,7 +266,7 @@ class ProductController extends AbstractController
         $img_dir = '<div class="form-group">
                 <label for="image_directory" class="col-sm-2 control-label">Image Directory</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="image_directory" name="image_directory" placeholder="barns"';
+                    <input type="text" class="form-control" id="image_directory" name="image_directory" placeholder="carports"';
         if($v) $img_dir .= 'value ="' . $v .'" ';
 
         $img_dir .= ' >
@@ -280,7 +280,7 @@ class ProductController extends AbstractController
         $main_pic = '<div class="form-group">
                 <label for="main_pic_name" class="col-sm-2 control-label">Main Image Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="main_pic_name" name="main_pic_name" placeholder="horse-barn1.jpg"';
+                    <input type="text" class="form-control" id="main_pic_name" name="main_pic_name" placeholder="aframe.jpg"';
         if($v) $main_pic .= 'value ="' . $v .'" ';
 
         $main_pic .= ' >
@@ -294,7 +294,7 @@ class ProductController extends AbstractController
         $subdesc = '<div class="form-group">
                 <label for="subdescription" class="col-sm-2 control-label">Sub Description</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="subdescription" name="subdescription" placeholder="The perfect mix of protection and western style for your horse barning needs son!"';
+                    <input type="text" class="form-control" id="subdescription" name="subdescription" placeholder="The affordable way to protect your vehicle from the elements with a traditional look."';
         if($v) $subdesc .= 'value ="' . $v .'" ';
 
         $subdesc .= ' >
@@ -305,6 +305,13 @@ class ProductController extends AbstractController
     }
 
     public function getDescriptionInput($v = ''){
+
+        if ($v == ''){
+            $v = 'Our A Frame style offers the more traditional look and feel for your carport. From being 100% '
+                . 'American made, to offering a 10 year warranty, we are positive we can build the perfect A Frame '
+                . 'carport for your needs. Contact us today for pricing and details.';
+        }
+
         $this->inputs[] = '<div class="form-group">
                 <label for="description" class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-10">
