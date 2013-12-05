@@ -74,7 +74,7 @@ class ProductController extends AbstractController
 
         $em = $this->getEntityManager();
         $result = 'Add Product Failed.';
-die($post_data);
+        return print_r($post_data,1);
         if($post_data['add_edit_password'] == 'M@dMoney'){
             /**@var \PtgTbProduct\Entity\Product $PtgTbProduct */
             $PtgTbProduct = new \PtgTbProduct\Entity\Product();
