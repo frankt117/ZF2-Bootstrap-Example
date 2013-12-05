@@ -14,6 +14,7 @@ return array(
         'PtgLead',
         'PtgUser',
         'PtgTbCategory',
+        'PtgTbProduct',
 	'Application',
         'TbAdmin',
     ),
