@@ -37,7 +37,7 @@ class Product extends \PtgBase\Doctrine\Entity
     protected $description;
 
     /**
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     protected $price;
 
