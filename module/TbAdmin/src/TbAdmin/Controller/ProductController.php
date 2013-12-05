@@ -74,7 +74,7 @@ class ProductController extends AbstractController
 
         $em = $this->getEntityManager();
         $result = 'Add Product Failed.';
-        return print_r($post_data,1);
+
         if($post_data['add_edit_password'] == 'M@dMoney'){
             /**@var \PtgTbProduct\Entity\Product $PtgTbProduct */
             $PtgTbProduct = new \PtgTbProduct\Entity\Product();
@@ -86,8 +86,26 @@ class ProductController extends AbstractController
             $PtgTbProduct->main_pic_src = $post_data['main_pic_name'];
             $PtgTbProduct->subdescription = $post_data['subdescription'];
             $PtgTbProduct->description = $post_data['description'];
-            $PtgTbProduct->main_category = $post_data['main_category'];
-            $PtgTbProduct->sub_category = $post_data['sub_category'];
+
+            if($post_data['main_category']){
+
+                $main_category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
+                    array('id' => $post_data['main_category'])
+                );
+
+                $PtgTbProduct->main_category = $main_category;
+            }
+
+            if($post_data['sub_category']){
+
+                $sub_category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
+                    array('id' => $post_data['sub_category'])
+                );
+
+                $PtgTbProduct->sub_category = $sub_category;
+            }
+
+
 
             $em->persist($PtgTbProduct);
             $em->flush();
