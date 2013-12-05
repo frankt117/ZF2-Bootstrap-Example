@@ -2,7 +2,8 @@
 namespace PtgTbProduct\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
-    \Doctrine\Common\Collections\ArrayCollection;
+    \Doctrine\Common\Collections\ArrayCollection,
+    \PtgTbCategory\Entity\Category;
 
 /**
  * Product table entity.
