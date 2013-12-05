@@ -66,14 +66,14 @@ class Product extends \PtgBase\Doctrine\Entity
     protected $subdescription;
 
     /**
-     * @OneToOne (targetEntity="PtgTbCategory\Entity\Category")
-     * @JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\OneToOne (targetEntity="PtgTbCategory\Entity\Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $main_category;
 
     /**
-     * @OneToOne (targetEntity="PtgTbCategory\Entity\Category")
-     * @JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\OneToOne (targetEntity="PtgTbCategory\Entity\Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $sub_category;
 
