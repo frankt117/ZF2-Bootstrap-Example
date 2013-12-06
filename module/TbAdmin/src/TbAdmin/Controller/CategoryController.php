@@ -44,24 +44,24 @@ class CategoryController extends AbstractController
     protected function editCategory($post_data){
         $em = $this->getEntityManager();
         $result = 'Edit Category Failed.';
-        if($post_data['add_edit_password'] == 'M@dMoney'){
-            /**@var \PtgTbCategory\Entity\Category $PtgTbCategory */
-            $PtgTbCategory = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
-                array('id' => $post_data['select_category'])
-            );
 
-            $PtgTbCategory->title = $post_data['title'];
-            $PtgTbCategory->slug = $post_data['slug'];
-            $PtgTbCategory->image_directory = $post_data['image_directory'];
-            $PtgTbCategory->main_pic_src = $post_data['main_pic_name'];
-            $PtgTbCategory->subdescription = $post_data['subdescription'];
-            $PtgTbCategory->description = $post_data['description'];
+        /**@var \PtgTbCategory\Entity\Category $PtgTbCategory */
+        $PtgTbCategory = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
+            array('id' => $post_data['select_category'])
+        );
 
-            $em->persist($PtgTbCategory);
-            $em->flush();
+        $PtgTbCategory->title = $post_data['title'];
+        $PtgTbCategory->slug = $post_data['slug'];
+        $PtgTbCategory->image_directory = $post_data['image_directory'];
+        $PtgTbCategory->main_pic_src = $post_data['main_pic_name'];
+        $PtgTbCategory->subdescription = $post_data['subdescription'];
+        $PtgTbCategory->description = $post_data['description'];
 
-            $result = "Category (#" . $PtgTbCategory->id . ") " . $PtgTbCategory->title . " Updated Successfully.";
-        }
+        $em->persist($PtgTbCategory);
+        $em->flush();
+
+        $result = "Category (#" . $PtgTbCategory->id . ") " . $PtgTbCategory->title . " Updated Successfully.";
+
 
         return $result;
 
@@ -72,22 +72,22 @@ class CategoryController extends AbstractController
         $em = $this->getEntityManager();
         $result = 'Add Category Failed.';
 
-        if($post_data['add_edit_password'] == 'M@dMoney'){
-            /**@var \PtgTbCategory\Entity\Category $PtgTbCategory */
-            $PtgTbCategory = new \PtgTbCategory\Entity\Category();
 
-            $PtgTbCategory->title = $post_data['title'];
-            $PtgTbCategory->slug = $post_data['slug'];
-            $PtgTbCategory->image_directory = $post_data['image_directory'];
-            $PtgTbCategory->main_pic_src = $post_data['main_pic_name'];
-            $PtgTbCategory->subdescription = $post_data['subdescription'];
-            $PtgTbCategory->description = $post_data['description'];
+        /**@var \PtgTbCategory\Entity\Category $PtgTbCategory */
+        $PtgTbCategory = new \PtgTbCategory\Entity\Category();
 
-            $em->persist($PtgTbCategory);
-            $em->flush();
+        $PtgTbCategory->title = $post_data['title'];
+        $PtgTbCategory->slug = $post_data['slug'];
+        $PtgTbCategory->image_directory = $post_data['image_directory'];
+        $PtgTbCategory->main_pic_src = $post_data['main_pic_name'];
+        $PtgTbCategory->subdescription = $post_data['subdescription'];
+        $PtgTbCategory->description = $post_data['description'];
 
-            $result = "Category (#" . $PtgTbCategory->id . ") " . $PtgTbCategory->title . " Added Successfully.";
-        }
+        $em->persist($PtgTbCategory);
+        $em->flush();
+
+        $result = "Category (#" . $PtgTbCategory->id . ") " . $PtgTbCategory->title . " Added Successfully.";
+
 
         return $result;
     }
@@ -100,7 +100,6 @@ class CategoryController extends AbstractController
         $this->getMainPicNameInput();
         $this->getSubDescriptionInput();
         $this->getDescriptionInput();
-        $this->getAddEditPasswordInput();
         $this->getSaveButton();
 
         return new ViewModel(array('inputs' => $this->inputs));
@@ -124,7 +123,6 @@ class CategoryController extends AbstractController
                 $this->getMainPicNameInput($c->main_pic_src);
                 $this->getSubDescriptionInput($c->subdescription);
                 $this->getDescriptionInput($c->description);
-                $this->getAddEditPasswordInput();
                 $this->getSaveButton();
 
             }
@@ -234,15 +232,6 @@ class CategoryController extends AbstractController
                 <label for="description" class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" rows="6" id="description" name="description">'. $v .'</textarea>
-                </div>
-            </div>';
-    }
-
-    public function getAddEditPasswordInput(){
-        $this->inputs[] = '<div class="form-group">
-                <label for="add_edit_password" class="col-sm-2 control-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="add_edit_password" name="add_edit_password">
                 </div>
             </div>';
     }
