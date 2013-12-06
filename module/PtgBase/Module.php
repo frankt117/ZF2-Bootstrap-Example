@@ -34,5 +34,13 @@ class Module
             ),
         );
     }
+    
+    /**
+     * {@InheritDoc}
+     */
+    public function getViewHelperConfig()
+    {
+        return include __DIR__ . '/config/view.helper.config.php';
+    }
 }
 

@@ -41,13 +41,26 @@
             <ul class="nav nav-tabs">
             <?php if($this->zfcUserIdentity() !== false)
             {
+                $route_name = $this->ptgMatchedRoute();
                 ?>
-                <li class="active"><a href="/tb-admin">Home</a></li>
-                <li><a href="#">Leads</a></li>
-                <li><a href="/tb-admin/user">Users</a></li>
-                <li><a href="/tb-admin/category">Categories</a></li>
-                <li><a href="/tb-admin/product">Products</a></li>
-                <li><a href="/tb-admin/blog">Blog</a></li>
+                <li class="<?php $route_name == "tb-admin" ? "active" : "";?>">
+                    <a href="<?php echo $this->url("tb-admin");?>">Home</a>
+                </li>
+                <li class="<?php $route_name == "tb-admin/lead" ? "active" : "";?>">
+                    <a href="<?php echo $this->url("tb-admin/lead");?>">Leads</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url("tb-admin/user");?>">Users</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url("tb-admin/category");?>">Categories</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url("tb-admin/product");?>">Products</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url("tb-admin/blog");?>">Blog</a>
+                </li>
                 <?php
             }
             ?>

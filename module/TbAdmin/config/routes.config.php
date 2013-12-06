@@ -333,6 +333,65 @@ return array(
                                 'may_terminate' => true,
                             ),
                         )
+                    ),
+                    'lead' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/lead',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'TbAdmin\Controller',
+                                'controller'    => 'Lead',
+                                'action'        => 'list',
+                            ),
+                        ),
+                        
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'add' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/add',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\Lead',
+                                        'action' => 'add'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                            'show' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/show[/:id]',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\Lead',
+                                        'action' => 'show'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                            'edit' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/edit[/:id][/:redirect]',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\Lead',
+                                        'action' => 'edit'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                            'delete' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/delete[/:id]',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\Lead',
+                                        'action' => 'delete'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                        )
                     )
                 )
             )
