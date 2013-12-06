@@ -42,6 +42,17 @@ class Category extends \PtgBase\Doctrine\Entity
      */
     protected $main_pic_src;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     */
+    protected $children;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    protected $parent;
+
 
     /**
      * @ORM\Column(type="string", unique=true)
