@@ -60,6 +60,8 @@ class ProductController extends AbstractController
 
         if($post_data['categories']){
 
+            $Categories_updated = \Doctrine\Common\Collections\ArrayCollection();
+
             foreach ($post_data['categories'] as $category){
 
                 $category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
@@ -67,11 +69,14 @@ class ProductController extends AbstractController
                 );
 
                 if ($category instanceof \PtgTbCategory\Entity\Category){
-                    $PtgTbProduct->addCategory($category);
+                    $Categories_updated->add($category);
                 }
 
 
             }
+
+            $PtgTbProduct->Categories = $Categories_updated;
+
         }
 
         $em->persist($PtgTbProduct);
