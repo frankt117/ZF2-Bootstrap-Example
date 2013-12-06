@@ -57,8 +57,8 @@ class ProductController extends AbstractController
         $PtgTbProduct->main_pic_src = $post_data['main_pic_name'];
         $PtgTbProduct->subdescription = $post_data['subdescription'];
         $PtgTbProduct->description = $post_data['description'];
-        $PtgTbProduct->addCategory($post_data['main_category']);
-        $PtgTbProduct->addCategory($post_data['sub_category']);
+        //$PtgTbProduct->addCategory($post_data['main_category']);
+        //$PtgTbProduct->addCategory($post_data['sub_category']);
 
         $em->persist($PtgTbProduct);
         $em->flush();
@@ -124,8 +124,8 @@ class ProductController extends AbstractController
         $this->getMainPicNameInput();
         $this->getSubDescriptionInput();
         $this->getDescriptionInput();
-        $this->getSelectMainCategoryInput();
-        $this->getSelectSubCategoryInput();
+        //$this->getSelectMainCategoryInput();
+        //$this->getSelectSubCategoryInput();
         $this->getSaveButton();
 
         return new ViewModel(array('inputs' => $this->inputs));
@@ -150,8 +150,8 @@ class ProductController extends AbstractController
                 $this->getMainPicNameInput($c->main_pic_src);
                 $this->getSubDescriptionInput($c->subdescription);
                 $this->getDescriptionInput($c->description);
-                $this->getSelectMainCategoryInput($c->Categories);
-                $this->getSelectSubCategoryInput($c->Categories);
+                //$this->getSelectMainCategoryInput($c->Categories);
+                //$this->getSelectSubCategoryInput($c->Categories);
                 $this->getSaveButton();
 
             }
