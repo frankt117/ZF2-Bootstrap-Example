@@ -57,8 +57,8 @@ class ProductController extends AbstractController
         $PtgTbProduct->main_pic_src = $post_data['main_pic_name'];
         $PtgTbProduct->subdescription = $post_data['subdescription'];
         $PtgTbProduct->description = $post_data['description'];
-//            $PtgTbProduct->addCategory($post_data['main_category']);
-//            $PtgTbProduct->addCategory($post_data['sub_category']);
+        $PtgTbProduct->addCategory($post_data['main_category']);
+        $PtgTbProduct->addCategory($post_data['sub_category']);
 
         $em->persist($PtgTbProduct);
         $em->flush();
@@ -150,6 +150,8 @@ class ProductController extends AbstractController
                 $this->getMainPicNameInput($c->main_pic_src);
                 $this->getSubDescriptionInput($c->subdescription);
                 $this->getDescriptionInput($c->description);
+                $this->getSelectMainCategoryInput($c->Categories);
+                $this->getSelectSubCategoryInput($c->Categories);
                 $this->getSaveButton();
 
             }
@@ -217,7 +219,7 @@ class ProductController extends AbstractController
         $select = '<div class="form-group">
                 <label for="select_product" class="col-sm-2 control-label">Select Product</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="select_product" name="select_product">
+                    <select class="form-control" id="select_product" name="select_product" size="20">
                     ';
 
             foreach($em->getRepository('\PtgTbProduct\Entity\Product')->findAll() as $product){
