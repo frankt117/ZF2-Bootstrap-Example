@@ -10,15 +10,46 @@ class ProductController extends AbstractController
 
     public function indexAction()
     {
-        $viewModel = new ViewModel();
-        return $viewModel;
-    }
-
-    public function findAction(){
         $this->getSelectProductInput();
-        $this->getNextButton();
 
         return new ViewModel(array('inputs' => $this->inputs));
+    }
+
+    public function deleteAction(){
+        $request = $this->getRequest();
+
+        if($request->isPost()){
+            $post = $request->getPost();
+
+            if(!ctype_digit($post['delete_product_id'])){
+                $result = "No Product Selected for Deletion";
+            }
+            else {
+                $result = $this->deleteProduct($post['delete_product_id']);
+            }
+        }
+
+        return new ViewModel(array('result' => $result));
+    }
+
+    protected function deleteProduct($delete_product_id){
+        $em = $this->getEntityManager();
+        $result = "Looks like we were unable to pull the product with the ID " . $delete_product_id . ". Please try again.";
+        /**@var \PtgTbProduct\Entity\Product $PtgTbProduct */
+        $PtgTbProduct = $em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(
+            array('id' => $delete_product_id)
+        );
+
+        if ($PtgTbProduct instanceof \PtgTbProduct\Entity\Product) {
+            $product_name = $PtgTbProduct->name;
+            $em->remove($PtgTbProduct);
+            $em->flush();
+
+            $result = $product_name . " deleted successfully.";
+        }
+
+
+        return $result;
     }
 
     public function completeAction(){
@@ -60,7 +91,7 @@ class ProductController extends AbstractController
 
         if($post_data['categories']){
 
-            $Categories_updated = \Doctrine\Common\Collections\ArrayCollection();
+            $Categories_updated = array();
 
             foreach ($post_data['categories'] as $category){
 
@@ -69,13 +100,13 @@ class ProductController extends AbstractController
                 );
 
                 if ($category instanceof \PtgTbCategory\Entity\Category){
-                    $Categories_updated->add($category);
+                    $Categories_updated[] = $category;
                 }
 
 
             }
 
-            $PtgTbProduct->Categories = $Categories_updated;
+            $PtgTbProduct->updateCategories($Categories_updated);
 
         }
 
@@ -155,7 +186,7 @@ class ProductController extends AbstractController
         if($request->isPost()){
 
             $post_data = $request->getPost();
-            $c   = $em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(array('id' => $post_data['select_product']));
+            $c   = $em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(array('id' => $post_data['edit_product_id']));
             if($c instanceof \PtgTbProduct\Entity\Product){
 
                 $this->getHiddenProductIdInput($c->id);
@@ -237,8 +268,7 @@ class ProductController extends AbstractController
         $em = $this->getEntityManager();
 
         $select = '<div class="form-group">
-                <label for="select_product" class="col-sm-2 control-label">Select Product</label>
-                <div class="col-sm-10">
+                <div class="col-sm-6">
                     <select class="form-control" id="select_product" name="select_product" size="20">
                     ';
 

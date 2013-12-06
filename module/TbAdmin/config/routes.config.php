@@ -107,14 +107,14 @@ return array(
                                     ),
                                 ),
                             ),
-                            'find' => array(
+                            'delete' => array(
                                 'type' => 'Literal',
                                 'options' => array(
-                                    'route' => '/find',
+                                    'route' => '/delete',
                                     'defaults' => array(
                                         '__NAMESPACE__' => 'TbAdmin\Controller',
                                         'controller'    => 'Product',
-                                        'action'        => 'find',
+                                        'action'        => 'delete',
                                     ),
                                 ),
                             ),
