@@ -1,0 +1,38 @@
+<div class="wdgadmin-toolbar">
+    <a title="Add User" href="<?php echo $this->url("tb-admin/user/add");?>" class="btn btn-small addtooltip-left">
+        <i class="icon-plus"></i>
+    </a>
+</div>
+<table class="table">
+    <tr>
+        <th style="width:40px;">&nbsp</th>
+        <th style="width:40px;">Id</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th style="width:40px;">State</th>
+        <th style="width:40px;">&nbsp</th>
+    </tr>
+    <?php 
+    foreach($this->users as $user)
+    {
+        ?>
+        <tr>
+            <td>
+                <a title="Show User" href="<?php echo $this->url("tb-admin/user/show", array("id" => $user->getId()));?>" class="btn btn-mini addtooltip-left">
+                    <i class="icon-eye-open"></i>
+                </a>
+            </td>
+            <td><?php echo $user->getId();?></td>
+            <td><?php echo $user->getUsername();?></td>
+            <td><?php echo $user->getEmail();?></td>
+            <td><?php echo $user->getState();?></td>
+            <td>
+                <a title="Delete User" href="<?php echo $this->url("tb-admin/user/delete", array("id" => $user->getId()));?>" class="btn btn-danger btn-mini addtooltip-right">
+                    <i class="icon-trash"></i>
+                </a>
+            </td>
+        </tr>
+        <?php
+    }
+    ?>
+</table>
