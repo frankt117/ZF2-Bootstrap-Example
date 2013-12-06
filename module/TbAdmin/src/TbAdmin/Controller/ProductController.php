@@ -175,7 +175,7 @@ class ProductController extends AbstractController
         $this->inputs[] = "<input type='hidden' name='select_product' id='select_product' value='$cat_id' />";
     }
 
-    public function getSelectCategoryInput($v = 2){
+    public function getSelectCategoryInput($v = array()){
         $em = $this->getEntityManager();
 
         $select = '<div class="form-group">
@@ -187,7 +187,7 @@ class ProductController extends AbstractController
         foreach($em->getRepository('\PtgTbCategory\Entity\Category')->findAll() as $category){
             $select .= '<input type="checkbox" id="select_categories" name="categories[]" ';
 
-            $select .= $v == $category->id ? ' checked ' : '';
+            $select .= in_array($category, $v) ? ' checked ' : '';
 
             $select .='value="' . $category->id . '">' . $category->title .'<br/>';
         }
