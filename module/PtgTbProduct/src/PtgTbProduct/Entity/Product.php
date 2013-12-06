@@ -98,7 +98,7 @@ class Product extends \PtgBase\Doctrine\Entity
 
     public function __construct(){
         parent::__construct();
-
+        $this->Categories = new \Doctrine\Common\Collections\Collection();
         $this->BulletPoints = new ArrayCollection();
     }
 
