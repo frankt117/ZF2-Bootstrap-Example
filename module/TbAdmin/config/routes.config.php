@@ -118,17 +118,6 @@ return array(
                                     ),
                                 ),
                             ),
-                            'find' => array(
-                                'type' => 'Literal',
-                                'options' => array(
-                                    'route' => '/find',
-                                    'defaults' => array(
-                                        '__NAMESPACE__' => 'TbAdmin\Controller',
-                                        'controller'    => 'Product',
-                                        'action'        => 'find',
-                                    ),
-                                ),
-                            ),
                             'complete' => array(
                                 'type' => 'Literal',
                                 'options' => array(

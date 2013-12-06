@@ -15,13 +15,6 @@ class ProductController extends AbstractController
         return new ViewModel(array('inputs' => $this->inputs));
     }
 
-    public function findAction(){
-        $this->getSelectProductInput();
-        $this->getNextButton();
-
-        return new ViewModel(array('inputs' => $this->inputs));
-    }
-
     public function deleteAction(){
         $request = $this->getRequest();
 
