@@ -67,16 +67,21 @@ class Product extends \PtgBase\Doctrine\Entity
     protected $subdescription;
 
     /**
-     * @ORM\OneToOne(targetEntity="PtgTbCategory\Entity\Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="PtgTbCategory\Entity\Category", inversedBy="Products")
+     * @ORM\JoinTable(
+     *  name="ptgtbproduct_product_category_joins",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     *  }
+     * )
      */
-    protected $main_category;
+    protected $Categories;
 
-    /**
-     * @ORM\OneToOne(targetEntity="PtgTbCategory\Entity\Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     */
-    protected $sub_category;
 
     /**
      * @ORM\OneToMany(targetEntity="PtgTbProduct\Entity\Product\BulletPoint", mappedBy="Product")
@@ -95,5 +100,17 @@ class Product extends \PtgBase\Doctrine\Entity
         parent::__construct();
 
         $this->BulletPoints = new ArrayCollection();
+    }
+
+    /**
+     * @param PtgTbCategory\Entity\Category $category
+     */
+    public function addCategory(PtgTbCategory\Entity\Category $category)
+    {
+        if ($this->Categories->contains($category))return;
+
+        $this->Categories->add($category);
+
+        $category->addProduct($this);
     }
 }

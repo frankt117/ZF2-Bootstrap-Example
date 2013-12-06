@@ -54,6 +54,12 @@ class Category extends \PtgBase\Doctrine\Entity
      */
     protected $title;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="PtgTbProduct\Entity\Product", mappedBy="Categories")
+     */
+    protected $Products;
 
     /**
      * @ORM\Column(type="string")
@@ -79,4 +85,18 @@ class Category extends \PtgBase\Doctrine\Entity
 
         $this->BulletPoints = new ArrayCollection();
     }
+
+    /**
+     * @param PtgTbProduct\Entity\Product $product
+     * @internal param \PtgTbCategory\Entity\PtgTbProduct\Entity\Product $post
+     */
+    public function addPost(PtgTbProduct\Entity\Product $product)
+    {
+        if ($this->Products->contains($product)) return;
+
+        $this->Products->add($product);
+
+        $product->addCategory($this);
+    }
+
 }

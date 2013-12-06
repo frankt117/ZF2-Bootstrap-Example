@@ -57,8 +57,8 @@ class ProductController extends AbstractController
             $PtgTbProduct->main_pic_src = $post_data['main_pic_name'];
             $PtgTbProduct->subdescription = $post_data['subdescription'];
             $PtgTbProduct->description = $post_data['description'];
-            $PtgTbProduct->main_category = $post_data['main_category'];
-            $PtgTbProduct->sub_category = $post_data['sub_category'];
+            $PtgTbProduct->addCategory($post_data['main_category']);
+            $PtgTbProduct->addCategory($post_data['sub_category']);
 
             $em->persist($PtgTbProduct);
             $em->flush();
@@ -93,7 +93,7 @@ class ProductController extends AbstractController
                     array('id' => $post_data['main_category'])
                 );
 
-                $PtgTbProduct->main_category = $main_category;
+                $PtgTbProduct->addCategory($main_category);
             }
 
             if($post_data['sub_category']){
@@ -102,7 +102,7 @@ class ProductController extends AbstractController
                     array('id' => $post_data['sub_category'])
                 );
 
-                $PtgTbProduct->sub_category = $sub_category;
+                $PtgTbProduct->addCategory($sub_category);
             }
 
 
