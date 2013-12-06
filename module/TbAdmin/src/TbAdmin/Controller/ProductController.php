@@ -57,8 +57,8 @@ class ProductController extends AbstractController
             $PtgTbProduct->main_pic_src = $post_data['main_pic_name'];
             $PtgTbProduct->subdescription = $post_data['subdescription'];
             $PtgTbProduct->description = $post_data['description'];
-            $PtgTbProduct->addCategory($post_data['main_category']);
-            $PtgTbProduct->addCategory($post_data['sub_category']);
+//            $PtgTbProduct->addCategory($post_data['main_category']);
+//            $PtgTbProduct->addCategory($post_data['sub_category']);
 
             $em->persist($PtgTbProduct);
             $em->flush();
