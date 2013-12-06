@@ -107,6 +107,17 @@ return array(
                                     ),
                                 ),
                             ),
+                            'delete' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/delete',
+                                    'defaults' => array(
+                                        '__NAMESPACE__' => 'TbAdmin\Controller',
+                                        'controller'    => 'Product',
+                                        'action'        => 'delete',
+                                    ),
+                                ),
+                            ),
                             'find' => array(
                                 'type' => 'Literal',
                                 'options' => array(
