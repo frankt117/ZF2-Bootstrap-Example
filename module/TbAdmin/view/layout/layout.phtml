@@ -46,13 +46,14 @@
                 <li><a href="#">Leads</a></li>
                 <li><a href="#">Users</a></li>
                 <li><a href="/tb-admin/category">Categories</a></li>
+                <li><a href="/tb-admin/product">Products</a></li>
                 <li><a href="/tb-admin/blog">Blog</a></li>
-                    <li>
-                        <a href="<?php echo $this->url("zfcuser/logout");?>">
-                            Logout 
-                            <?php echo "(".$this->zfcUserIdentity()->getDisplayName().")";?>
-                        </a>
-                    </li>
+                <li>
+                    <a href="<?php echo $this->url("zfcuser/logout");?>">
+                        Logout 
+                        <?php echo "(".$this->zfcUserIdentity()->getDisplayName().")";?>
+                    </a>
+                </li>
                 <?php
             }
             ?>
