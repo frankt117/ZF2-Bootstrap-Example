@@ -15,6 +15,7 @@ return array(
         'PtgUser',
         'PtgTbCategory',
 	'Application',
+        'WdgBlog',
         'TbAdmin',
     ),
     'module_listener_options' => array(
