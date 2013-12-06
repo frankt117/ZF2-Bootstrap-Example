@@ -82,7 +82,7 @@ class Category extends \PtgBase\Doctrine\Entity
 
     public function __construct(){
         parent::__construct();
-        $this->Products = new \Doctrine\Common\Collections\Collection();
+        $this->Products = new ArrayCollection();
         $this->BulletPoints = new ArrayCollection();
     }
 
