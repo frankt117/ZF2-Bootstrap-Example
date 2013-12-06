@@ -113,4 +113,10 @@ class Product extends \PtgBase\Doctrine\Entity
 
         $category->addProduct($this);
     }
+
+
+    public function updateCategories($uc){
+        $this->Categories = new ArrayCollection($uc);
+    }
+
 }

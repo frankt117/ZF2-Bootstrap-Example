@@ -60,7 +60,7 @@ class ProductController extends AbstractController
 
         if($post_data['categories']){
 
-            $Categories_updated = \Doctrine\Common\Collections\ArrayCollection();
+            $Categories_updated = array();
 
             foreach ($post_data['categories'] as $category){
 
@@ -69,13 +69,13 @@ class ProductController extends AbstractController
                 );
 
                 if ($category instanceof \PtgTbCategory\Entity\Category){
-                    $Categories_updated->add($category);
+                    $Categories_updated[] = $category;
                 }
 
 
             }
 
-            $PtgTbProduct->Categories = $Categories_updated;
+            $PtgTbProduct->updateCategories($Categories_updated);
 
         }
 
