@@ -57,8 +57,22 @@ class ProductController extends AbstractController
         $PtgTbProduct->main_pic_src = $post_data['main_pic_name'];
         $PtgTbProduct->subdescription = $post_data['subdescription'];
         $PtgTbProduct->description = $post_data['description'];
-        //$PtgTbProduct->addCategory($post_data['main_category']);
-        //$PtgTbProduct->addCategory($post_data['sub_category']);
+
+        if($post_data['categories']){
+
+            foreach ($post_data['categories'] as $category){
+
+                $category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
+                    array('id' => $category)
+                );
+
+                if ($category instanceof \PtgTbCategory\Entity\Category){
+                    $PtgTbProduct->addCategory($category);
+                }
+
+
+            }
+        }
 
         $em->persist($PtgTbProduct);
         $em->flush();
@@ -86,22 +100,20 @@ class ProductController extends AbstractController
         $PtgTbProduct->subdescription = $post_data['subdescription'];
         $PtgTbProduct->description = $post_data['description'];
 
-        if($post_data['main_category']){
+        if($post_data['categories']){
 
-            $main_category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
-                array('id' => $post_data['main_category'])
-            );
+            foreach ($post_data['categories'] as $category){
 
-            $PtgTbProduct->addCategory($main_category);
-        }
+                $category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
+                    array('id' => $category)
+                );
 
-        if($post_data['sub_category']){
+                if ($category instanceof \PtgTbCategory\Entity\Category){
+                    $PtgTbProduct->addCategory($category);
+                }
 
-            $sub_category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
-                array('id' => $post_data['sub_category'])
-            );
 
-            $PtgTbProduct->addCategory($sub_category);
+            }
         }
 
 
@@ -124,8 +136,7 @@ class ProductController extends AbstractController
         $this->getMainPicNameInput();
         $this->getSubDescriptionInput();
         $this->getDescriptionInput();
-        //$this->getSelectMainCategoryInput();
-        //$this->getSelectSubCategoryInput();
+        $this->getSelectCategoryInput();
         $this->getSaveButton();
 
         return new ViewModel(array('inputs' => $this->inputs));
@@ -150,8 +161,7 @@ class ProductController extends AbstractController
                 $this->getMainPicNameInput($c->main_pic_src);
                 $this->getSubDescriptionInput($c->subdescription);
                 $this->getDescriptionInput($c->description);
-                //$this->getSelectMainCategoryInput($c->Categories);
-                //$this->getSelectSubCategoryInput($c->Categories);
+                $this->getSelectCategoryInput($c->Categories);
                 $this->getSaveButton();
 
             }
@@ -165,24 +175,29 @@ class ProductController extends AbstractController
         $this->inputs[] = "<input type='hidden' name='select_product' id='select_product' value='$cat_id' />";
     }
 
-    public function getSelectMainCategoryInput($v = 2){
+    public function getSelectCategoryInput($v = null){
+
+        if($v instanceof \Doctrine\Common\Collections\Collection){
+            $v = $v->getValues();
+        }
+
         $em = $this->getEntityManager();
 
         $select = '<div class="form-group">
                 <label for="select_main_category" class="col-sm-2 control-label">Select Main Category</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="select_main_category" name="main_category">
+
                     ';
 
         foreach($em->getRepository('\PtgTbCategory\Entity\Category')->findAll() as $category){
-            $select .= '<option ';
+            $select .= '<input type="checkbox" id="select_categories" name="categories[]" ';
 
-            $select .= $v == $category->id ? ' selected ' : '';
+            if(is_array($v)) $select .= in_array($category, $v) ? ' checked ' : '';
 
-            $select .='value="' . $category->id . '">' . $category->title .'</option>';
+            $select .='value="' . $category->id . '">' . $category->title .'<br/>';
         }
 
-        $select .=    '</select>
+        $select .=    '
                 </div>
             </div>';
 
