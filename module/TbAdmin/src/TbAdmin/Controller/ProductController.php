@@ -63,7 +63,7 @@ class ProductController extends AbstractController
             foreach ($post_data['categories'] as $category){
 
                 $category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
-                    array('id' => $post_data['categories'])
+                    array('id' => $category)
                 );
 
                 if ($category instanceof \PtgTbCategory\Entity\Category){
@@ -105,7 +105,7 @@ class ProductController extends AbstractController
             foreach ($post_data['categories'] as $category){
 
                 $category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
-                    array('id' => $post_data['categories'])
+                    array('id' => $category)
                 );
 
                 if ($category instanceof \PtgTbCategory\Entity\Category){
