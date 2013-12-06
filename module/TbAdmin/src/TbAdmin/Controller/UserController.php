@@ -10,6 +10,11 @@ class UserController extends AbstractController
     
     protected $serviceAuth;
     
+    public function mineAction()
+    {
+        
+    }
+    
     public function showAction()
     {
         return new ViewModel(
