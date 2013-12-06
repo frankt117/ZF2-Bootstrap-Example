@@ -188,7 +188,7 @@ class ProductController extends AbstractController
         foreach($em->getRepository('\PtgTbCategory\Entity\Category')->findAll() as $category){
             $select .= '<input type="checkbox" id="select_categories" name="categories[]" ';
 
-            if($v != null) $select .= in_array($category, $v) ? ' checked ' : '';
+//            if($v != null) $select .= in_array($category, $v) ? ' checked ' : '';
 
             $select .='value="' . $category->id . '">' . $category->title .'<br/>';
         }
