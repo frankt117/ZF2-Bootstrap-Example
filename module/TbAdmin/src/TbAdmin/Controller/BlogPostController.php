@@ -14,7 +14,7 @@ class BlogPostController extends AbstractController
         $paginator  = $this->getBlogService()->getLatestPostsPaginator($page, 10);
         
         if($paginator->count() >0 && $paginator->count() < $page)
-            $this->redirect()->toRoute("wdgadmin/blog_post_list");
+            $this->redirect()->toRoute("tb-admin/blog/post_list");
         
         return new ViewModel(array("paginator" => $paginator));
     }

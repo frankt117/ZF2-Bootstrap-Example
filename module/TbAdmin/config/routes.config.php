@@ -266,6 +266,63 @@ return array(
                                 'may_terminate' => true,
                             ),
                         )
+                    ),
+                    'user' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/user',
+                            'defaults' => array(
+                                'controller' => 'TbAdmin\Controller\User',
+                                'action' => 'list'
+                            )
+                        ),
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'add' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/user/add',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\User',
+                                        'action' => 'add'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                            'show' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/user/show[/:id]',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\User',
+                                        'action' => 'show'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                            'edit' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/user/edit[/:id][/:redirect]',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\User',
+                                        'action' => 'edit'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                            'delete' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/user/delete[/:id]',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\User',
+                                        'action' => 'delete'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                        )
                     )
                 )
             )

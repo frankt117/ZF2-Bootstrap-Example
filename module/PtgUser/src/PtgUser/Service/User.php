@@ -16,16 +16,6 @@ class User extends ServiceAbstract
     protected $userRepos;
 
     /**
-     * @var AuthenticationService
-     */
-    protected $authService;
-
-    /**
-     * @var Form
-     */
-    protected $loginForm;
-
-    /**
      * @var Form
      */
     protected $editForm;
@@ -35,11 +25,6 @@ class User extends ServiceAbstract
      */
     protected $addForm;
 
-    /**
-     * @var Form
-     */
-    protected $changePasswordForm;
-    
     /**
      * @var \Doctrine\ORM\EntityManager
      */
@@ -133,9 +118,6 @@ class User extends ServiceAbstract
         $User->setUsername($data["username"])
             ->setEmail($data["email"])
             ->setDisplayName($data["display_name"])
-            ->setWebsite($data["website"])
-            ->setImageUrl($data["image_url"])
-            ->setBio($data["bio"])
             ->setState(1);
         
         $em->persist($User);        
@@ -156,42 +138,6 @@ class User extends ServiceAbstract
         $em->flush();
         
         return $this;
-    }
-
-    /**
-     * change the current users password
-     *
-     * @param array $data
-     * @return UserEntity
-     */
-    public function changePassword(array $data)
-    {
-        $User = $this->get($data["id"]);
-        
-        if(!$User)throw new \Exception("User invalid in change password");
-        
-        $form = $this->getChangePasswordForm($User->getId());
-                
-        $form->setData($data);
-        
-        if(!$form->isValid())throw new \PtgUser\Exception\Service\User\FormException("Form values are invalid:");
-
-        $clean_data   = $form->getInputFilter()->getValues();
-        
-        $newPass = $clean_data['password'];
-
-        $bcrypt = new Bcrypt;
-        
-        $bcrypt->setCost($this->getPasswordCost());
-
-        $pass = $bcrypt->create($newPass);
-        
-        $User->setPassword($pass);
-        
-        $this->getEntityManager()->persist($User);
-        $this->getEntityManager()->flush();
-
-        return $User;
     }
 
     /**
@@ -219,40 +165,13 @@ class User extends ServiceAbstract
     }
 
     /**
-     * getAuthService
-     *
-     * @return AuthenticationService
-     */
-    public function getAuthService()
-    {
-        if (null === $this->authService)
-        {
-            $this->authService = $this->getServiceManager()->get('wdguser_auth_service');
-        }
-        return $this->authService;
-    }
-
-    /**
-     * setAuthenticationService
-     *
-     * @param AuthenticationService $authService
-     * @return User
-     */
-    public function setAuthService(AuthenticationService $authService)
-    {
-        $this->authService = $authService;
-        
-        return $this;
-    }
-
-    /**
      * @return Form
      */
     public function getEditForm($id = null)
     {
         if (null === $this->editForm)
         {
-            $this->editForm = $this->getServiceManager()->get('FormElementManager')->get('wdguser_edit_form');
+            $this->editForm = $this->getServiceManager()->get('FormElementManager')->get('ptguser_edit_form');
         }
         
         $form = $this->editForm;
@@ -272,23 +191,10 @@ class User extends ServiceAbstract
     {
         if (null === $this->addForm)
         {
-            $this->addForm = $this->getServiceManager()->get('FormElementManager')->get('wdguser_add_form');
+            $this->addForm = $this->getServiceManager()->get('FormElementManager')->get('ptguser_add_form');
         }
         
         return $this->addForm;
-    }
-    
-    /**
-     * @return Form
-     */
-    public function getLoginForm()
-    {
-        if (null === $this->loginForm)
-        {
-            $this->loginForm = $this->getServiceManager()->get('FormElementManager')->get('wdguser_login_form');
-        }
-        
-        return $this->loginForm;
     }
 
     /**
@@ -301,46 +207,18 @@ class User extends ServiceAbstract
         
         return $this;
     }
-
-    /**
-     * @return Form
-     */
-    public function getChangePasswordForm($id)
-    {
-        if (null === $this->changePasswordForm) 
-        {
-            $this->changePasswordForm = $this->getServiceManager()->get('FormElementManager')->get('wdguser_change_password_form');
-        }
-        
-        $form = $this->changePasswordForm;
-        
-        if($id)
-        {
-            $form->get("id")->setValue($id);
-        }
-        
-        return $this->changePasswordForm;
-    }
-
-    /**
-     * @param Form $changePasswordForm
-     * @return User
-     */
-    public function setChangePasswordForm(Form $changePasswordForm)
-    {
-        $this->changePasswordForm = $changePasswordForm;
-        
-        return $this;
-    }
     
     /**
-     * set service options
-     *
-     * @param UserServiceOptionsInterface $options
+     * @return \Doctrine\ORM\EntityManager
      */
-    public function setOptions(UserServiceOptionsInterface $options)
+    protected function getEntityManager()
     {
-        $this->options = $options;
+        if($this->entityManager === null)
+        {
+            $this->entityManager = $this->getServiceManager()->get("doctrine.entity_manager.orm_default");
+        }
+        
+        return $this->entityManager;
     }
     
     /**
@@ -358,18 +236,5 @@ class User extends ServiceAbstract
     protected function getPasswordCost()
     {
         return 14;
-    }
-    
-    /**
-     * @return \Doctrine\ORM\EntityManager
-     */
-    protected function getEntityManager()
-    {
-        if($this->entityManager === null)
-        {
-            $this->entityManager = $this->getServiceManager()->get("doctrine.entity_manager.orm_default");
-        }
-        
-        return $this->entityManager;
     }
 }

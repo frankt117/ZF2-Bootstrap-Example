@@ -22,6 +22,14 @@ class Module
     /**
     * {@InheritDoc}
     */
+    public function getFormElementConfig()
+    {
+        return include __DIR__ . '/config/form-elements.config.php';
+    }
+    
+    /**
+    * {@InheritDoc}
+    */
     public function getServiceConfig()
     {
         return include __DIR__ . '/config/services.config.php';
