@@ -18,6 +18,8 @@ abstract class AbstractController extends ApplicationAbstractController
             $this->flashMessenger()->addErrorMessage("Please log in.");
             
             $this->redirect()->toRoute('zfcuser/login');
+            
+            $this->getResponse()->sendHeaders();
         }
         elseif($authentication->getIdentity()->getState() !== 1)
         {            
@@ -27,6 +29,8 @@ abstract class AbstractController extends ApplicationAbstractController
             $this->flashMessenger()->addErrorMessage("User is disabled.");
             
             $this->redirect()->toRoute('zfcuser/logout');
+            
+            $this->getResponse()->sendHeaders();
         }
         
         parent::onDispatch($e);
