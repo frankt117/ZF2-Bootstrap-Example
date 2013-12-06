@@ -2,12 +2,13 @@
 namespace PtgTbProduct\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
-    \Doctrine\Common\Collections\ArrayCollection;
+    \Doctrine\Common\Collections\ArrayCollection,
+    \PtgTbCategory\Entity\Category;
 
 /**
  * Product table entity.
  * @ORM\Entity
- * @ORM\Table(name="ptgtbproduct_categories")
+ * @ORM\Table(name="ptgtbproduct_products")
  * @property string $image_directory
  * @property string $description
  * @property string $main_pic_src
@@ -37,7 +38,7 @@ class Product extends \PtgBase\Doctrine\Entity
     protected $description;
 
     /**
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     protected $price;
 
@@ -66,14 +67,14 @@ class Product extends \PtgBase\Doctrine\Entity
     protected $subdescription;
 
     /**
-     * @OneToOne (targetEntity="PtgTbCategory\Entity\Category")
-     * @JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="PtgTbCategory\Entity\Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $main_category;
 
     /**
-     * @OneToOne (targetEntity="PtgTbCategory\Entity\Category")
-     * @JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="PtgTbCategory\Entity\Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $sub_category;
 

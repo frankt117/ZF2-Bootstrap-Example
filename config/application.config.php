@@ -8,13 +8,15 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
-        'BjyAuthorize', // Need to figure out why this invalidates user on non /tb-admin side.
+        'BjyAuthorize',
         'PtgBase',
         'PtgContact',
         'PtgLead',
         'PtgUser',
         'PtgTbCategory',
+        'PtgTbProduct',
 	'Application',
+        'WdgBlog',
         'TbAdmin',
     ),
     'module_listener_options' => array(

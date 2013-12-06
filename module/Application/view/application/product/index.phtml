@@ -1,14 +1,43 @@
+<link href="/css/category.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <!-- Jumbotron -->
-<div class="jumbotron">
-    <h1>Product Page</h1>
-    <p class="white">For the carport, garage, or building you need.</p>
+<div class="spacer"></div>
+<div class="jumbotron realtree_light_background">
+    <h1>A-Frame Carport</h1>
+    <p class="white">The affordable way to protect your vehicle from the elements with a traditional look.</p>
     <p><a class="btn btn-lg btn-success" href="/get-started" role="button">Get started today</a></p>
 </div>
 
+<hr>
 
 <div class="row">
-    <div class="col-lg-12">
-        Slug: <?php echo $this->product_slug; ?>
+    <div class="col-sm-12 col-lg-12">
+        <h1>Description</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 col-lg-6">
+        Our A Frame style offers the more traditional look and feel for your carport. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect A Frame carport for your needs. Contact us today for pricing and details.
+
+        <h3>Features</h3>
+        <ul>
+<!--            --><?php
+//            foreach ($this->category_feature_bullet_points as $bullet_point_text){
+//                echo '<li class="slightly_larger">' . $bullet_point_text . '</li>';
+//            }
+//            ?>
+
+            <li class="slightly_larger">10 Year Warranty</li>
+            <li class="slightly_larger">American Made</li>
+            <li class="slightly_larger">Built to Last</li>
+            <li class="slightly_larger">Made to fit your needs</li>
+            <li class="slightly_larger">Guaranteed Lowest Price</li>
+
+        </ul>
+    </div>
+    <div class="clearfix visible-sm"></div>
+    <div class="col-sm-6 col-lg-6">
+        <img src="/img/carports/aframe.jpg" class="img-responsive" id="desc_main_pic" />
     </div>
 </div>

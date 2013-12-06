@@ -16,7 +16,7 @@ use ZfcUser\Entity\UserInterface;
 /**
  * An example of how to implement a role aware user entity.
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="PtgUser\Repository\User")
  * @ORM\Table(name="ptguser_users")
  */
 class User extends \PtgBase\Doctrine\Entity implements UserInterface, ProviderInterface
