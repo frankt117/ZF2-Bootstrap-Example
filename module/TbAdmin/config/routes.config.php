@@ -278,10 +278,20 @@ return array(
                         ),
                         'may_terminate' => true,
                         'child_routes' => array(
+                            'mine' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/mine',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\User',
+                                        'action'     => 'mine',
+                                    ),
+                                ),
+                            ),
                             'add' => array(
                                 'type' => 'Literal',
                                 'options' => array(
-                                    'route' => '/user/add',
+                                    'route' => '/add',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\User',
                                         'action' => 'add'
@@ -292,7 +302,7 @@ return array(
                             'show' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/user/show[/:id]',
+                                    'route' => '/show[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\User',
                                         'action' => 'show'
@@ -303,7 +313,7 @@ return array(
                             'edit' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/user/edit[/:id][/:redirect]',
+                                    'route' => '/edit[/:id][/:redirect]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\User',
                                         'action' => 'edit'
@@ -314,7 +324,7 @@ return array(
                             'delete' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/user/delete[/:id]',
+                                    'route' => '/delete[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\User',
                                         'action' => 'delete'
