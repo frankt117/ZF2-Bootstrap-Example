@@ -152,8 +152,6 @@ class ProductController extends AbstractController
                 $this->getMainPicNameInput($c->main_pic_src);
                 $this->getSubDescriptionInput($c->subdescription);
                 $this->getDescriptionInput($c->description);
-                $this->getSelectMainCategoryInput($c->main_category);
-                $this->getSelectSubCategoryInput($c->sub_category);
                 $this->getAddEditPasswordInput();
                 $this->getSaveButton();
 
