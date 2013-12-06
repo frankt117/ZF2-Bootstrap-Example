@@ -1,0 +1,20 @@
+<?php
+$User = $this->zfcUserIdentity();
+?>
+<div class="row">
+    <div class="col-md-1">
+        <?php echo $this->gravatar($User->getEmail()); ?>
+        <br />
+    </div>
+    <div class="col-md-11">        
+        <h4>Hello, <?php echo $this->zfcUserDisplayName() ?>!</h4>
+        <p>
+            Email: <?php echo $User->getEmail();?>
+        </p>
+        <p>
+            <a href="<?php echo $this->url("zfcuser/changeemail");?>">[Change Email]</a>
+        </p>
+        <p><a href="<?php echo $this->url("zfcuser/changepassword");?>">[Change Password]</a></p>
+        <p><a href="<?php echo $this->url('zfcuser/logout') ?>">[Sign Out]</a></p>
+    </div>
+</div>

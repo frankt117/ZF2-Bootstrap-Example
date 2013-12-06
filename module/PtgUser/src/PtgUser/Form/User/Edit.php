@@ -45,6 +45,21 @@ class Edit extends PostFormAbstract
             'attributes' => array(
                 'type' => 'text'
             ),
-        ));        
+        ));    
+        
+        $this->add(array(
+	    'type' => 'Zend\Form\Element\Radio',
+            'name' => 'state',
+            'options' => array(
+                'label' => 'State',
+                'value' => 1,
+                'value_options' => array(
+		    0 => "Off", 1 => "On"
+		)
+            ),
+            'attributes' => array(
+                'type' => 'select',
+            ),
+        ));
     }
 }

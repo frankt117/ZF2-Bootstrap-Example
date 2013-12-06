@@ -118,7 +118,7 @@ class User extends ServiceAbstract
         $User->setUsername($data["username"])
             ->setEmail($data["email"])
             ->setDisplayName($data["display_name"])
-            ->setState(1);
+            ->setState($data["state"]);
         
         $em->persist($User);        
         $em->flush();
