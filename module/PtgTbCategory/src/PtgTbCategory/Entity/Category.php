@@ -90,7 +90,7 @@ class Category extends \PtgBase\Doctrine\Entity
      * @param PtgTbProduct\Entity\Product $product
      * @internal param \PtgTbCategory\Entity\PtgTbProduct\Entity\Product $post
      */
-    public function addPost(PtgTbProduct\Entity\Product $product)
+    public function addPost(\PtgTbProduct\Entity\Product $product)
     {
         if ($this->Products->contains($product)) return;
 

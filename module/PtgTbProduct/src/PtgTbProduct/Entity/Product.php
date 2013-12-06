@@ -105,7 +105,7 @@ class Product extends \PtgBase\Doctrine\Entity
     /**
      * @param PtgTbCategory\Entity\Category $category
      */
-    public function addCategory(PtgTbCategory\Entity\Category $category)
+    public function addCategory(\PtgTbCategory\Entity\Category $category)
     {
         if ($this->Categories->contains($category))return;
 
