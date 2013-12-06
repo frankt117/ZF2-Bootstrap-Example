@@ -45,6 +45,10 @@ class CategoryController extends AbstractController
         $tiles = array();
         $i = 0;
         foreach(new \DirectoryIterator($this->getCategoryImageDirectory()) as $gallery_image){
+
+            if(strpos($gallery_image->getFilename(), 'render') !== FALSE)
+                continue;
+
             if ($gallery_image->isDot()
                 || $gallery_image->isDir()
                 || $gallery_image->getFilename() === 'index.php') continue;
