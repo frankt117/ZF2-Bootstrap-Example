@@ -1,0 +1,37 @@
+<div class="wdgadmin-toolbar">
+    <a title="Add Lead" href="<?php echo $this->url("tb-admin/lead/add");?>" class="btn btn-small addtooltip-left">
+        <i class="icon-plus"></i>
+    </a>
+</div>
+<table class="table">
+    <tr>
+        <th style="width:40px;">&nbsp</th>
+        <th style="width:40px;">Id</th>
+        <th>Lead</th>
+        <th>Request Count</th>
+        <th style="width:40px;">&nbsp</th>
+    </tr>
+    <?php 
+    /* @var $lead PtgLead\Entity\Lead */
+    foreach($this->leads as $lead)
+    {
+        ?>
+        <tr>
+            <td>
+                <a title="Show Lead" href="<?php echo $this->url("tb-admin/lead/show", array("id" => $lead->getId()));?>" class="btn btn-mini addtooltip-left">
+                    <i class="icon-eye-open"></i>
+                </a>
+            </td>
+            <td><?php echo $lead->getId();?></td>
+            <td><?php echo $lead->getName();?></td>
+            <td><?php echo count($lead->getRequests());?></td>
+            <td>
+                <a title="Delete Lead" href="<?php echo $this->url("tb-admin/lead/delete", array("id" => $lead->getId()));?>" class="btn btn-danger btn-mini addtooltip-right">
+                    <i class="icon-trash"></i>
+                </a>
+            </td>
+        </tr>
+        <?php
+    }
+    ?>
+</table>

@@ -40,10 +40,39 @@ class Lead extends \PtgBase\Doctrine\Entity
         $this->Requests     = new ArrayCollection;
     }
     
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    /**
+     * @param string $name
+     * @return \PtgLead\Entity\Lead
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        
+        return $this;
+    }
+    
     public function addPhoneNumber(Lead\PhoneNumber $PhoneNumber)
     {
         $this->PhoneNumbers[] = $PhoneNumber;
         
         $PhoneNumber->setLead($this);
+    }
+    
+    public function getRequests()
+    {
+        return $this->Requests;
     }
 }
