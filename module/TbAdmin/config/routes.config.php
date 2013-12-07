@@ -107,14 +107,14 @@ return array(
                                     ),
                                 ),
                             ),
-                            'find' => array(
+                            'delete' => array(
                                 'type' => 'Literal',
                                 'options' => array(
-                                    'route' => '/find',
+                                    'route' => '/delete',
                                     'defaults' => array(
                                         '__NAMESPACE__' => 'TbAdmin\Controller',
                                         'controller'    => 'Product',
-                                        'action'        => 'find',
+                                        'action'        => 'delete',
                                     ),
                                 ),
                             ),
@@ -146,7 +146,7 @@ return array(
                             'post_list' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/blog/post/list[/:page]',
+                                    'route' => '/post/list[/:page]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogPost',
                                         'action' => 'list',
@@ -158,7 +158,7 @@ return array(
                             'post_add' => array(
                                 'type' => 'Literal',
                                 'options' => array(
-                                    'route' => '/blog/post/add',
+                                    'route' => '/post/add',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogPost',
                                         'action' => 'add'
@@ -169,7 +169,7 @@ return array(
                             'post_show' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/blog/post/show[/:id]',
+                                    'route' => '/post/show[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogPost',
                                         'action' => 'show'
@@ -180,7 +180,7 @@ return array(
                             'post_delete' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/blog/post/delete[/:id]',
+                                    'route' => '/post/delete[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogPost',
                                         'action' => 'delete'
@@ -191,7 +191,7 @@ return array(
                             'post_edit' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/blog/post/edit[/:id]',
+                                    'route' => '/post/edit[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogPost',
                                         'action' => 'edit'
@@ -202,7 +202,7 @@ return array(
                             'post_category' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/blog/post/category[/:id]',
+                                    'route' => '/post/category[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogPost',
                                         'action' => 'category'
@@ -213,7 +213,7 @@ return array(
                             'category_list' => array(
                                 'type' => 'Literal',
                                 'options' => array(
-                                    'route' => '/blog/category/list',
+                                    'route' => '/category/list',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogCategory',
                                         'action' => 'list'
@@ -224,7 +224,7 @@ return array(
                             'category_add' => array(
                                 'type' => 'Literal',
                                 'options' => array(
-                                    'route' => '/blog/category/add',
+                                    'route' => '/category/add',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogCategory',
                                         'action' => 'add'
@@ -235,7 +235,7 @@ return array(
                             'category_show' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/blog/category/show[/:id]',
+                                    'route' => '/category/show[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogCategory',
                                         'action' => 'show'
@@ -246,7 +246,7 @@ return array(
                             'category_delete' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/blog/category/delete[/:id]',
+                                    'route' => '/category/delete[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogCategory',
                                         'action' => 'delete'
@@ -257,7 +257,7 @@ return array(
                             'category_edit' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/blog/category/edit[/:id]',
+                                    'route' => '/category/edit[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\BlogCategory',
                                         'action' => 'edit'
@@ -278,10 +278,20 @@ return array(
                         ),
                         'may_terminate' => true,
                         'child_routes' => array(
+                            'mine' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/mine',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\User',
+                                        'action'     => 'mine',
+                                    ),
+                                ),
+                            ),
                             'add' => array(
                                 'type' => 'Literal',
                                 'options' => array(
-                                    'route' => '/user/add',
+                                    'route' => '/add',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\User',
                                         'action' => 'add'
@@ -292,7 +302,7 @@ return array(
                             'show' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/user/show[/:id]',
+                                    'route' => '/show[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\User',
                                         'action' => 'show'
@@ -303,7 +313,7 @@ return array(
                             'edit' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/user/edit[/:id][/:redirect]',
+                                    'route' => '/edit[/:id][/:redirect]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\User',
                                         'action' => 'edit'
@@ -314,9 +324,68 @@ return array(
                             'delete' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/user/delete[/:id]',
+                                    'route' => '/delete[/:id]',
                                     'defaults' => array(
                                         'controller' => 'TbAdmin\Controller\User',
+                                        'action' => 'delete'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                        )
+                    ),
+                    'lead' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/lead',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'TbAdmin\Controller',
+                                'controller'    => 'Lead',
+                                'action'        => 'list',
+                            ),
+                        ),
+                        
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'add' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/add',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\Lead',
+                                        'action' => 'add'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                            'show' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/show[/:id]',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\Lead',
+                                        'action' => 'show'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                            'edit' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/edit[/:id][/:redirect]',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\Lead',
+                                        'action' => 'edit'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+                            'delete' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/delete[/:id]',
+                                    'defaults' => array(
+                                        'controller' => 'TbAdmin\Controller\Lead',
                                         'action' => 'delete'
                                     )
                                 ),

@@ -232,3 +232,6 @@ extras/documentation
 *.config.local.php
 /vendor/
 /data/DoctrineORMModule/Proxy/
+
+# DMONEY $
+.htaccess

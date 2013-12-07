@@ -1,5 +1,43 @@
-<h1>Add or edit product</h1>
+<h1>Products</h1>
 
-<p><a class="btn btn-primary" href="/tb-admin/product/add" role="button">Add Product &raquo;</a></p>
 
-<p><a class="btn btn-primary" href="/tb-admin/product/find" role="button">Edit Product &raquo;</a></p>
+
+<div class="row">
+    <?php
+    foreach ($this->inputs as $input){
+        echo $input;
+    }
+    ?>
+
+    <div class="col-sm-6">
+
+        <p><a class="btn btn-primary" href="/tb-admin/product/add" role="button">Add Product &raquo;</a></p>
+
+        <form id="edit_form" action="/tb-admin/product/edit" method="post">
+            <p>
+                <input type="hidden" id="edit_payload" name="edit_product_id" />
+                <input type="button" id="edit_trigger" class="btn btn-primary"  role="button" value="Edit Product &raquo;">
+            </p>
+        </form>
+
+        <form id="delete_form" action="/tb-admin/product/delete" method="post">
+            <p>
+                <input type="hidden" id="delete_payload" name="delete_product_id" />
+                <input type="button" id="delete_trigger" class="btn btn-primary"  role="button" value="Delete Product &raquo;">
+            </p>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $('#delete_trigger').click(function(){
+        $('#delete_payload').val($('#select_product').val());
+        $('#delete_form').submit();
+    })
+
+    $('#edit_trigger').click(function(){
+        $('#edit_payload').val($('#select_product').val());
+        $('#edit_form').submit();
+    })
+</script>

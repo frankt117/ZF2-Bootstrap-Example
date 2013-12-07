@@ -10,15 +10,46 @@ class ProductController extends AbstractController
 
     public function indexAction()
     {
-        $viewModel = new ViewModel();
-        return $viewModel;
-    }
-
-    public function findAction(){
         $this->getSelectProductInput();
-        $this->getNextButton();
 
         return new ViewModel(array('inputs' => $this->inputs));
+    }
+
+    public function deleteAction(){
+        $request = $this->getRequest();
+
+        if($request->isPost()){
+            $post = $request->getPost();
+
+            if(!ctype_digit($post['delete_product_id'])){
+                $result = "No Product Selected for Deletion";
+            }
+            else {
+                $result = $this->deleteProduct($post['delete_product_id']);
+            }
+        }
+
+        return new ViewModel(array('result' => $result));
+    }
+
+    protected function deleteProduct($delete_product_id){
+        $em = $this->getEntityManager();
+        $result = "Looks like we were unable to pull the product with the ID " . $delete_product_id . ". Please try again.";
+        /**@var \PtgTbProduct\Entity\Product $PtgTbProduct */
+        $PtgTbProduct = $em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(
+            array('id' => $delete_product_id)
+        );
+
+        if ($PtgTbProduct instanceof \PtgTbProduct\Entity\Product) {
+            $product_name = $PtgTbProduct->name;
+            $em->remove($PtgTbProduct);
+            $em->flush();
+
+            $result = $product_name . " deleted successfully.";
+        }
+
+
+        return $result;
     }
 
     public function completeAction(){
@@ -44,27 +75,46 @@ class ProductController extends AbstractController
     protected function editProduct($post_data){
         $em = $this->getEntityManager();
         $result = 'Edit Product Failed.';
-        if($post_data['add_edit_password'] == 'M@dMoney'){
-            /**@var \PtgTbProduct\Entity\Product $PtgTbProduct */
-            $PtgTbProduct = $em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(
-                array('id' => $post_data['select_product'])
-            );
 
-            $PtgTbProduct->name = $post_data['name'];
-            $PtgTbProduct->slug = $post_data['slug'];
-            $PtgTbProduct->price = $post_data['price'];
-            $PtgTbProduct->image_directory = $post_data['image_directory'];
-            $PtgTbProduct->main_pic_src = $post_data['main_pic_name'];
-            $PtgTbProduct->subdescription = $post_data['subdescription'];
-            $PtgTbProduct->description = $post_data['description'];
-            $PtgTbProduct->main_category = $post_data['main_category'];
-            $PtgTbProduct->sub_category = $post_data['sub_category'];
+        /**@var \PtgTbProduct\Entity\Product $PtgTbProduct */
+        $PtgTbProduct = $em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(
+            array('id' => $post_data['select_product'])
+        );
 
-            $em->persist($PtgTbProduct);
-            $em->flush();
+        $PtgTbProduct->name = $post_data['name'];
+        $PtgTbProduct->slug = $post_data['slug'];
+        $PtgTbProduct->price = $post_data['price'];
+        $PtgTbProduct->image_directory = $post_data['image_directory'];
+        $PtgTbProduct->main_pic_src = $post_data['main_pic_name'];
+        $PtgTbProduct->subdescription = $post_data['subdescription'];
+        $PtgTbProduct->description = $post_data['description'];
 
-            $result = "Product (#" . $PtgTbProduct->id . ") " . $PtgTbProduct->name . " Updated Successfully.";
+        if($post_data['categories']){
+
+            $Categories_updated = array();
+
+            foreach ($post_data['categories'] as $category){
+
+                $category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
+                    array('id' => $category)
+                );
+
+                if ($category instanceof \PtgTbCategory\Entity\Category){
+                    $Categories_updated[] = $category;
+                }
+
+
+            }
+
+            $PtgTbProduct->updateCategories($Categories_updated);
+
         }
+
+        $em->persist($PtgTbProduct);
+        $em->flush();
+
+        $result = "Product (#" . $PtgTbProduct->id . ") " . $PtgTbProduct->name . " Updated Successfully.";
+
 
         return $result;
 
@@ -75,43 +125,40 @@ class ProductController extends AbstractController
         $em = $this->getEntityManager();
         $result = 'Add Product Failed.';
 
-        if($post_data['add_edit_password'] == 'M@dMoney'){
-            /**@var \PtgTbProduct\Entity\Product $PtgTbProduct */
-            $PtgTbProduct = new \PtgTbProduct\Entity\Product();
+        /**@var \PtgTbProduct\Entity\Product $PtgTbProduct */
+        $PtgTbProduct = new \PtgTbProduct\Entity\Product();
 
-            $PtgTbProduct->name = $post_data['name'];
-            $PtgTbProduct->slug = $post_data['slug'];
-            $PtgTbProduct->price = $post_data['price'];
-            $PtgTbProduct->image_directory = $post_data['image_directory'];
-            $PtgTbProduct->main_pic_src = $post_data['main_pic_name'];
-            $PtgTbProduct->subdescription = $post_data['subdescription'];
-            $PtgTbProduct->description = $post_data['description'];
+        $PtgTbProduct->name = $post_data['name'];
+        $PtgTbProduct->slug = $post_data['slug'];
+        $PtgTbProduct->price = $post_data['price'];
+        $PtgTbProduct->image_directory = $post_data['image_directory'];
+        $PtgTbProduct->main_pic_src = $post_data['main_pic_name'];
+        $PtgTbProduct->subdescription = $post_data['subdescription'];
+        $PtgTbProduct->description = $post_data['description'];
 
-            if($post_data['main_category']){
+        if($post_data['categories']){
 
-                $main_category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
-                    array('id' => $post_data['main_category'])
+            foreach ($post_data['categories'] as $category){
+
+                $category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
+                    array('id' => $category)
                 );
 
-                $PtgTbProduct->main_category = $main_category;
+                if ($category instanceof \PtgTbCategory\Entity\Category){
+                    $PtgTbProduct->addCategory($category);
+                }
+
+
             }
-
-            if($post_data['sub_category']){
-
-                $sub_category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(
-                    array('id' => $post_data['sub_category'])
-                );
-
-                $PtgTbProduct->sub_category = $sub_category;
-            }
-
-
-
-            $em->persist($PtgTbProduct);
-            $em->flush();
-
-            $result = "Product (#" . $PtgTbProduct->id . ") " . $PtgTbProduct->name . " Added Successfully.";
         }
+
+
+
+        $em->persist($PtgTbProduct);
+        $em->flush();
+
+        $result = "Product (#" . $PtgTbProduct->id . ") " . $PtgTbProduct->name . " Added Successfully.";
+
 
         return $result;
     }
@@ -125,9 +172,7 @@ class ProductController extends AbstractController
         $this->getMainPicNameInput();
         $this->getSubDescriptionInput();
         $this->getDescriptionInput();
-        $this->getSelectMainCategoryInput();
-        $this->getSelectSubCategoryInput();
-        $this->getAddEditPasswordInput();
+        $this->getSelectCategoryInput();
         $this->getSaveButton();
 
         return new ViewModel(array('inputs' => $this->inputs));
@@ -141,7 +186,7 @@ class ProductController extends AbstractController
         if($request->isPost()){
 
             $post_data = $request->getPost();
-            $c   = $em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(array('id' => $post_data['select_product']));
+            $c   = $em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(array('id' => $post_data['edit_product_id']));
             if($c instanceof \PtgTbProduct\Entity\Product){
 
                 $this->getHiddenProductIdInput($c->id);
@@ -152,9 +197,7 @@ class ProductController extends AbstractController
                 $this->getMainPicNameInput($c->main_pic_src);
                 $this->getSubDescriptionInput($c->subdescription);
                 $this->getDescriptionInput($c->description);
-                $this->getSelectMainCategoryInput($c->main_category);
-                $this->getSelectSubCategoryInput($c->sub_category);
-                $this->getAddEditPasswordInput();
+                $this->getSelectCategoryInput($c->Categories);
                 $this->getSaveButton();
 
             }
@@ -168,24 +211,29 @@ class ProductController extends AbstractController
         $this->inputs[] = "<input type='hidden' name='select_product' id='select_product' value='$cat_id' />";
     }
 
-    public function getSelectMainCategoryInput($v = 2){
+    public function getSelectCategoryInput($v = null){
+
+        if($v instanceof \Doctrine\Common\Collections\Collection){
+            $v = $v->getValues();
+        }
+
         $em = $this->getEntityManager();
 
         $select = '<div class="form-group">
                 <label for="select_main_category" class="col-sm-2 control-label">Select Main Category</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="select_main_category" name="main_category">
+
                     ';
 
         foreach($em->getRepository('\PtgTbCategory\Entity\Category')->findAll() as $category){
-            $select .= '<option ';
+            $select .= '<input type="checkbox" id="select_categories" name="categories[]" ';
 
-            $select .= $v == $category->id ? ' selected ' : '';
+            if(is_array($v)) $select .= in_array($category, $v) ? ' checked ' : '';
 
-            $select .='value="' . $category->id . '">' . $category->title .'</option>';
+            $select .='value="' . $category->id . '">' . $category->title .'<br/>';
         }
 
-        $select .=    '</select>
+        $select .=    '
                 </div>
             </div>';
 
@@ -220,9 +268,8 @@ class ProductController extends AbstractController
         $em = $this->getEntityManager();
 
         $select = '<div class="form-group">
-                <label for="select_product" class="col-sm-2 control-label">Select Product</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="select_product" name="select_product">
+                <div class="col-sm-6">
+                    <select class="form-control" id="select_product" name="select_product" size="20">
                     ';
 
             foreach($em->getRepository('\PtgTbProduct\Entity\Product')->findAll() as $product){
@@ -334,15 +381,6 @@ class ProductController extends AbstractController
                 <label for="description" class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" rows="6" id="description" name="description">'. $v .'</textarea>
-                </div>
-            </div>';
-    }
-
-    public function getAddEditPasswordInput(){
-        $this->inputs[] = '<div class="form-group">
-                <label for="add_edit_password" class="col-sm-2 control-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="add_edit_password" name="add_edit_password">
                 </div>
             </div>';
     }

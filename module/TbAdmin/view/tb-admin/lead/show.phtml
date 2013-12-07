@@ -1,0 +1,39 @@
+<?php
+if($this->lead)
+{
+    ?>
+    <div class="pull-left" style='width:30%'>
+        <ul class="nav nav-tabs" id="myTab1" style="margin-bottom:10px">
+            <li class="active"><a>Info</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="info">
+                <div class="btn-group" title="Edit Lead" style="margin-bottom: 10px;">
+                    <a class="btn btn-small addtooltip-right" title="Edit Lead" href="<?php echo $this->url("tb-admin/lead/edit", array("id" => $this->lead->getId()));?>">
+                        <i class="icon-pencil"></i>
+                    </a>
+                </div>  
+                <table class="table table-condensed">
+                    <tr><th>Id</th><td><?php echo $this->lead->getId();?></td></tr>
+                    <tr><th>Name</th><td><?php echo $this->lead->getName();?></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="pull-right" style='width:65%;'>
+        <ul class="nav nav-tabs" id="myTab" style="margin-bottom:10px">
+            <li class="active"><a href="#submittals">N/A</a></li>
+            <!--<li><a href="#notes">Notes</a></li>-->
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="submittals">
+
+            <!--<div class="tab-pane" id="notes">Notes</div>-->
+            </div>
+        </div>
+    </div>
+    <?php
+}
+else echo "<div class='alert alert-block alert-error'>No lead with that id</div>";
+?>
+<div class="clearfix"></div>
