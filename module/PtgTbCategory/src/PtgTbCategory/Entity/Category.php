@@ -42,6 +42,17 @@ class Category extends \PtgBase\Doctrine\Entity
      */
     protected $main_pic_src;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     */
+    protected $children;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    protected $parent;
+
 
     /**
      * @ORM\Column(type="string", unique=true)
@@ -54,6 +65,12 @@ class Category extends \PtgBase\Doctrine\Entity
      */
     protected $title;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="PtgTbProduct\Entity\Product", mappedBy="Categories")
+     */
+    protected $Products;
 
     /**
      * @ORM\Column(type="string")
@@ -76,7 +93,21 @@ class Category extends \PtgBase\Doctrine\Entity
 
     public function __construct(){
         parent::__construct();
-
+        $this->Products = new ArrayCollection();
         $this->BulletPoints = new ArrayCollection();
     }
+
+    /**
+     * @param PtgTbProduct\Entity\Product $product
+     * @internal param \PtgTbCategory\Entity\PtgTbProduct\Entity\Product $post
+     */
+    public function addProduct(\PtgTbProduct\Entity\Product $product)
+    {
+        if ($this->Products->contains($product)) return;
+
+        $this->Products->add($product);
+
+        $product->addCategory($this);
+    }
+
 }

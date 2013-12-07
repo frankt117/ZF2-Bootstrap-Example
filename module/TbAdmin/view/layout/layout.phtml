@@ -37,27 +37,53 @@
             <img src="/img/turtle_logo.png" style="width:30px;padding: 0;margin: 0;vertical-align: top;"/> 
             TB Admin
         </div>
-        <div class="col-md-10">
+        <div class="col-md-7">
             <ul class="nav nav-tabs">
             <?php if($this->zfcUserIdentity() !== false)
             {
+                $route_name = $this->ptgMatchedRoute();
                 ?>
-                <li class="active"><a href="/tb-admin">Home</a></li>
-                <li><a href="#">Leads</a></li>
-                <li><a href="#">Users</a></li>
-                <li><a href="/tb-admin/category">Categories</a></li>
-                <li><a href="/tb-admin/product">Products</a></li>
-                <li><a href="/tb-admin/blog">Blog</a></li>
+                <li class="<?php $route_name == "tb-admin" ? "active" : "";?>">
+                    <a href="<?php echo $this->url("tb-admin");?>">Home</a>
+                </li>
+                <li class="<?php $route_name == "tb-admin/lead" ? "active" : "";?>">
+                    <a href="<?php echo $this->url("tb-admin/lead");?>">Leads</a>
+                </li>
                 <li>
-                    <a href="<?php echo $this->url("zfcuser/logout");?>">
-                        Logout 
-                        <?php echo "(".$this->zfcUserIdentity()->getDisplayName().")";?>
-                    </a>
+                    <a href="<?php echo $this->url("tb-admin/user");?>">Users</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url("tb-admin/category");?>">Categories</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url("tb-admin/product");?>">Products</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url("tb-admin/blog");?>">Blog</a>
                 </li>
                 <?php
             }
             ?>
             </ul>
+        </div>
+        <div class="col-md-3">
+            <?php if($this->zfcUserIdentity() !== false)
+            {
+                echo $this->gravatar($this->zfcUserIdentity()->getEmail(), array("img_size" => 23 ), array("style" => "vertical-align:bottom")) 
+                ?>
+                <span style="font-size:16px;font-weight:600;"> 
+                    Hello, 
+                    <a href="<?php echo $this->url('tb-admin/user/mine') ?>">
+                        <?php echo $this->zfcUserDisplayName() ?>
+                    </a>
+                    !
+                </span>
+                <a href="<?php echo $this->url('zfcuser/logout') ?>" style="vertical-align:top">
+                    <i class="icon-signout"></i>
+                </a>
+                <?php
+            }
+            ?>
         </div>
     </div>
     <div class="row">

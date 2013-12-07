@@ -23,7 +23,7 @@ return array(
              *
              * Note: The matcher is not implemented yet!
              */
-            'matcher' => array('url' => array('path' => '/wdg-admin')),
+            'matcher' => array('url' => array('path' => '/tb-admin')),
         ),
          /**
           * General Toolbar settings
