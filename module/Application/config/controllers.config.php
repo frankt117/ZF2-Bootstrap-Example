@@ -10,6 +10,7 @@ return array(
         'Application\Controller\Contact' => 'Application\Controller\ContactController',
         'Application\Controller\GetStarted' => 'Application\Controller\GetStartedController',
         'Application\Controller\Product' => 'Application\Controller\ProductController',
-        'Application\Controller\Category' => 'Application\Controller\CategoryController'
+        'Application\Controller\Category' => 'Application\Controller\CategoryController',
+        'Application\Controller\Blog' => 'Application\Controller\BlogController'
     ),
 );

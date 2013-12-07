@@ -46,6 +46,33 @@ return array(
                     ),
                 ),
             ),
+            'blog' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/blog',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Blog',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'post' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/[:slug]',
+                            'constraints' => array(
+                                'slug' => '[a-zA-Z0-9_-]+'
+                            ),
+                            'defaults' => array(
+                                'action' => 'show'
+                            )
+                        ),
+                        'may_terminate' => true,
+                    ),
+                ),
+            ),
             'garages' => array(
                 'type' => 'literal',
                 'options' => array(

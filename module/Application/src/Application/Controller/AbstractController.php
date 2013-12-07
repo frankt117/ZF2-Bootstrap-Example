@@ -31,4 +31,12 @@ abstract class AbstractController extends AbstractActionController
         
         return $this->_em;
     }
+
+    /**
+     *
+     */
+    protected function printPre($string)
+    {
+        echo ('<pre>'.print_r($string,1).'</pre>');
+    }
 }
