@@ -4,15 +4,82 @@ $paginator = $this->paginator;
 ?>
 
 
-<div class="list-group">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="img/sheds/shed-inside.jpg" class="img-responsive" alt=" " align="middle" width="1024">
+        </div>
+        <div class="col-md-6">
+            <img src="img/working-on-shed.jpg" class="img-responsive" alt=" " align="middle" width="1024">
+        </div>
+    </div>
 
-    <?php foreach($paginator as $post) : ?>
+    <div class="row"></div>
 
-    <a href=blog/<?=$post->getSlug()?> class="list-group-item">
-        <h2 class="list-group-item-heading"><?=$post->getTitle()?></h2>
-        <p class="list-group-item-text"><?=$post->getExcerpt()?></p>
-    </a>
+    <div class="row">
+        <div class="col-md-9">
 
-    <?php endforeach; ?>
 
+            <div class="list-group">
+
+                    <?php foreach($paginator as $post) : ?>
+
+                    <a href=blog/<?=$post->getSlug()?> class="list-group-item">
+                        <div class="row">
+
+                            <div class="col-md-1">
+                                <img src="<?=$post->getThumbnail()?>" class="img-circle" alt=" " height="64" width="64">
+                            </div>
+                            <div class="col-md-9">
+                                <h2 class="list-group-item-heading"><?=$post->getTitle()?></h2>
+                                <p class="list-group-item-text"><?=$post->getExcerpt()?></p>
+                            </div>
+
+                        </div>
+                    </a>
+
+
+                    <?php endforeach; ?>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-1">
+        </div>
+
+        <div class="col-md-1">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="img/icons/twitter-icon.png" alt=" " height="64" width="64" align="middle">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="img/icons/facebook-icon.png" alt=" " height="64" width="64" align="middle">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="img/icons/pinterest-icon.png" alt=" " height="64" width="64" align="middle">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="img/icons/instagram-icon.png" alt=" " height="64" width="64" align="middle">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="img/icons/reddit-icon.png" alt=" " height="64" width="64" align="middle">
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
