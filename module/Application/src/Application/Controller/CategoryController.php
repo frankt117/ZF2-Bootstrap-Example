@@ -11,11 +11,16 @@ class CategoryController extends AbstractController
      */
     protected $PtgTbCategory;
 
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    protected $_em;
+
     public function indexAction()
     {
-        $em         = $this->getEntityManager();
+        $this->_em         = $this->getEntityManager();
         $slug       = $this->getEvent()->getRouteMatch()->getParam('category_slug');
-        $Category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('slug' => $slug));
+        $Category   = $this->_em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('slug' => $slug));
 
         if ($Category instanceof \PtgTbCategory\Entity\Category){
             $this->PtgTbCategory = $Category;
@@ -53,13 +58,22 @@ class CategoryController extends AbstractController
                 || $gallery_image->isDir()
                 || $gallery_image->getFilename() === 'index.php') continue;
 
-            $tiles[$i]['filename'] = $gallery_image->getFilename();
-            $tiles[$i]['image_directory'] = $this->PtgTbCategory->image_directory;
-            $tiles[$i]['product_page_slug'] = 'the-product-you-clicked-on'; //Make Doctrine Call for the product slug.
-            $tiles[$i]['product_name'] = 'Click Get Started Today'; //Make the call for this data too
-            $tiles[$i]['product_price'] = number_format(11000,2,",",".");
+
+            $Product = $this->_em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(array(
+                'main_pic_src' => $gallery_image->getFilename()
+            ));
+
+            if ($Product instanceof \PtgTbProduct\Entity\Product){
+                $tiles[$i]['filename'] = $Product->main_pic_src;
+                $tiles[$i]['image_directory'] = $Product->image_directory;
+                $tiles[$i]['product_page_slug'] = $Product->slug; //Make Doctrine Call for the product slug.
+                $tiles[$i]['product_name'] = $Product->name; //Make the call for this data too
+                $tiles[$i]['product_price'] = number_format($Product->price,2,",",".");
+                unset($Product);
+            }
 
             $i++;
+
         }
 
         return $tiles;
