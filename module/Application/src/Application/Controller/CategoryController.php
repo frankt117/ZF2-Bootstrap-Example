@@ -66,8 +66,8 @@ class CategoryController extends AbstractController
             if ($Product instanceof \PtgTbProduct\Entity\Product){
                 $tiles[$i]['filename'] = $Product->main_pic_src;
                 $tiles[$i]['image_directory'] = $Product->image_directory;
-                $tiles[$i]['product_page_slug'] = $Product->slug; //Make Doctrine Call for the product slug.
-                $tiles[$i]['product_name'] = $Product->name; //Make the call for this data too
+                $tiles[$i]['product_page_slug'] = $Product->slug;
+                $tiles[$i]['product_name'] = $Product->name;
                 $tiles[$i]['product_price'] = number_format($Product->price,2,",",".");
                 unset($Product);
             }
@@ -94,7 +94,6 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @TODO make a real data call bro
      * @return string
      */
     protected function getCategorySubdescription(){
@@ -122,7 +121,6 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @TODO for now, replace this with call to doctrine for appropriate category specific title.
      * @return string
      */
     protected function getCategoryTitle(){
