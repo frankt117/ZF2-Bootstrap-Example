@@ -37,8 +37,8 @@ class GetStartedController extends AbstractController
         $PtgRequest->email = $email;
         $PtgRequest->description = $description;
 
-        $this->em->persist($PtgRequest);
-        $this->em->flush();
+        $this->_em->persist($PtgRequest);
+        $this->_em->flush();
 
     }
 }
