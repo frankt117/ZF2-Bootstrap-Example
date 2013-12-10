@@ -4,8 +4,8 @@
 <!-- Jumbotron -->
 <div class="spacer"></div>
 <div class="jumbotron realtree_light_background">
-    <h1>A-Frame Carport</h1>
-    <p class="white">The affordable way to protect your vehicle from the elements with a traditional look.</p>
+    <h1><?php echo $this->name ?></h1>
+    <p class="white"><?php echo $this->subdescription ?></p>
     <p><a class="btn btn-lg btn-success" href="/get-started" role="button">Request Information</a></p>
 </div>
 
@@ -18,7 +18,7 @@
 </div>
 <div class="row">
     <div class="col-sm-6 col-lg-6">
-        Our A Frame style offers the more traditional look and feel for your carport. From being 100% American made, to offering a 10 year warranty, we are positive we can build the perfect A Frame carport for your needs. Contact us today for pricing and details.
+        <?php echo $this->description?>
 
         <h3>Features</h3>
         <ul>
@@ -38,6 +38,6 @@
     </div>
     <div class="clearfix visible-sm"></div>
     <div class="col-sm-6 col-lg-6">
-        <img src="/img/carports/aframe.jpg" class="img-responsive" id="desc_main_pic" />
+        <img src="/img/<?php echo $this->image_directory . "/" . $this->main_pic_src ?>" class="img-responsive" id="desc_main_pic" />
     </div>
 </div>
