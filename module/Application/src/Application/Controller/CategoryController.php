@@ -3,6 +3,7 @@ namespace Application\Controller;
 
 use Application\Controller\AbstractController,
     Zend\View\Model\ViewModel;
+use Composer\Package\Package;
 
 class CategoryController extends AbstractController
 {
@@ -18,18 +19,18 @@ class CategoryController extends AbstractController
 
     public function indexAction()
     {
-        $this->_em         = $this->getEntityManager();
-        $slug       = $this->getEvent()->getRouteMatch()->getParam('category_slug');
-        $Category   = $this->_em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('slug' => $slug));
+        $this->_em = $this->getEntityManager();
+
+        $Category  = $this->_em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array(
+            'slug' => $this->getEvent()->getRouteMatch()->getParam('category_slug')
+        ));
+
+        $return = null;
 
         if ($Category instanceof \PtgTbCategory\Entity\Category){
             $this->PtgTbCategory = $Category;
-        }
-        // else redirect to 404 ?
-
-        return new ViewModel(
-            array(
-                'category_title'            => $this->getCategoryTitle(),            // for now its the slug
+            $return = new ViewModel(array(
+                'category_title'            => $this->getCategoryTitle(),
                 'description'               => $this->getCategoryDescription(),
                 'category_image_directory'  => $this->getCategoryImageDirectory(),
                 'category_slug'             => $this->getCategorySlug(),
@@ -37,8 +38,13 @@ class CategoryController extends AbstractController
                 'category_subdescription'   => $this->getCategorySubdescription(),
                 'category_feature_bullet_points' => $this->getCategoryFeatureBulletPoints(),
                 'gallery_tiles'             => $this->getGalleryTiles()
-            )
-        );
+            ));
+        }
+        else {
+            $this->getResponse()->setStatusCode(404);
+        }
+
+        return $return;
     }
 
     /**
