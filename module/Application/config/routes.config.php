@@ -59,6 +59,19 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
 
+                    'post' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/[:slug]',
+                            'constraints' => array(
+                                'slug' => '[a-zA-Z0-9_-]+'
+                            ),
+                            'defaults' => array(
+                                'action' => 'show'
+                            )
+                        )
+                    ),
+
 
                     'list' => array(
                         'type' => 'literal',
@@ -85,37 +98,6 @@ return array(
                             ),
 
                         ),
-
-
-                    ),
-
-
-                    'post' => array(
-                        'type' => 'literal',
-                        'options' => array(
-                            'route' => '/post',
-                            'defaults' => array(
-                                'action' => 'show'
-                            )
-                        ),
-                        'may_terminate' => true,
-
-                        'child_routes' => array(
-
-
-                            'post' => array(
-                                'type' => 'segment',
-                                'options' => array(
-                                    'route' => '/[:slug]',
-                                    'defaults' => array(
-                                        'action' => 'show'
-                                    )
-                                ),
-                                'may_terminate' => true,
-                            ),
-
-                        ),
-
 
                     ),
                 ),
