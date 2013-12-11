@@ -58,18 +58,65 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'post' => array(
-                        'type' => 'segment',
+
+
+                    'list' => array(
+                        'type' => 'literal',
                         'options' => array(
-                            'route' => '/[:slug]',
-                            'constraints' => array(
-                                'slug' => '[a-zA-Z0-9_-]+'
+                            'route' => '/list',
+                            'defaults' => array(
+                                'action' => 'index'
+                            )
+                        ),
+                        'may_terminate' => true,
+
+                        'child_routes' => array(
+
+
+                            'post' => array(
+                                'type' => 'segment',
+                                'options' => array(
+                                    'route' => '/[:page]',
+                                    'defaults' => array(
+                                        'action' => 'index'
+                                    )
+                                ),
+                                'may_terminate' => true,
                             ),
+
+                        ),
+
+
+                    ),
+
+
+                    'post' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/post',
                             'defaults' => array(
                                 'action' => 'show'
                             )
                         ),
                         'may_terminate' => true,
+
+                        'child_routes' => array(
+
+
+                            'post' => array(
+                                'type' => 'segment',
+                                'options' => array(
+                                    'route' => '/[:slug]',
+                                    'defaults' => array(
+                                        'action' => 'show'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+
+                        ),
+
+
                     ),
                 ),
             ),

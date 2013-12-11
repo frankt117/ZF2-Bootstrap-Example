@@ -8,10 +8,26 @@ class ProductController extends AbstractController
 {
     public function indexAction()
     {
-        return new ViewModel(
-            array(
-                'product_slug' => $this->getEvent()->getRouteMatch()->getParam('product_slug')
-            )
-        );
+        $em = $this->getEntityManager();
+        $slug       = $this->getEvent()->getRouteMatch()->getParam('product_slug');
+        $Product    = $em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(array('slug' => $slug));
+
+        $return = null;
+
+        if($Product instanceof \PtgTbProduct\Entity\Product){
+            $return = new ViewModel(array(
+                'name' => $Product->name,
+                'description' => $Product->description,
+                'subdescription' => $Product->subdescription,
+                'image_directory' => $Product->image_directory,
+                'main_pic_src' => $Product->main_pic_src
+            ));
+        } else {
+          $this->getResponse()->setStatusCode(404);
+        }
+
+
+
+        return $return;
     }
 }

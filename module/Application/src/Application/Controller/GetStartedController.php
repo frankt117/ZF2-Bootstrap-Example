@@ -22,7 +22,9 @@ class GetStartedController extends AbstractController
             $email = $post_data['email'];
             $description = $post_data['description'];
 
-            $this->saveEmailAndDescription($email,$description);
+            if(!empty($email) || strlen($email) != 0){
+                $this->saveEmailAndDescription($email,$description);
+            }
 
         }
 
@@ -37,8 +39,8 @@ class GetStartedController extends AbstractController
         $PtgRequest->email = $email;
         $PtgRequest->description = $description;
 
-        $this->em->persist($PtgRequest);
-        $this->em->flush();
+        $this->_em->persist($PtgRequest);
+        $this->_em->flush();
 
     }
 }

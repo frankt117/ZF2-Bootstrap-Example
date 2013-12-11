@@ -3,6 +3,7 @@ namespace Application\Controller;
 
 use Application\Controller\AbstractController,
     Zend\View\Model\ViewModel;
+use Composer\Package\Package;
 
 class CategoryController extends AbstractController
 {
@@ -11,20 +12,25 @@ class CategoryController extends AbstractController
      */
     protected $PtgTbCategory;
 
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    protected $_em;
+
     public function indexAction()
     {
-        $em         = $this->getEntityManager();
-        $slug       = $this->getEvent()->getRouteMatch()->getParam('category_slug');
-        $Category   = $em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array('slug' => $slug));
+        $this->_em = $this->getEntityManager();
+
+        $Category  = $this->_em->getRepository('\PtgTbCategory\Entity\Category')->findOneBy(array(
+            'slug' => $this->getEvent()->getRouteMatch()->getParam('category_slug')
+        ));
+
+        $return = null;
 
         if ($Category instanceof \PtgTbCategory\Entity\Category){
             $this->PtgTbCategory = $Category;
-        }
-        // else redirect to 404 ?
-
-        return new ViewModel(
-            array(
-                'category_title'            => $this->getCategoryTitle(),            // for now its the slug
+            $return = new ViewModel(array(
+                'category_title'            => $this->getCategoryTitle(),
                 'description'               => $this->getCategoryDescription(),
                 'category_image_directory'  => $this->getCategoryImageDirectory(),
                 'category_slug'             => $this->getCategorySlug(),
@@ -32,8 +38,13 @@ class CategoryController extends AbstractController
                 'category_subdescription'   => $this->getCategorySubdescription(),
                 'category_feature_bullet_points' => $this->getCategoryFeatureBulletPoints(),
                 'gallery_tiles'             => $this->getGalleryTiles()
-            )
-        );
+            ));
+        }
+        else {
+            $this->getResponse()->setStatusCode(404);
+        }
+
+        return $return;
     }
 
     /**
@@ -53,13 +64,22 @@ class CategoryController extends AbstractController
                 || $gallery_image->isDir()
                 || $gallery_image->getFilename() === 'index.php') continue;
 
-            $tiles[$i]['filename'] = $gallery_image->getFilename();
-            $tiles[$i]['image_directory'] = $this->PtgTbCategory->image_directory;
-            $tiles[$i]['product_page_slug'] = 'the-product-you-clicked-on'; //Make Doctrine Call for the product slug.
-            $tiles[$i]['product_name'] = 'Click Get Started Today'; //Make the call for this data too
-            $tiles[$i]['product_price'] = number_format(11000,2,",",".");
+
+            $Product = $this->_em->getRepository('\PtgTbProduct\Entity\Product')->findOneBy(array(
+                'main_pic_src' => $gallery_image->getFilename()
+            ));
+
+            if ($Product instanceof \PtgTbProduct\Entity\Product){
+                $tiles[$i]['filename'] = $Product->main_pic_src;
+                $tiles[$i]['image_directory'] = $Product->image_directory;
+                $tiles[$i]['product_page_slug'] = $Product->slug;
+                $tiles[$i]['product_name'] = $Product->name;
+                $tiles[$i]['product_price'] = number_format($Product->price,2,",",".");
+                unset($Product);
+            }
 
             $i++;
+
         }
 
         return $tiles;
@@ -80,7 +100,6 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @TODO make a real data call bro
      * @return string
      */
     protected function getCategorySubdescription(){
@@ -108,7 +127,6 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @TODO for now, replace this with call to doctrine for appropriate category specific title.
      * @return string
      */
     protected function getCategoryTitle(){
