@@ -3,14 +3,17 @@
 $paginator = $this->paginator;
 ?>
 
+<!-- Custom styles for this template -->
+<link href="../../../../../../css/blog.css" rel="stylesheet">
+
 
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <img src="img/sheds/shed-inside.jpg" class="img-responsive" alt=" " align="middle" width="1024">
+            <img class="header_image_1" alt=" " align="middle" width="1024">
         </div>
         <div class="col-md-6">
-            <img src="img/working-on-shed.jpg" class="img-responsive" alt=" " align="middle" width="1024">
+            <img class="header_image_2" alt=" " align="middle" width="1024">
         </div>
     </div>
 
@@ -24,19 +27,21 @@ $paginator = $this->paginator;
 
                     <?php foreach($paginator as $post) : ?>
 
-                    <a href=blog/<?=$post->getSlug()?> class="list-group-item">
-                        <div class="row">
+                        <a href=/blog/post/<?=$post->getSlug()?> class="list-group-item">
+                            <div class="row">
 
-                            <div class="col-md-1">
-                                <img src="<?=$post->getThumbnail()?>" class="img-circle" alt=" " height="64" width="64">
+                                <div class="col-md-1">
+                                    <img src="<?=$post->getThumbnail()?>" class="img-circle" alt=" " height="64" width="64">
+                                </div>
+                                <div class="col-md-9">
+                                    <h2 class="list-group-item-heading"><?=$post->getTitle()?></h2>
+                                    <p class="list-group-item-text"><?=$post->getExcerpt()?></p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p class="date_text"><?=$post->getCreated()->format("F d, Y")?></p>
+                                </div>
                             </div>
-                            <div class="col-md-9">
-                                <h2 class="list-group-item-heading"><?=$post->getTitle()?></h2>
-                                <p class="list-group-item-text"><?=$post->getExcerpt()?></p>
-                            </div>
-
-                        </div>
-                    </a>
+                        </a>
 
 
                     <?php endforeach; ?>
@@ -45,41 +50,48 @@ $paginator = $this->paginator;
 
         </div>
 
-        <div class="col-md-1">
+        <div class="col-md-2">
         </div>
 
         <div class="col-md-1">
 
             <div class="row">
-                <div class="col-md-2">
-                    <img src="img/icons/twitter-icon.png" alt=" " height="64" width="64" align="middle">
+                <a href='https://twitter.com/turtlebuilt' target="_blank">
+                    <div class="col-md-2" id="twitter_icon"></div>
+                </a>
+            </div>
+
+            <div class="row">
+                <a href='https://www.facebook.com/TurtleBuilt' target="_blank">
+                    <div class="col-md-2" id="facebook_icon"></div>
+                </a>
+            </div>
+
+            <div class="row">
+                <a href='https://www.pinterest.com/turtlebuilt/' target="_blank">
+                    <div class="col-md-2" id="pinterest_icon"></div>
+                </a>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2" id="instagram_icon">
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-2">
-                    <img src="img/icons/facebook-icon.png" alt=" " height="64" width="64" align="middle">
-                </div>
+                <a href='http://www.reddit.com/user/turtlebuilt/' target="_blank">
+                    <div class="col-md-2" id="reddit_icon"></div>
+                </a>
             </div>
 
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="img/icons/pinterest-icon.png" alt=" " height="64" width="64" align="middle">
-                </div>
-            </div>
+        </div>
+    </div>-
 
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="img/icons/instagram-icon.png" alt=" " height="64" width="64" align="middle">
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="img/icons/reddit-icon.png" alt=" " height="64" width="64" align="middle">
-                </div>
-            </div>
-
+    <div class="row">
+        <div class="col-md-12">
+                <?php echo $this->paginationControl($paginator, 'sliding', 'partial/paginator-item-control.phtml', array('route' => 'blog/list/post'))?>
         </div>
     </div>
 </div>
+
