@@ -179,11 +179,128 @@
 </div>
 
 
+</div> <!-- /container -->
+
 <!-- Site footer -->
-<div class="footer">
-    <p>&copy; Polytechnic Group of Dallas &hearts; <?php echo date("Y"); ?></p>
+<div class="footer realtree_light_background">
+    <div class="row">
+        <div class="col-md-2">
+            <ul>
+                <li><div id="footer-h1"><a class="headline" href="/ct/carports">Carports</a></div></li>
+                <?php foreach ($this->GFProductLinks('carports', '') as $link){
+                    echo $link;
+                }?>
+            </ul>
+
+            <ul>
+                <li><div id="footer-h1"><a class="headline" href="/ct/sheds">Sheds</a></div></li>
+                <?php foreach ($this->GFProductLinks('sheds', '') as $link){
+                    echo $link;
+                }?>
+            </ul>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <ul>
+                <li><div id="footer-h1"><a class="headline" href="/ct/barns">Barns</a></div></li>
+                <?php foreach ($this->GFProductLinks('barns', '') as $link){
+                    echo $link;
+                }?>
+            </ul>
+        </div>
+
+        <div class="col-md-2">
+            <ul>
+                <li><div id="footer-h1"><a class="headline" href="/ct/garages">Garages</a></div></li>
+                <?php foreach ($this->GFProductLinks('garages', '') as $link){
+                    echo $link;
+                }?>
+            </ul>
+
+        </div>
+
+        <div class="col-md-2">
+            <ul>
+                <li><div id="footer-h1"><a class="headline" href="/ct/cottages">Cottages</a></div></li>
+                <?php foreach ($this->GFProductLinks('cottages', '') as $link){
+                    echo $link;
+                }?>
+            </ul>
+
+            <ul>
+                <li><div id="footer-h1"><a class="headline" href="/ct/shops">Shops</a></div></li>
+                <?php foreach ($this->GFProductLinks('shops', '') as $link){
+                    echo $link;
+                }?>
+            </ul>
+        </div>
+
+        <div class="col-md-2">
+            <ul>
+                <li><div id="footer-h1"><a class="headline" href="/ct/pet-animal-housing">Pet</a></div></li>
+                <?php foreach ($this->GFProductLinks('pet', '') as $link){
+                    echo $link;
+                }?>
+            </ul>
+
+            <ul>
+                <li><div id="footer-h1"><a class="headline" href="/ct/concrete">Concrete</a></div></li>
+                <?php foreach ($this->GFProductLinks('concrete', '') as $link){
+                    echo $link;
+                }?>
+            </ul>
+        </div>
+
+
+        <div class="col-md-2">
+            <ul>
+                <li><div id="footer-h1">Company</div></li>
+                <li><a href="/">About Turtle Built</a></li>
+                <li><a href="/">Our Team</a></li>
+                <li><a href="/">Become an Affiliate</a></li>
+            </ul>
+
+            <ul>
+                <li><div id="footer-h1">Customer Service</div></li>
+                <li><a href="/">Contact Us</a></li>
+                <li><a href="/">Privacy Notice</a></li>
+                <li><a href="/">FAQ</a></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="row"><br><br><br><br><br><br></div>
+
+
+    <div class="row">
+        <div class="col-md-12" id="icon_container">
+            <a href='https://twitter.com/turtlebuilt' target="_blank">
+                <div class="col-md-2" id="twitter_icon_small"></div>
+            </a>
+            <a href='https://www.facebook.com/TurtleBuilt' target="_blank">
+                <div class="col-md-2" id="facebook_icon_small"></div>
+            </a>
+            <a href='https://www.pinterest.com/turtlebuilt/' target="_blank">
+                <div class="col-md-2" id="pinterest_icon_small"></div>
+            </a>
+            <div class="col-md-2" id="instagram_icon_small">
+            </div>
+            <a href='http://www.reddit.com/user/turtlebuilt/' target="_blank">
+                <div class="col-md-2" id="reddit_icon_small"></div>
+            </a>
+
+        </div>
+    </div>
+
+
+
+    <span class="footer_text">&copy; Grind Forge &hearts; <?php echo date("Y"); ?></span>
 </div>
 
-</div> <!-- /container -->
 </body>
 </html>

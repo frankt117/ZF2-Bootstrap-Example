@@ -5,12 +5,6 @@ body {
     background-size:32px 32px;
 }
 
-.footer {
-    border-top: 1px solid #eee;
-    margin-top: 40px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
 
 /* Main marketing message and sign up button */
 .jumbotron {
@@ -246,10 +240,7 @@ h3
     padding-bottom: 30px;
 
 }
-.realtree_light_background
-{
-    background: url("../img/realtree/light_background.PNG");
-}
+
 .spacer
 {
     margin-top: 2%;
@@ -263,4 +254,77 @@ h3
 .bold
 {
     font-weight: bold;
+}
+
+
+ul
+{
+    list-style-type: none;
+}
+
+#footer-h1
+{
+    font-size: 16px;
+    padding-bottom: 10px;
+    color: #7d7d64;
+}
+
+#twitter_icon_small
+{
+    background-image: url('../img/icons/twitter-icon.png');
+    background-size:32px 32px;
+    height:32px;
+    width:32px;
+}
+#facebook_icon_small
+{
+    background-image: url('../img/icons/facebook-icon.png');
+    background-size:32px 32px;
+    height:32px;
+    width:32px;
+
+}
+
+#pinterest_icon_small
+{
+    background-image: url('../img/icons/pinterest-icon.png');
+    background-size:32px 32px;
+    height:32px;
+    width:32px;
+}
+
+#instagram_icon_small
+{
+    background-image: url('../img/icons/instagram-icon.png');
+    background-size:32px 32px;
+    height:32px;
+    width:32px;
+}
+
+#reddit_icon_small
+{
+    background-image: url('../img/icons/reddit-icon.png');
+    background-size:32px 32px;
+    height:32px;
+    width:32px;
+}
+#icon_container
+{
+    margin-left:10px;
+}
+
+
+a:link{
+    color: #b9b9b9;
+}
+a:visited{
+    color: #b9b9b9;
+}
+
+a.headline:link{
+    color: #7d7d64;
+}
+
+a.headline:visited{
+    color: #7d7d64;
 }
