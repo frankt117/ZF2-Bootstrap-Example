@@ -1,7 +1,28 @@
+<style>
+    .hand
+    {
+        cursor: pointer;
+    }
+</style>
 <?php
 if($this->lead)
 {
     ?>
+    <ul class="breadcrumb">
+        <li>
+            <a href="<?php echo $this->url("tb-admin");?>">
+                Home
+            </a> 
+            <span class="divider"></span>
+        </li>
+        <li>
+            <a href="<?php echo $this->url("tb-admin/lead");?>">
+                Leads
+            </a> 
+            <span class="divider"></span>
+        </li>
+        <li class="active">#<?php echo $this->lead->getId();?></li>
+    </ul>
     <div class="pull-left" style='width:30%'>
         <ul class="nav nav-tabs" id="myTab1" style="margin-bottom:10px">
             <li class="active"><a>Info</a></li>
@@ -22,13 +43,107 @@ if($this->lead)
     </div>
     <div class="pull-right" style='width:65%;'>
         <ul class="nav nav-tabs" id="myTab" style="margin-bottom:10px">
-            <li class="active"><a href="#submittals">N/A</a></li>
-            <!--<li><a href="#notes">Notes</a></li>-->
+            <li class="active"><a href="#contact_info">Contact Info</a></li>
+            <li><a href="#contact_log">Contact Log</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane active" id="submittals">
-
-            <!--<div class="tab-pane" id="notes">Notes</div>-->
+            <div class="tab-pane active" id="contact_info">
+                <div>
+                    <div class="btn-group">
+                        <a class="btn btn-small" href="">
+                            <i class="icon-phone"></i>
+                            <i class="icon-plus icon-1x"></i>
+                        </a>
+                    </div>
+                    <ul class="list-group">
+                    <?php
+                    if($this->lead->getPhoneNumbers()->count() >0)
+                    {
+                        foreach($this->lead->getPhoneNumbers() as $PhoneNumber)
+                        {
+                            ?><li class="list-group-item"><?php echo $PhoneNumber->toString();?></li><?php
+                        }
+                    }
+                    else
+                    {
+                        ?><li class="list-group-item text-muted small">No Phone Numbers</li><?php
+                    }
+                    ?>
+                    </ul>
+                </div>
+                <div>
+                    <div class="btn-group">
+                        <a class="btn btn-small" href="">
+                            <i class="icon-envelope"></i>
+                            <i class="icon-plus icon-1x"></i>
+                        </a>
+                    </div>
+                    <ul class="list-group">
+                    <?php
+                    if($this->lead->getEmailAddresses()->count() >0)
+                    {
+                        foreach($this->lead->getEmailAddresses() as $EmailAddress)
+                        {
+                            ?><li class="list-group-item"><?php echo $EmailAddress->toString();?></li><?php
+                        }
+                    }
+                    else
+                    {
+                        ?><li class="list-group-item text-muted small">No Email Addresses</li><?php
+                    }
+                    ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-pane" id="contact_log">
+                <div>
+                    <div class="btn-group">
+                        <span>
+                        <a class="btn btn-small" href="">
+                            <i class="icon-phone"></i>
+                            <i class="icon-plus icon-1x"></i>
+                        </a>
+                        </span>
+                        <span class="text-muted"> / </span>
+                        <span>
+                        <a class="btn btn-small" href="">
+                            <i class="icon-envelope"></i>
+                            <i class="icon-plus icon-1x"></i>
+                        </a>
+                        </span>
+                    </div>
+                    <ul class="list-group">
+                    <?php
+                    if($this->lead->getContactLog()->getContacts()->count() > 0)
+                    {
+                        foreach($this->lead->getContactLog()->getContacts() as $Contact)
+                        {
+                            ?>
+                            <li class="list-group-item">
+                                <?php 
+                                if($Contact->requiresAttention())
+                                {
+                                    ?><i class="icon-envelope"></i><?php
+                                }
+                                echo $Contact->getCreated()->format("m-d-y H:i");?>
+                                    <i class="icon-eye-open contact_message_open text-primary hand"></i>
+                                <div class="contact_message" style="display: none">
+                                    <hr />
+                                    <i class="icon-eye-close contact_message_close text-danger hand"></i>
+                                    <br />
+                                    <?php echo $Contact->getMessage();?>
+                                </div>
+                            </li>
+                            <?php
+                        }
+                    }
+                    else
+                    {
+                        ?><li class="text-muted small">No Contacts</li><?php
+                    }
+                    ?>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -37,3 +152,17 @@ if($this->lead)
 else echo "<div class='alert alert-block alert-error'>No lead with that id</div>";
 ?>
 <div class="clearfix"></div>
+<script>
+    $('#myTab a').click(function (e) {
+	e.preventDefault();
+	$(this).tab('show');
+    });
+    
+    $(".contact_message_open").click(function(){
+        $(this).siblings(".contact_message").toggle();
+    });
+    
+    $(".contact_message_close").click(function(){
+        $(this).parent().toggle();
+    });
+</script>

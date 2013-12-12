@@ -43,22 +43,22 @@
             {
                 $route_name = $this->ptgMatchedRoute();
                 ?>
-                <li class="<?php $route_name == "tb-admin" ? "active" : "";?>">
+                <li class="<?php echo $route_name == "tb-admin" ? "active" : "";?>">
                     <a href="<?php echo $this->url("tb-admin");?>">Home</a>
                 </li>
-                <li class="<?php $route_name == "tb-admin/lead" ? "active" : "";?>">
+                <li class="<?php echo $route_name == "tb-admin/lead" ? "active" : "";?>">
                     <a href="<?php echo $this->url("tb-admin/lead");?>">Leads</a>
                 </li>
-                <li>
+                <li class="<?php echo $route_name == "tb-admin/user" ? "active" : "";?>">
                     <a href="<?php echo $this->url("tb-admin/user");?>">Users</a>
                 </li>
-                <li>
+                <li class="<?php echo $route_name == "tb-admin/category" ? "active" : "";?>">
                     <a href="<?php echo $this->url("tb-admin/category");?>">Categories</a>
                 </li>
-                <li>
+                <li class="<?php echo $route_name == "tb-admin/product" ? "active" : "";?>">
                     <a href="<?php echo $this->url("tb-admin/product");?>">Products</a>
                 </li>
-                <li>
+                <li class="<?php echo $route_name == "tb-admin/blog" ? "active" : "";?>">
                     <a href="<?php echo $this->url("tb-admin/blog");?>">Blog</a>
                 </li>
                 <?php

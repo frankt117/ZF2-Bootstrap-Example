@@ -1,0 +1,81 @@
+body {
+    background-image:url('../img/sheet-metal.png');
+    background-repeat:repeat;
+    background-size:32px 32px;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+#footer-h1
+{
+    font-size: 16px;
+    padding-bottom: 10px;
+    color: #7d7d64;
+}
+
+#twitter_icon_small
+{
+    background-image: url('../img/icons/twitter-icon.png');
+    background-size:32px 32px;
+    height:32px;
+    width:32px;
+}
+#facebook_icon_small
+{
+    background-image: url('../img/icons/facebook-icon.png');
+    background-size:32px 32px;
+    height:32px;
+    width:32px;
+
+}
+
+#pinterest_icon_small
+{
+    background-image: url('../img/icons/pinterest-icon.png');
+    background-size:32px 32px;
+    height:32px;
+    width:32px;
+}
+
+#instagram_icon_small
+{
+    background-image: url('../img/icons/instagram-icon.png');
+    background-size:32px 32px;
+    height:32px;
+    width:32px;
+}
+
+#reddit_icon_small
+{
+    background-image: url('../img/icons/reddit-icon.png');
+    background-size:32px 32px;
+    height:32px;
+    width:32px;
+}
+
+
+
+a:link{
+    color: #b9b9b9;
+}
+a:visited{
+    color: #b9b9b9;
+}
+
+a.headline:link{
+    color: #7d7d64;
+}
+
+a.headline:visited{
+    color: #7d7d64;
+}
+
+.dropdown-submenu{position:relative;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+.dropdown-submenu:hover>.dropdown-menu{display:block;}
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}

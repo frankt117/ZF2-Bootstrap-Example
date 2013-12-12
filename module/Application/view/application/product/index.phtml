@@ -6,7 +6,12 @@
 <div class="jumbotron realtree_light_background">
     <h1><?php echo $this->name ?></h1>
     <p class="white"><?php echo $this->subdescription ?></p>
-    <p><a class="btn btn-lg btn-success" href="/get-started" role="button">Request Information</a></p>
+    <p>
+        <form action="/get-started" method="post">
+            <input type="hidden" name="interested_in" value="<?php echo $this->name ?>"/>
+            <input type="submit" class="btn btn-lg btn-success" href="/get-started" role="button" value="Request Information">
+        </form>
+    </p>
 </div>
 
 <hr>
@@ -18,15 +23,10 @@
 </div>
 <div class="row">
     <div class="col-sm-6 col-lg-6">
-        <?php echo $this->description?>
+        <p style="font-size:18px;"><?php echo $this->description?></p>
 
         <h3>Features</h3>
         <ul>
-<!--            --><?php
-//            foreach ($this->category_feature_bullet_points as $bullet_point_text){
-//                echo '<li class="slightly_larger">' . $bullet_point_text . '</li>';
-//            }
-//            ?>
 
             <li class="slightly_larger">10 Year Warranty</li>
             <li class="slightly_larger">American Made</li>
@@ -41,3 +41,14 @@
         <img src="/img/<?php echo $this->image_directory . "/" . $this->main_pic_src ?>" class="img-responsive" id="desc_main_pic" />
     </div>
 </div>
+<div class="row">
+    <div class="col-sm-6">
+        <form action="/get-started" method="post">
+            <input type="hidden" name="interested_in" value="<?php echo $this->name ?>"/>
+            <p style="text-align: center;">
+                <input type="submit" class="btn btn-primary" role="button" value="Get Started Today &raquo;">
+            </p>
+        </form>
+    </div>
+</div>
+
