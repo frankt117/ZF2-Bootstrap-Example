@@ -59,6 +59,7 @@ class WebRequest extends ServiceAbstract
         
         $Lead->getContactLog()->addContact($WebRequest);
         
+        $em->persist($Lead->getContactLog());
         $em->persist($WebRequest);
         $em->persist($Lead);  
               
