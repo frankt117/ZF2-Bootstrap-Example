@@ -17,7 +17,7 @@ class ProductLinks extends AbstractHelper implements ServiceLocatorAwareInterfac
      * image directory.
      * @param $category_slug
      */
-    public function __invoke($image_directory) {
+    public function __invoke($image_directory, $li_class) {
 
         $this->_em = $this->serviceLocator->getServiceLocator()->get('doctrine.entitymanager.orm_default');
         $Products = $this->_em->getRepository('\PtgTbProduct\Entity\Product')->findBy(array('image_directory'=>$image_directory));
@@ -25,7 +25,7 @@ class ProductLinks extends AbstractHelper implements ServiceLocatorAwareInterfac
         $link_array = array();
 
         foreach ($Products as $Product ){
-            $link_array[] = '<li class="menu-item "><a href="/pr/' . $Product->slug . '">' . $Product->name . '</a></li>';
+            $link_array[] = '<li class="' . $li_class . '"><a href="/pr/' . $Product->slug . '">' . $Product->name . '</a></li>';
         }
 
         return $link_array;
