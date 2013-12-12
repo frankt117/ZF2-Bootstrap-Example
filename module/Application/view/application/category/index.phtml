@@ -6,7 +6,10 @@
 <div class="jumbotron realtree_light_background">
     <h1><?php echo $this->category_title; ?></h1>
     <p class="white"><?php echo $this->category_subdescription; ?></p>
-    <p><a class="btn btn-lg btn-success" href="/get-started" role="button">Request Information</a></p>
+    <p><form action="/get-started" method="post">
+        <input type="hidden" name="interested_in" value="<?php echo $this->category_title ?>"/>
+        <input type="submit" class="btn btn-lg btn-success" href="/get-started" role="button" value="Request Information">
+    </form></p>
 </div>
 <hr>
 
@@ -53,7 +56,7 @@
 </div>
 <div class="row">
     <div class="col-sm-6 col-lg-6">
-        <?php echo $this->description ;?>
+        <p style="font-size: 18px;"><?php echo $this->description ;?></p>
 
         <h3>Features</h3>
         <ul>

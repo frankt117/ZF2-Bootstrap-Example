@@ -8,7 +8,17 @@ class GetStartedController extends AbstractController
 {
     public function indexAction()
     {
-        return new ViewModel();
+        $request = $this->getRequest();
+        $interested_dialog = '';
+
+        if($request){
+            $post_data = $request->getPost();
+            $interested_in = $post_data['interested_in'] ? $post_data['interested_in'] : 'the products you offer';
+
+            $interested_dialog = "Hello! I'm interested in the $interested_in, please have a specialist contact me to give me the best price and schedule the earliest installation!";
+        }
+
+        return new ViewModel(array('interested_dialog' => $interested_dialog));
     }
 
     public function estimateAction()
