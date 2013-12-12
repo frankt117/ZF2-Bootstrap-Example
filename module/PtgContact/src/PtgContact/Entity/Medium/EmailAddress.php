@@ -30,10 +30,12 @@ abstract class EmailAddress extends \PtgContact\Entity\Medium
     public function setAddress($address)
     {
         $this->address = $address;
+        
+        return $this;
     }
     
     public function toString()
     {
-	return \Dataservice\Inflector::humanize($this->getType())." - ".strtolower($this->getAddress());
+	return strtolower($this->getAddress());
     }
 }

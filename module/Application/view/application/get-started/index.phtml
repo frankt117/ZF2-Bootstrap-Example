@@ -6,21 +6,33 @@
     <h2 class="text_shaddow bold">We only need a few details to begin.</h2>
 </div>
 
-
+<?php echo $this->form()->openTag($this->form) ?>
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-        <form role="form" method="post" action="/get-started/estimate">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Your email address">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputFile">Description</label>
-                <textarea class="form-control" rows="3" name="description" id="description"><?php echo $this->interested_dialog; ?></textarea>
-                <p>You can describe your need, or how we should contact you in the box above.</p>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Get your estimate!</button>
-        </form>
+        <div class="form-group">
+            <?php 
+            echo $this->flashMessenger()->render("get-started", array('alert', 'alert-danger' , 'list-unstyled'));
+            echo $this->formLabel($this->form->get("emailaddress"));
+            echo $this->formElementErrors(
+                $this->form->get("emailaddress"), 
+                array("class" => "alert alert-danger list-unstyled")
+            );
+            echo $this->formInput($this->form->get("emailaddress")
+                ->setAttribute("class", "form-control"));?>
+        </div>
+        <div class="form-group">
+            <?php 
+            echo $this->formLabel($this->form->get("description"));
+            echo $this->formElementErrors(
+                $this->form->get("description"), 
+                array("class" => "alert alert-danger list-unstyled")
+            );
+            echo $this->formTextArea($this->form->get("description")
+                ->setAttribute("class", "form-control"));
+            echo $this->formHidden($this->form->get("csrf"));
+            ?>
+        </div>
+        <?php echo $this->formButton($this->form->get('submit')->setAttribute('class', 'btn btn-primary'));?>
     </div>
 </div>
+<?php echo $this->form()->closeTag() ?>

@@ -24,7 +24,7 @@
             </td>
             <td><?php echo $lead->getId();?></td>
             <td><?php echo $lead->getName();?></td>
-            <td><?php echo count($lead->getRequests());?></td>
+            <td><?php echo count($lead->getContactLog()->getContacts());?></td>
             <td>
                 <a title="Delete Lead" href="<?php echo $this->url("tb-admin/lead/delete", array("id" => $lead->getId()));?>" class="btn btn-danger btn-mini addtooltip-right">
                     <i class="icon-trash"></i>

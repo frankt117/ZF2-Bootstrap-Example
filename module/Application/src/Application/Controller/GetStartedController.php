@@ -8,49 +8,40 @@ class GetStartedController extends AbstractController
 {
     public function indexAction()
     {
-        $request = $this->getRequest();
-        $interested_dialog = '';
+        $service    = $this->getWebRequestService();
+        $form       = $service->getGetStartedForm();
+        $request    = $this->getRequest();
+        if($request->isPost())
+        {
+            $post = $request->getPost();
+            
+            try 
+            {
+                $service->saveGetStarted($post->toArray());
 
-        if($request){
-            $post_data = $request->getPost();
-            $interested_in = $post_data['interested_in'] ? $post_data['interested_in'] : 'the products you offer';
-
-            $interested_dialog = "Hello! I'm interested in the $interested_in, please have a specialist contact me to give me the best price and schedule the earliest installation!";
+                return $this->redirect()->toRoute("estimate");
+            }
+            catch (\Exception $exc)
+            {                        
+                $this->flashMessenger()->setNamespace("get-started")->addErrorMessage("Could not submit form. Please try again");
+            }
+                
+            $form->populateValues($post);
         }
-
-        return new ViewModel(array('interested_dialog' => $interested_dialog));
+        
+        return new ViewModel(array("form" => $form));
     }
 
     public function estimateAction()
     {
-        $request = $this->getRequest();
-
-        if($request->isPost()){
-
-            $post_data = $request->getPost();
-
-            $email = $post_data['email'];
-            $description = $post_data['description'];
-
-            if(!empty($email) || strlen($email) != 0){
-                $this->saveEmailAndDescription($email,$description);
-            }
-
-        }
-
         return new ViewModel();
     }
-
-    protected function saveEmailAndDescription($email,$description){
-
-        $this->getEntityManager();
-
-        $PtgRequest = new \PtgLead\Entity\Lead\Request();
-        $PtgRequest->email = $email;
-        $PtgRequest->description = $description;
-
-        $this->_em->persist($PtgRequest);
-        $this->_em->flush();
-
+    
+    /**
+     * @return \Application\Service\WebRequest
+     */
+    public function getWebRequestService()
+    {
+        return $this->getServiceLocator()->get("application_service_webrequest");
     }
 }

@@ -19,4 +19,9 @@ abstract class Medium extends \PtgBase\Doctrine\Entity
     * @ORM\GeneratedValue(strategy="AUTO")
     */
     protected $id;
+    
+    public function getId()
+    {
+        return $this->id;
+    }
 }

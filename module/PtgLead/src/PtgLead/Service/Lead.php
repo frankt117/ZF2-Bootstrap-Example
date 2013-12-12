@@ -49,6 +49,11 @@ class Lead extends ServiceAbstract
     {
         return $this->getLeadRepository()->findOneBy(array("name" => $name));
     }
+    
+    public function getOneByEmailAddress($emailaddress)
+    {
+        
+    }
 
     /**
      * createFromForm
@@ -118,6 +123,11 @@ class Lead extends ServiceAbstract
         $em->flush();
         
         return $this;
+    }
+    
+    public function getLeadEmailAddressRepository()
+    {
+        return $this->getEntityManager()->getRepository('PtgLead\Entity\Lead\EmailAddress');
     }
 
     /**
