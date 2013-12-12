@@ -2,18 +2,20 @@
 $post = $this->post;
 ?>
 
-<style>
-    .panel-title-2 {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-</style>
+<!-- Custom styles for this template -->
+<link href="../../../../../../css/blog.css" rel="stylesheet">
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2 class="panel-title-2"><?=$post->getTitle()?></h2>
+
+<body>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title-2"><?=$post->getTitle()?></h2>
+        </div>
+        <div class="panel-body">
+            <p class="date_text"> <?=$post->getAuthor()->getDisplayName();?> | <?=$post->getCreated()->format("F d, Y")?> <br></p>
+            <p><?=$post->getBody()?> </p>
+        </div>
     </div>
-    <div class="panel-body">
-        <?=$post->getBody()?>
-    </div>
-</div>
+
+</body>
+

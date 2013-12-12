@@ -58,6 +58,7 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
+
                     'post' => array(
                         'type' => 'segment',
                         'options' => array(
@@ -68,8 +69,36 @@ return array(
                             'defaults' => array(
                                 'action' => 'show'
                             )
+                        )
+                    ),
+
+
+                    'list' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/list',
+                            'defaults' => array(
+                                'action' => 'index'
+                            )
                         ),
                         'may_terminate' => true,
+
+                        'child_routes' => array(
+
+
+                            'post' => array(
+                                'type' => 'segment',
+                                'options' => array(
+                                    'route' => '/[:page]',
+                                    'defaults' => array(
+                                        'action' => 'index'
+                                    )
+                                ),
+                                'may_terminate' => true,
+                            ),
+
+                        ),
+
                     ),
                 ),
             ),

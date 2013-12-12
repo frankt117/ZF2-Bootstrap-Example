@@ -8,10 +8,12 @@ class BlogController extends AbstractController
 {
     public function indexAction()
     {
-        $paginator = $this->getBlogService()->getLatestPostsPaginator(1,5);
+        $page       = (int) $this->params()->fromRoute('page', 0);
+        $paginator = $this->getBlogService()->getLatestPostsPaginator($page,5);
 
         return new ViewModel(array("paginator" => $paginator));
     }
+
 
     /**
      * getBlogService

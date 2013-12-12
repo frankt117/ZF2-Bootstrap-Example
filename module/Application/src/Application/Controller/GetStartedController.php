@@ -22,7 +22,9 @@ class GetStartedController extends AbstractController
             $email = $post_data['email'];
             $description = $post_data['description'];
 
-            $this->saveEmailAndDescription($email,$description);
+            if(!empty($email) || strlen($email) != 0){
+                $this->saveEmailAndDescription($email,$description);
+            }
 
         }
 
