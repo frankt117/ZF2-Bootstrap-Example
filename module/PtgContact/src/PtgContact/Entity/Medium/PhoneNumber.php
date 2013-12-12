@@ -108,6 +108,6 @@ abstract class PhoneNumber extends \PtgContact\Entity\Medium
     
     public function toString()
     {
-	return \Dataservice\Inflector::humanize($this->getType())." - ".$this->getNumberDisplay();
+	return $this->getNumberDisplay();
     }
 }

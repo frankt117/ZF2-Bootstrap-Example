@@ -9,12 +9,26 @@ class GetStarted extends \PtgBase\Form\PostFormAbstract
         
         $this->add(array(
             'name' => 'emailaddress',
-            'label' => 'Email Address',
+            'options' => array(
+                'label' => 'Email Address',
+            ),
+            'attributes' => array(
+                'placeholder' => 'Your email address'
+            )
         ));
         
         $this->add(array(
-            'name' => 'phonenumber',
-            'label' => 'Phone Number'
+            'type' => '\Zend\Form\Element\Textarea',
+            'name' => 'description',
+            'options' => array(
+                'label' => 'Description'
+            ),
+            'attributes' => array(
+                'rows' => 3,
+                'placeholder' => 'Tell us about the style and size of the building you want.'
+            )
         ));
+        
+        $this->get('submit')->setLabel("Get your estimate!");
     }
 }

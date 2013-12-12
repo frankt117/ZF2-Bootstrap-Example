@@ -29,7 +29,15 @@ class GetStarted extends InputFilter
                     'break_chain_on_failure' => true,  
                     'options' => array(
                         'messages' => array(
-                            'isEmpty' => 'Email is required'
+                            'emailAddressInvalid' => 'Please enter a valid email address',
+                            'emailAddressInvalidFormat' => 'Please enter a valid email address',
+                            'emailAddressInvalidHostname' => 'Please enter a valid email address',
+                            'emailAddressInvalidMxRecord' => 'Please enter a valid email address',
+                            'emailAddressInvalidSegment' => 'Please enter a valid email address',
+                            'emailAddressDotAtom' => 'Please enter a valid email address',
+                            'emailAddressQuotedString' => 'Please enter a valid email address',
+                            'emailAddressInvalidLocalPart' => 'Please enter a valid email address',
+                            'emailAddressLengthExceeded' => 'Please enter a valid email address',
                         ),
                     )
                 )
@@ -37,7 +45,7 @@ class GetStarted extends InputFilter
         ));
         
         $this->add(array(
-            'name' => 'message',
+            'name' => 'description',
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
@@ -49,7 +57,7 @@ class GetStarted extends InputFilter
                     'break_chain_on_failure' => true,  
                     'options' => array(
                         'messages' => array(
-                            'isEmpty' => 'Message is required'
+                            'isEmpty' => 'Description is required'
                         ),
                     )
                 ),
@@ -60,7 +68,7 @@ class GetStarted extends InputFilter
                         'min' => 5,
                         'max' => 5000,
                         'messages' => array(
-                            'stringLengthTooLong' => 'Message is too long. 5000 characters maximum. Sorry :('
+                            'stringLengthTooLong' => 'Description is too long. 5000 characters maximum. Sorry :('
                         )
                     ),
                 )

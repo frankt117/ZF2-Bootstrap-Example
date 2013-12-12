@@ -26,11 +26,18 @@ abstract class Contact extends \PtgBase\Doctrine\Entity
     protected $message;
     
     /**
+     * @ORM\Column(type="integer", length=1)
+     */
+    protected $requires_attention = 1;
+    
+    /**
      * @param string $message
      */
     public function setMessage($message)
     {
         $this->message = $message;
+        
+        return $this;
     }
     /**
      * @return string
@@ -38,5 +45,29 @@ abstract class Contact extends \PtgBase\Doctrine\Entity
     public function getMessage()
     {
         return $this->message;
+    }
+    
+    /**
+     * @param int|bool $bool
+     */
+    public function setRequiresAttention($bool)
+    {
+        $this->requires_attention = $bool ? 1 : 0;
+    }
+    
+    /**
+     * @return bool
+     */
+    public function requiresAttention()
+    {
+        return $this->requires_attention === 0 ? false : true;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getRequiresAttentionString()
+    {
+        return $this->requires_attention === 0 ? "no" : "yes";
     }
 }

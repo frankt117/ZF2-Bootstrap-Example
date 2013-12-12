@@ -49,18 +49,18 @@ if($this->lead)
                             <i class="icon-plus icon-1x"></i>
                         </a>
                     </div>
-                    <ul class="">
+                    <ul class="list-group">
                     <?php
                     if($this->lead->getPhoneNumbers()->count() >0)
                     {
                         foreach($this->lead->getPhoneNumbers() as $PhoneNumber)
                         {
-                            ?><li><?php echo $PhoneNumber->toString();?></li><?php
+                            ?><li class="list-group-item"><?php echo $PhoneNumber->toString();?></li><?php
                         }
                     }
                     else
                     {
-                        ?><li class="text-muted small">No Phone Numbers</li><?php
+                        ?><li class="list-group-item text-muted small">No Phone Numbers</li><?php
                     }
                     ?>
                     </ul>
@@ -72,18 +72,18 @@ if($this->lead)
                             <i class="icon-plus icon-1x"></i>
                         </a>
                     </div>
-                    <ul class="">
+                    <ul class="list-group">
                     <?php
                     if($this->lead->getEmailAddresses()->count() >0)
                     {
                         foreach($this->lead->getEmailAddresses() as $EmailAddress)
                         {
-                            ?><li><?php echo $EmailAddress->toString();?></li><?php
+                            ?><li class="list-group-item"><?php echo $EmailAddress->toString();?></li><?php
                         }
                     }
                     else
                     {
-                        ?><li class="text-muted small">No Email Addresses</li><?php
+                        ?><li class="list-group-item text-muted small">No Email Addresses</li><?php
                     }
                     ?>
                     </ul>
@@ -106,15 +106,19 @@ if($this->lead)
                         </a>
                         </span>
                     </div>
-                    <ul class="">
+                    <ul class="list-group">
                     <?php
                     if($this->lead->getContactLog()->getContacts()->count() > 0)
                     {
                         foreach($this->lead->getContactLog()->getContacts() as $Contact)
                         {
                             ?>
-                            <li>
+                            <li class="list-group-item">
                                 <?php 
+                                if($Contact->requiresAttention())
+                                {
+                                    ?><i class="icon-envelope"></i><?php
+                                }
                                 echo $Contact->getCreated()->format("m-d-y H:i");?>
                             </li>
                             <?php

@@ -84,6 +84,8 @@ class Lead extends \PtgBase\Doctrine\Entity
         $this->PhoneNumbers[] = $PhoneNumber;
         
         $PhoneNumber->setLead($this);
+        
+        return $this;
     }
     
     /**
@@ -92,6 +94,20 @@ class Lead extends \PtgBase\Doctrine\Entity
     public function getPhoneNumbers()
     {
         return $this->PhoneNumbers;
+    }
+    
+    /**
+     * @param \PtgLead\Entity\Lead\EmailAddress $EmailAddress
+     */
+    public function addEmailAddress(Lead\EmailAddress $EmailAddress)
+    {
+        $EmailAddress->setLead($this);
+        
+        $this->EmailAddresses[] = $EmailAddress;
+        
+        $EmailAddress->setLead($this);
+        
+        return $this;
     }
     
     /**
