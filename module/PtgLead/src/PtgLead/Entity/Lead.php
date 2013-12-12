@@ -28,18 +28,28 @@ class Lead extends \PtgBase\Doctrine\Entity
     protected $PhoneNumbers;
     
     /**
-     * @ORM\OneToMany(targetEntity="PtgLead\Entity\Lead\Request", mappedBy="Lead")
+     * @ORM\OneToMany(targetEntity="PtgLead\Entity\Lead\EmailAddress", mappedBy="Lead")
      */
-    protected $Requests;
+    protected $EmailAddresses;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="PtgLead\Entity\Lead\ContactLog", inversedBy="Lead", cascade={"persist", "remove"})
+     */
+    private $ContactLog;
     
     public function __construct() 
     {
         parent::__construct();
         
-        $this->PhoneNumbers = new ArrayCollection;
-        $this->Requests     = new ArrayCollection;
+        $this->PhoneNumbers     = new ArrayCollection;
+        $this->EmailAddresses   = new ArrayCollection;
+        $this->Contacts         = new ArrayCollection;
+        $this->ContactLog       = new \PtgLead\Entity\Lead\ContactLog();
     }
     
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -64,15 +74,39 @@ class Lead extends \PtgBase\Doctrine\Entity
         return $this;
     }
     
+    /**
+     * @param \PtgLead\Entity\Lead\PhoneNumber $PhoneNumber
+     */
     public function addPhoneNumber(Lead\PhoneNumber $PhoneNumber)
     {
+        $PhoneNumber->setLead($this);
+        
         $this->PhoneNumbers[] = $PhoneNumber;
         
         $PhoneNumber->setLead($this);
     }
     
-    public function getRequests()
+    /**
+     * @return ArrayCollection
+     */
+    public function getPhoneNumbers()
     {
-        return $this->Requests;
+        return $this->PhoneNumbers;
+    }
+    
+    /**
+     * @return ArrayCollection
+     */
+    public function getEmailAddresses()
+    {
+        return $this->EmailAddresses;
+    }
+    
+    /**
+     * @return Lead\ContactLog
+     */
+    public function getContactLog()
+    {
+        return $this->ContactLog;
     }
 }

@@ -28,17 +28,4 @@ class GetStartedController extends AbstractController
 
         return new ViewModel();
     }
-
-    protected function saveEmailAndDescription($email,$description){
-
-        $this->getEntityManager();
-
-        $PtgRequest = new \PtgLead\Entity\Lead\Request();
-        $PtgRequest->email = $email;
-        $PtgRequest->description = $description;
-
-        $this->em->persist($PtgRequest);
-        $this->em->flush();
-
-    }
 }

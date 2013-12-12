@@ -37,7 +37,7 @@ class DiscriminatorListener implements \Doctrine\Common\EventSubscriber
 
                 if( in_array( $value, $this->map ) ) 
                 {  
-                    throw new Exception( "Found duplicate discriminator map entry '" . $value . "' in " . $class );  
+                    throw new \Exception( "Found duplicate discriminator map entry '" . $value . "' in " . $class );  
                 }  
 
                 $this->map[$class] = $value;  

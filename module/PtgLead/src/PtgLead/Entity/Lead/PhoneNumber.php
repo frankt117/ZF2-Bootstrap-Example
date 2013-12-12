@@ -11,13 +11,20 @@ use Doctrine\ORM\Mapping as ORM;
 class PhoneNumber extends \PtgContact\Entity\Medium\PhoneNumber
 {
     /**
+     * @var \PtgLead\Entity\Lead
      * @ORM\ManyToOne(targetEntity="PtgLead\Entity\Lead", inversedBy="PhoneNumbers")
      * @ORM\JoinColumn(name="ptglead_lead_id", referencedColumnName="id")
      */
     protected $Lead;
     
+    /**
+     * @param \PtgLead\Entity\Lead $Lead
+     * @return \PtgLead\Entity\Lead\PhoneNumber
+     */
     public function setLead(\PtgLead\Entity\Lead $Lead)
     {
         $this->Lead = $Lead;
+        
+        return $this;
     }
 }
