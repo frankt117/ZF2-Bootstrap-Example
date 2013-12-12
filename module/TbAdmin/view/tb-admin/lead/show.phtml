@@ -1,3 +1,9 @@
+<style>
+    .hand
+    {
+        cursor: pointer;
+    }
+</style>
 <?php
 if($this->lead)
 {
@@ -120,6 +126,13 @@ if($this->lead)
                                     ?><i class="icon-envelope"></i><?php
                                 }
                                 echo $Contact->getCreated()->format("m-d-y H:i");?>
+                                    <i class="icon-eye-open contact_message_open text-primary hand"></i>
+                                <div class="contact_message" style="display: none">
+                                    <hr />
+                                    <i class="icon-eye-close contact_message_close text-danger hand"></i>
+                                    <br />
+                                    <?php echo $Contact->getMessage();?>
+                                </div>
                             </li>
                             <?php
                         }
@@ -143,5 +156,13 @@ else echo "<div class='alert alert-block alert-error'>No lead with that id</div>
     $('#myTab a').click(function (e) {
 	e.preventDefault();
 	$(this).tab('show');
+    });
+    
+    $(".contact_message_open").click(function(){
+        $(this).siblings(".contact_message").toggle();
+    });
+    
+    $(".contact_message_close").click(function(){
+        $(this).parent().toggle();
     });
 </script>
